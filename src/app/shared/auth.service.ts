@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Unsubscribe } from '@angular/fire/app-check';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { IUser } from './interfaces/user.interface';
+// import {
+//   AngularFirestore} from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +30,30 @@ export class AuthService {
       this.router.navigate(['/login']);
     })
   }
+
+    //register method
+    // register(user: IUser){
+    //   this.fireauth.createUserWithEmailAndPassword(user.email, user.password).then( res=> {
+    //     this.SendVerficationEmail(res.user);
+    //     const uid = res.user?.uid;
+    //     const data= {
+    //       email: user.email,
+    //       name: user.name,
+    //       roleAs: user.roleAs
+    //     }
+    //     const userRef = this.afs.doc(`users/${uid}`);
+    //     userRef.set(data).then(() => {
+    //       console.log("Works");
+    //     })
+    //     .catch((error) => {
+    //       console.error(error)
+    //     })
+        
+    //   }, err => {
+    //     alert(err.message);
+    //     this.router.navigate(['/register']);
+    //   })
+    // }
 
   //register method
   register(email:string, password:string){
@@ -68,6 +97,15 @@ export class AuthService {
       })
 
   }
+
+  currentUserState() : boolean {
+      if(localStorage.getItem("token")) {
+        return true;
+      }
+      else {
+        return false;
+      }
   }
+}
   
 
