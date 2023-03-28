@@ -3,9 +3,8 @@ import { Unsubscribe } from '@angular/fire/app-check';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { IUser } from './interfaces/user.interface';
-// import {
-//   AngularFirestore} from '@angular/fire/compat/firestore';
+import { IUser } from '../interfaces/user.interface';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
