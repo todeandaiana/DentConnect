@@ -15,6 +15,9 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
 import { HomeComponent } from './home/home.component';
 import { CoreModule } from './core/core/core.module';
 
+import { FirestoreModule } from "@angular/fire/firestore";
+
+
 
 @NgModule({
   declarations: [
