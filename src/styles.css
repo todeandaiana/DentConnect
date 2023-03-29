@@ -37,13 +37,13 @@ body {
 
 .left-col{
   float: left;
-  width: 50%;
+  width: 60%;
   background-color: transparent;
   height: 100%;
 }
 .right-col {
     float: left;
-    width: 50%;
+    width: 60%;
     background-color: transparent;
     height: 100%;
 }
