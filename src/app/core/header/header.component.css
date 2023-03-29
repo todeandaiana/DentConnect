@@ -1,0 +1,14 @@
+.button-group  {
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.logo-group{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+

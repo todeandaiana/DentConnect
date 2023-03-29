@@ -1,1 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  background-image: url('assets/photos/fata.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+  
+  .name {
+    font-size: 40px;
+    font-weight: bold;
+    color: #7CB9E8;
+    display: inline-grid;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+}
+  
+  .auth {
+    font-size: 16px;
+  }
+
+  .container {
+    overflow: hidden;
+    position: relative;
+}
+
+.left-col {
+    float: left;
+    width: 50%;
+    background-color: transparent;
+    height: 100%;
+}
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { IUser } from 'src/app/shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +10,9 @@ import { AuthService } from 'src/app/shared/auth.service';
 export class RegisterComponent implements OnInit{
   email : string = '';
   password : string= '';
+  name : string = '';
+  roleAs : string = 'customer';
+  newUser: IUser | null = null;
 
   constructor(private auth: AuthService){}
 
@@ -26,11 +30,16 @@ export class RegisterComponent implements OnInit{
       alert('Please enter the password');
       return;
     }
+    this.newUser = {
+      name: this.name,
+      roleAs: this.roleAs,
+      email: this.email,
+      password: this.password
+    }
+    this.auth.register(this.newUser);
 
-    this.auth.register(this.email, this.password);
     this.email='';
     this.password='';
-
-
+    this.newUser = null;
   }
 }
