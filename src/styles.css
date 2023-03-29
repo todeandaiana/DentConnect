@@ -35,7 +35,13 @@ body {
     position: relative;
 }
 
-.left-col {
+.left-col{
+  float: left;
+  width: 50%;
+  background-color: transparent;
+  height: 100%;
+}
+.right-col {
     float: left;
     width: 50%;
     background-color: transparent;
