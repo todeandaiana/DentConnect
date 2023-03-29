@@ -6,12 +6,14 @@ import { Injectable, NgZone } from '@angular/core';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {AngularFirestore,AngularFirestoreDocument,} from '@angular/fire/compat/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public currentUser$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
   constructor(private fireauth : AngularFireAuth, private router: Router, private firestore: AngularFirestore) { }
 
@@ -25,7 +27,7 @@ export class AuthService {
       }else{
         this.router.navigate(['/verify-email']);
       }
-
+      this.setCurrentUser(res.user?.uid);
     }, err=>{
       alert(err.message);
       this.router.navigate(['/login']);
@@ -45,7 +47,7 @@ export class AuthService {
     }
 
   setUserData(user:any, uid: any){
-    const userRef:any =this.firestore.collection(`users`);
+    const userRef:any = this.firestore.collection(`users`);
     const userData ={
       uid: uid,
       email: user.email,
@@ -60,7 +62,8 @@ export class AuthService {
   logout(){
     this.fireauth.signOut().then( () => {
       localStorage.removeItem('token');
-      this.router.navigate(['/login']);
+      this.currentUser$.next(undefined);
+      this.router.navigate(['/']);
 
     }, err => {
       alert(err.message);
@@ -96,6 +99,13 @@ export class AuthService {
       else {
         return false;
       }
+  }
+
+  private setCurrentUser(uid: any) {
+     this.firestore.collection(`users`).doc(uid).get().subscribe(user => {
+      console.log(user.data());
+      this.currentUser$.next(user.data());
+    })
   }
 }
   

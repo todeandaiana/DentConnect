@@ -7,14 +7,13 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private auth: AuthService) {}
+  public currentUserName: string = '';
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    
-  }
-
-  logout(){
-    this.auth.logout();
-
+    this.authService.currentUser$.subscribe(user => {
+      if(user !== undefined)
+        this.currentUserName = user.name;
+    })
   }
 }
