@@ -15,19 +15,22 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   public currentUser$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
-  constructor(private fireauth : AngularFireAuth, private router: Router, private firestore: AngularFirestore) { }
+  constructor(private fireauth : AngularFireAuth, private router: Router, private firestore: AngularFirestore) {
+    this.setCurrentUser();
+   }
 
   //login method
   login(email:string, password: string){
     this.fireauth.signInWithEmailAndPassword(email,password).then( res=>{
-      localStorage.setItem('token', 'true');
+      if(res.user)
+        localStorage.setItem('uid', res.user.uid);
 
       if(res.user?.emailVerified == true) {
         this.router.navigate(['/dashboard']);
       }else{
         this.router.navigate(['/verify-email']);
       }
-      this.setCurrentUser(res.user?.uid);
+      this.setCurrentUser();
     }, err=>{
       alert(err.message);
       this.router.navigate(['/login']);
@@ -61,8 +64,8 @@ export class AuthService {
   //sign out
   logout(){
     this.fireauth.signOut().then( () => {
-      localStorage.removeItem('token');
       this.currentUser$.next(undefined);
+      localStorage.removeItem('uid');
       this.router.navigate(['/']);
 
     }, err => {
@@ -93,7 +96,7 @@ export class AuthService {
   }
 
   currentUserState() : boolean {
-      if(localStorage.getItem("token")) {
+      if(localStorage.getItem("uid")) {
         return true;
       }
       else {
@@ -101,11 +104,17 @@ export class AuthService {
       }
   }
 
-  private setCurrentUser(uid: any) {
-     this.firestore.collection(`users`).doc(uid).get().subscribe(user => {
-      console.log(user.data());
-      this.currentUser$.next(user.data());
-    })
+  private setCurrentUser() {
+    const uid = localStorage.getItem("uid");
+    if(uid){
+      this.firestore.collection(`users`).doc(uid).get().subscribe(user => {
+        console.log(user.data());
+        this.currentUser$.next(user.data());
+      })
+    } else {
+      this.currentUser$.next(undefined);
+    }
+     
   }
 }
   
