@@ -10,7 +10,7 @@ import { IUser } from 'src/app/shared/interfaces/user.interface';
 export class RegisterComponent implements OnInit{
   email : string = '';
   password : string= '';
-  name : string = 'Ana';
+  name : string = '';
   roleAs : string = 'customer';
   newUser: IUser | null = null;
 
@@ -36,10 +36,10 @@ export class RegisterComponent implements OnInit{
       email: this.email,
       password: this.password
     }
-    this.auth.register(this.email, this.password);
+    this.auth.register(this.newUser);
+
     this.email='';
     this.password='';
-
-
+    this.newUser = null;
   }
 }

@@ -1,17 +1,19 @@
-import { Injectable } from '@angular/core';
 import { Unsubscribe } from '@angular/fire/app-check';
-import {AngularFireAuth} from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../interfaces/user.interface';
-import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { Injectable, NgZone } from '@angular/core';
+import * as auth from 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {AngularFirestore,AngularFirestoreDocument,} from '@angular/fire/compat/firestore';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private fireauth : AngularFireAuth, private router: Router) { }
+  constructor(private fireauth : AngularFireAuth, private router: Router, private firestore: AngularFirestore) { }
 
   //login method
   login(email:string, password: string){
@@ -31,37 +33,27 @@ export class AuthService {
   }
 
     //register method
-    // register(user: IUser){
-    //   this.fireauth.createUserWithEmailAndPassword(user.email, user.password).then( res=> {
-    //     this.SendVerficationEmail(res.user);
-    //     const uid = res.user?.uid;
-    //     const data= {
-    //       email: user.email,
-    //       name: user.name,
-    //       roleAs: user.roleAs
-    //     }
-    //     const userRef = this.afs.doc(`users/${uid}`);
-    //     userRef.set(data).then(() => {
-    //       console.log("Works");
-    //     })
-    //     .catch((error) => {
-    //       console.error(error)
-    //     })
-        
-    //   }, err => {
-    //     alert(err.message);
-    //     this.router.navigate(['/register']);
-    //   })
-    // }
+    register(user: IUser){
+      this.fireauth.createUserWithEmailAndPassword(user.email, user.password).then( res=> {
+        const uid = res.user?.uid;
+        this.setUserData(user, uid)
+        this.SendVerficationEmail(res.user);
+      }, err => {
+        alert(err.message);
+        this.router.navigate(['/register']);
+      })
+    }
 
-  //register method
-  register(email:string, password:string){
-    this.fireauth.createUserWithEmailAndPassword(email, password).then( res=> {
-      this.SendVerficationEmail(res.user);
-    }, err => {
-      alert(err.message);
-      this.router.navigate(['/register']);
-    })
+  setUserData(user:any, uid: any){
+    const userRef:any =this.firestore.collection(`users`);
+    const userData ={
+      uid: uid,
+      email: user.email,
+      name: user.name,
+      roleAs: user.roleAs
+    };
+    return userRef.doc(uid).set(userData, {merge: true});
+
   }
 
   //sign out
