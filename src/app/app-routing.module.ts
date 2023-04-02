@@ -8,6 +8,9 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ProgramariAdultiComponent } from './component/dashboard/programari-adulti/programari-adulti.component';
+import { ProgramariCopiiComponent } from './component/dashboard/programari-copii/programari-copii.component';
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -17,6 +20,8 @@ const routes: Routes = [
   {path: 'verify-email', component: VerifyEmailComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'reset-password', component: ResetPasswordComponent},
+  {path: 'programari-adulti', component: ProgramariAdultiComponent},
+  {path: 'programari-copii', component: ProgramariCopiiComponent}
 ];
 
 @NgModule({

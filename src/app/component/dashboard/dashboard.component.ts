@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +9,21 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
   public currentUserName: string = '';
-  constructor(private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.currentUser$.subscribe(user => {
       if(user !== undefined)
         this.currentUserName = user.name;
     })
+  }
+
+  OnAdultAppointment(){
+    this.router.navigate(['/programari-adulti']);
+  }
+
+  OnChildAppointment(){
+    this.router.navigate(['/programari-copii']);
+
   }
 }

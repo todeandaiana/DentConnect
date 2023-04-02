@@ -23,6 +23,8 @@ import { environment } from '../environments/environment';
 
 
 import { FirestoreModule } from "@angular/fire/firestore";
+import { ProgramariAdultiComponent } from './component/dashboard/programari-adulti/programari-adulti.component';
+import { ProgramariCopiiComponent } from './component/dashboard/programari-copii/programari-copii.component';
 
 
 
@@ -35,7 +37,9 @@ import { FirestoreModule } from "@angular/fire/firestore";
     ForgotPasswordComponent,
     VerifyEmailComponent,
     ResetPasswordComponent,
-    HomeComponent, 
+    HomeComponent,
+    ProgramariAdultiComponent,
+    ProgramariCopiiComponent, 
   ],
   imports: [
     BrowserModule,
