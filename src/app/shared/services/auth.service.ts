@@ -3,9 +3,8 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../interfaces/user.interface';
 import { Injectable, NgZone } from '@angular/core';
-import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {AngularFirestore,AngularFirestoreDocument,} from '@angular/fire/compat/firestore';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 import { BehaviorSubject } from 'rxjs';
 
 
@@ -114,7 +113,6 @@ export class AuthService {
     } else {
       this.currentUser$.next(undefined);
     }
-     
   }
 }
   

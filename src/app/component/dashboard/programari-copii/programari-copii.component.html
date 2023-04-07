@@ -1,1 +1,67 @@
-<p>programari-copii works!</p>
+<h1>Programează-ți copilul!</h1>
+<form (ngSubmit)="submitChildForm()" #programareForm="ngForm">
+  <div class="form-group">
+    <label for="nume" aria-required="true">Nume pacient:</label>
+    <input type="text" id="nume" name="nume" class="form-control" required [(ngModel)]="programareCopil.numePacient">
+  </div>
+  <div class="form-group">
+    <label for="nume" aria-required="true">Nume însoțitor:</label>
+    <input type="text" id="nume" name="nume" class="form-control" required [(ngModel)]="programareCopil.numeInsotitor">
+  </div>
+  <div class="form-group">
+    <label for="email" aria-required="true">Email:</label>
+    <input type="email" id="email" name="email" class="form-control" required [(ngModel)]="programareCopil.email">
+  </div>
+  <div class="form-group">
+    <label for="telefon" aria-required="true">Telefon:</label>
+    <input type="tel" id="telefon" name="telefon" class="form-control" required [(ngModel)]="programareCopil.telefon">
+  </div>
+  <div>
+    <label for="clinica">Clinică:</label>
+  </div>
+  <div>
+    <select name="clinici" id="clinici" required>
+        <option>Dental Care Sîrbu</option>
+        <option>Stomestet</option>
+        <option>Alerna Dental Studio</option>
+      </select>
+  </div>
+  <div>
+    <label for="specializare">Specializare:</label>
+  </div>
+  <div>
+    <select name="specializari" id="specializari" required>
+        <option>a</option>
+        <option>a</option>
+        <option>a</option>
+      </select>
+  </div>
+  <div>
+    <label for="serviciu">Serviciu:</label>
+  </div>
+  <div>
+    <select name="servicii" id="servicii" required>
+        <option>a</option>
+        <option>a</option>
+        <option>a</option>
+      </select>
+  </div>
+  <div class="form-group">
+    <label for="data" aria-required="true">Data și ora:</label>
+    <input type="date" id="data" name="data" class="form-control" required [(ngModel)]="programareCopil.data_ora">
+  </div>
+  <div class="form-group">
+    <label for="mesaj" aria-required="false">Mesaj:</label>
+    <textarea id="mesaj" name="mesaj" class="form-control" [(ngModel)]="programareCopil.mesaj"></textarea>
+  </div>
+  <label>
+    <input type="checkbox" name="terms" id="terms" required>
+    Am citit și sunt de acord cu termenii și condițiile.
+  </label>
+  <div>
+    <button type="button" class="btn btn-danger" >Resetează</button>
+    <button type="button" class="btn btn-success" (click)="onSendChildAppointment()">Trimite</button>
+    <button type="button" class="btn btn-info" (click)="Back()">Revenire pe pagina principală</button>
+  </div>
+</form>
+

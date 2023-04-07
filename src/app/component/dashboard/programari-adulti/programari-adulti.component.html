@@ -1,1 +1,49 @@
-<p>programari-adulti works!</p>
+<div class="programari-adulti-container">
+  <h1>Programare</h1>
+  <form [formGroup]="appointmentForm" (submit)="onSendAdultAppointment()" class="form-container" id="appointment-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Nume:</mat-label>
+      <input matInput formControlName="pacient_name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Telefon:</mat-label>
+      <input matInput formControlName="phone">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Clinică:</mat-label>
+      <mat-select (selectionChange)="changeClinic($event.value)" formControlName="clinic">
+        <mat-option *ngFor="let clinic of clinicsList" [value]="clinic">
+          {{clinic.nume}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Data:</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Ora:</mat-label>
+      <input matInput formControlName="hour">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Mesaj:</mat-label>
+      <textarea matInput formControlName="details"></textarea>
+    </mat-form-field>
+    <button type="submit" mat-flat-button color="primary" >Trimite</button>
+    <button type="button" mat-flat-button color="warn" (click)="onResetForm()">Reseteaza</button>
+    <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire pe pagina principală</button>
+  </form>
+
+
+    <label>
+      <input type="checkbox" name="terms" id="terms" required>
+      Am citit și sunt de acord cu termenii și condițiile.
+    </label>
+</div>

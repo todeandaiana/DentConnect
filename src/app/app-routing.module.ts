@@ -20,8 +20,8 @@ const routes: Routes = [
   {path: 'verify-email', component: VerifyEmailComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'reset-password', component: ResetPasswordComponent},
-  {path: 'programari-adulti', component: ProgramariAdultiComponent},
-  {path: 'programari-copii', component: ProgramariCopiiComponent}
+  {path: 'programari-adulti', component: ProgramariAdultiComponent, canActivate: [AuthGuard]},
+  {path: 'programari-copii', component: ProgramariCopiiComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

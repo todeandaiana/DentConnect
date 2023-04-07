@@ -6,5 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./programari-copii.component.css']
 })
 export class ProgramariCopiiComponent {
+  programareCopil = {
+    numePacient: '',
+    numeInsotitor: '',
+    email:'',
+    telefon: '', 
+    data_ora: '',
+    mesaj:''
+  }
 
+  onSendChildAppointment(){
+
+  }
+
+  Back(){
+
+  }
+
+  submitChildForm() {
+    console.log(this.programareCopil);
+}
 }

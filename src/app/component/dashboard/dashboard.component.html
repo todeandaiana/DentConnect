@@ -1,15 +1,15 @@
-<div >
-    <h4 class="text-danger text-muted">Welcome, {{currentUserName}}!</h4>
+<div id="welcome">
+  <h4 class="text-danger text-muted">Bine ai venit, {{currentUserName}}!</h4>
 </div>
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd; justify-content: center;">
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd; justify-content: center;">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- <form class="d-flex" role="search">
+      <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
+      </form>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -49,11 +49,33 @@
               <li><a class="dropdown-item" href="#">Action</a></li>
             </ul>
           </li>
-          <button type="button" (click)="OnChildAppointment()" >Programează-ți copilul</button>
-          <button type="button" (click)="OnAdultAppointment()" >Programează-te aici</button>
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
+  <div style="text-align: center;">Clinici partenere</div>
+  <div class="container">
+    <div class="column">
+      <a href="pagina1.html">
+        <img src="assets/photos/dentalcaresirbu.jpg" class="highlight">
+      </a>
+    </div>
+    <div class="column">
+      <a href="pagina2.html">
+        <img src="assets/photos/alverna.jpg" alt="Imagine 2" class="highlight">
+      </a>
+    </div>
+    <div class="column">
+      <a href="pagina3.html">
+        <img src="assets/photos/stomestet.jpg" alt="Imagine 3" class="highlight">
+      </a>
+    </div>
+  </div>
+
+  
+  <div id="programare">
+  <button type="button" (click)="OnChildAppointment()" >Programează-ți copilul</button>
+  <button type="button" (click)="OnAdultAppointment()" >Programează-te aici</button>
+  </div>
 
 
