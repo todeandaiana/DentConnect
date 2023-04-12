@@ -24,6 +24,5 @@ export class DashboardComponent implements OnInit {
 
   OnChildAppointment(){
     this.router.navigate(['/programari-copii']);
-
   }
 }

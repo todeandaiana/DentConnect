@@ -9,4 +9,6 @@ export interface IProgramareAdult{
     data: Date;
     ora: Time;
     clinica: string;
+    specializare: string;
+    serviciu: string;
 }
