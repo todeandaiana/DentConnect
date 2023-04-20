@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
+
 
 
 @Component({
@@ -10,29 +12,20 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class LoginComponent implements OnInit{
   email : string = '';
   password : string= '';
+  hide=true;
 
-  constructor(private auth: AuthService){}
+  loginForm: FormGroup = new FormGroup ({
+    email: new FormControl('', [Validators.required,Validators.email]),
+    password: new FormControl('', Validators.required)
+
+  }) 
 
   ngOnInit():void {
-
   }
+  constructor(private auth: AuthService){}
 
+ 
   login(){
-    if(this.email == ''){
-      alert('Please enter the email');
-      return;
-    }
-
-    if(this.password == ''){
-      alert('Please enter the password');
-      return;
-    }
-
-    this.auth.login(this.email, this.password);
-    this.email='';
-    this.password='';
-
-
+    this.auth.login(this.loginForm.value.email, this.loginForm.value.password);
   }
-
 }

@@ -11,4 +11,6 @@ export interface IProgramareAdult{
     clinica: string;
     specializare: string;
     serviciu: string;
+    doctor: string;
+    mesaj: string;
 }

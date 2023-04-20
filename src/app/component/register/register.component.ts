@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { IUser } from 'src/app/shared/interfaces/user.interface';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { passwordMatchValidator, ValidateName } from 'src/app/shared/custom-validators.directive';
 
 @Component({
   selector: 'app-register',
@@ -13,11 +15,18 @@ export class RegisterComponent implements OnInit{
   name : string = '';
   roleAs : string = 'customer';
   newUser: IUser | null = null;
+  hide=true;
+
+  registerForm: FormGroup= new FormGroup({
+    name: new FormControl('', [Validators.required, ValidateName()]),
+    email: new FormControl('', [Validators.required,Validators.email]),
+    password: new FormControl('', [Validators.required, passwordMatchValidator()]),
+    confirmPassword: new FormControl('', [Validators.required, passwordMatchValidator() ])
+  })
 
   constructor(private auth: AuthService){}
 
   ngOnInit(): void {
-
   }
 
   register(){

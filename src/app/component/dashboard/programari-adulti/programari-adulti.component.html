@@ -12,6 +12,7 @@
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" />
       <mat-error *ngIf="appointmentForm.get('email').hasError('required')">Câmp obligatoriu!</mat-error>
+      <mat-error *ngIf="appointmentForm.get('email').hasError('email')">Introduceți un email valid!</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -51,6 +52,17 @@
       <mat-error *ngIf="appointmentForm.get('service').hasError('required')">Câmp obligatoriu!</mat-error>
     </mat-form-field>
 
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Doctor</mat-label>
+      <mat-select (selectionChange)="changeDoctor($event.value)" formControlName="doctor">
+        <mat-option *ngFor="let doctor of doctorsList$.getValue()" [value]="doctor">
+          {{ doctor.nume }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="appointmentForm.get('doctor').hasError('required')">Câmp obligatoriu!</mat-error>
+    </mat-form-field>
+
     <mat-form-field appearance="fill">
       <mat-label>Data</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="date" [min]="today" />
@@ -64,7 +76,12 @@
       <mat-label>Ora</mat-label>
       <input matInput formControlName="hour" />
       <mat-error *ngIf="appointmentForm.get('hour').hasError('required')">Câmp obligatoriu!</mat-error>
-      <mat-hint>Ora trebuie să fie de forma HH:MM</mat-hint>
+      <mat-hint>HH:MM</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Ar trebui să știm ceva?</mat-label>
+      <textarea matInput formControlName="message"></textarea>
     </mat-form-field>
 
     <!-- <mat-form-field appearance="fill">

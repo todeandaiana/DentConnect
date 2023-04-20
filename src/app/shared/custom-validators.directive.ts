@@ -35,4 +35,13 @@ export function ValidatePhone(prefix: string): ValidatorFn {
 
       return isValid ? null : { invalidHour: { value: control.value } };
   }
-}
+  }
+
+  export function passwordMatchValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const password = control.get('password');
+      const confirmPassword = control.get('confirmPassword');
+      return password && confirmPassword && password.value === confirmPassword.value ? null : { mismatch: true };
+     
+    };
+  }

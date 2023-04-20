@@ -1,4 +1,15 @@
 h1{
-    color: aliceblue;
+    color: white;
     font-family: revert;
 }
+
+.left-col {
+    background-image: url('../../assets/photos/home1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 81%;
+    color: aliceblue;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 30px;
+  }

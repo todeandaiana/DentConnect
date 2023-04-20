@@ -5,6 +5,14 @@
     align-items: center;
     /* overflow-y: scroll;
     height: 700px; */
+    /* display: center;
+    justify-content: center;
+    align-items: center; */
+    text-align: center;
+    background-image: url('../../../../assets/photos/programare-adult2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .form-container{
@@ -12,4 +20,5 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: fit-content;
 }

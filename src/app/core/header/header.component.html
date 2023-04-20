@@ -9,14 +9,14 @@
 
     <ng-container *ngIf="!(isAuthenticated$ | async)">
         <div class="button-group">
-            <button type="button" class="btn btn-primary" (click)="onLogin()">Login</button>
-            <button type="button" class="btn btn-outline-primary" (click)="onRegister()">Register</button>
+            <button type="button" class="btn btn-primary" (click)="onLogin()">Conectare</button>
+            <button type="button" class="btn btn-outline-primary" (click)="onRegister()">Îngregistrare</button>
         </div>
     </ng-container>
 
     <ng-container *ngIf="(isAuthenticated$ |async)">
       <div class="button-group">
-          <button type="button" class="btn btn-warning text-center" (click)="onLogout()">Logout</button>
+          <button type="button" class="btn btn-warning text-center" (click)="onLogout()">Ieși din cont</button>
       </div>
   </ng-container>
 </div>

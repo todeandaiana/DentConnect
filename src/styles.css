@@ -1,11 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-body {
-  background-image: url('assets/photos/fata.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
+
 
 .header {
     display: flex;
@@ -35,21 +30,7 @@ body {
     position: relative;
 }
 
-.left-col{
-  float: left;
-  width: 60%;
-  background-color: transparent;
-  height: 100%;
-}
-.right-col {
-    float: left;
-    width: 60%;
-    background-color: transparent;
-    height: 100%;
-}
-
   footer {
-    position: absolute;
     bottom: 0;
     width: 100%;
     justify-content: space-between;

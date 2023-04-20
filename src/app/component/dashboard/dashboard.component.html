@@ -1,6 +1,3 @@
-<div id="welcome">
-  <h4 class="text-danger text-muted">Bine ai venit, {{currentUserName}}!</h4>
-</div>
 <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd; justify-content: center;">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +50,7 @@
       </div>
     </div>
   </nav> -->
-  <div style="text-align: center;">Clinici partenere</div>
+  <!-- <div style="text-align: center;">Clinici partenere</div>
   <div class="container">
     <div class="column">
       <a href="pagina1.html">
@@ -70,12 +67,19 @@
         <img src="assets/photos/stomestet.jpg" alt="Imagine 3" class="highlight">
       </a>
     </div>
-  </div>
+  </div> -->
 
-  
-  <div id="programare">
-  <button type="button" (click)="OnChildAppointment()" >Programează-ți copilul</button>
-  <button type="button" (click)="OnAdultAppointment()" >Programează-te aici</button>
+<div class="dashboard-container">
+  <div>
+    <h4 class="text-danger text-muted">Bine ai venit, {{currentUserName}}!</h4>
   </div>
+  <div>
+    <button type="button" mat-raised-button color="primary" (click)="OnChildAppointment()" >Compară serviciile</button>
+    <button type="button" mat-raised-button color="primary" (click)="OnAdultAppointment()" >Programează-te</button>
+    <button type="button" mat-raised-button color="primary" (click)="OnChildAppointment()" >Programează-ți copilul</button>
+    <button type="button" mat-raised-button color="primary" (click)="OnChildAppointment()" >Istoricul programărilor</button>
+  </div>
+</div>
+  
 
 

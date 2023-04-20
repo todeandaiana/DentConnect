@@ -1,7 +1,34 @@
-.container{
-    
+/* #welcome{
+    text-align: center;
+    font-size: 50px;
 }
 
 #programare{
+    align-items: center;
+} */
 
+div{
+    text-align: center;
 }
+
+button{
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h4{
+    font-size: 50px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.dashboard-container{
+    display: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('../../../assets/photos/dashboard.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 81%;
+  }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Route } from '@angular/router';
-import { BehaviorSubject, Observable, Timestamp } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { IProgramareAdult } from 'src/app/shared/interfaces/programareAdult.interface';
 import { ProgramareAdultService } from 'src/app/shared/services/programareAdult.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -31,6 +31,9 @@ export class ProgramariAdultiComponent implements OnInit {
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   servicesList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  doctorsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]> ([]);
+  specialization_id: string;
+  clinic_id: string;
   today: string;
 
   
@@ -44,6 +47,8 @@ export class ProgramariAdultiComponent implements OnInit {
     clinic: new FormControl('', [Validators.required]),
     specialization: new FormControl('', [Validators.required]),
     service: new FormControl('', [Validators.required]),
+    doctor: new FormControl('', Validators.required),
+    message: new FormControl(''),
     terms: new FormControl(false, [Validators.requiredTrue])
   });
 
@@ -52,10 +57,10 @@ export class ProgramariAdultiComponent implements OnInit {
     // const uid = localStorage.getItem("uid");
   }
 
-  constructor(private router: Router,private programare: ProgramareAdultService,private firestore: AngularFirestore,private datepipe: DatePipe)
+  constructor(private router: Router, private programare: ProgramareAdultService, private firestore: AngularFirestore, private datepipe: DatePipe)
    {
     this.today=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
-    this.selectedClinic();
+    this.getClinics();
   }
 
   DateFilter = (d:Date) : boolean => {
@@ -84,7 +89,9 @@ export class ProgramariAdultiComponent implements OnInit {
       ora: this.appointmentForm.value.hour,
       clinica: this.appointmentForm.value.clinic.nume,
       specializare: this.appointmentForm.value.specialization.nume,
-      serviciu:this.appointmentForm.value.service.nume
+      serviciu:this.appointmentForm.value.service.nume,
+      doctor:this.appointmentForm.value.doctor.nume,
+      mesaj: this.appointmentForm.value.message
     };
     this.programare.sendProgramareAdult(this.newProgramareAdult);
     console.log(this.appointmentForm);
@@ -97,7 +104,7 @@ export class ProgramariAdultiComponent implements OnInit {
   }
 
 
-  selectedClinic() {
+  getClinics() {
     this.firestore
       .collection('clinici')
       .get()
@@ -111,6 +118,7 @@ export class ProgramariAdultiComponent implements OnInit {
 
   changeClinic(clinic: any) {
     console.log(clinic);
+    this.clinic_id=clinic.id;
     this.programare
       .getSpecializations(clinic.id)
       .then((res) => {
@@ -124,6 +132,7 @@ export class ProgramariAdultiComponent implements OnInit {
 
   changeSpecialization(specialization:any){
     console.log(specialization);
+    this.specialization_id=specialization.id;
     this.programare
       .getServices(specialization.id)
       .then((res) => {
@@ -137,6 +146,23 @@ export class ProgramariAdultiComponent implements OnInit {
 
   changeService(service:any){
     console.log(service);
+    this.programare
+    .getDoctors(this.specialization_id, this.clinic_id)
+     .then((res) => {
+       this.doctorsList$.next(res);
+        console.log(res);
+   })
+  .catch((e) => {
+    console.log(e);
+  });
+  }
+
+  changeDoctor(doctor:any){
+    console.log(doctor);
+
   }
 }
+
+
+
 
