@@ -1,6 +1,4 @@
-import { Unsubscribe } from '@angular/fire/app-check';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { IUser } from '../interfaces/user.interface';
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';

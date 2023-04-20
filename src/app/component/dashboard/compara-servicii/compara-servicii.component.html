@@ -1,0 +1,19 @@
+<table>
+    <thead>
+      <tr>
+        <th>Serviciu</th>
+        <th>DentaPro Clinic</th>
+        <th>Stomestet</th>
+        <th>DentaLux Clinic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let service of servicesList">
+        <td>{{ service.nume }}</td>
+        <td>{{ service.pret1 }}</td>
+        <td>{{ service.pret2 }}</td>
+        <td>{{ service.pret3 }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

@@ -10,16 +10,20 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProgramariAdultiComponent } from './component/dashboard/programari-adulti/programari-adulti.component';
 import { ProgramariCopiiComponent } from './component/dashboard/programari-copii/programari-copii.component';
+import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
+import { ComparaServiciiComponent } from './component/dashboard/compara-servicii/compara-servicii.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'verify-email', component: VerifyEmailComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'reset-password', component: ResetPasswordComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'compara-servicii', component: ComparaServiciiComponent, canActivate: [AuthGuard]},
+  {path: 'istoric-programari', component: IstoricProgramariComponent, canActivate: [AuthGuard]},
   {path: 'programari-adulti', component: ProgramariAdultiComponent, canActivate: [AuthGuard]},
   {path: 'programari-copii', component: ProgramariCopiiComponent, canActivate: [AuthGuard]}
 ];

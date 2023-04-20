@@ -70,14 +70,30 @@
   </div> -->
 
 <div class="dashboard-container">
+
   <div>
     <h4 class="text-danger text-muted">Bine ai venit, {{currentUserName}}!</h4>
   </div>
+
   <div>
-    <button type="button" mat-raised-button color="primary" (click)="OnChildAppointment()" >Compară serviciile</button>
+    <button type="button" mat-raised-button color="primary" (click)="OnCompareServices()" >Compară serviciile</button>
     <button type="button" mat-raised-button color="primary" (click)="OnAdultAppointment()" >Programează-te</button>
     <button type="button" mat-raised-button color="primary" (click)="OnChildAppointment()" >Programează-ți copilul</button>
-    <button type="button" mat-raised-button color="primary" (click)="OnChildAppointment()" >Istoricul programărilor</button>
+    <button type="button" mat-raised-button color="primary" (click)="OnHistoryAppointment()">Istoricul programărilor</button>
+  </div>
+
+  <div class="clinics">
+    <div>
+      <mat-list style="display: flex;">
+        <mat-list-item *ngFor="let clinic of clinicsList" >
+          <!-- <img matListItemAvatar src="" alt=""> -->
+          <h2 matListItemTitle>{{clinic.nume}}</h2>
+          <h3 matListItemLine>{{clinic.program}}</h3>
+          <h3 matListItemLine>{{clinic.adresa}}</h3>
+          <h3 matListItemLine>{{clinic.telefon}}</h3>
+        </mat-list-item>
+      </mat-list>
+    </div>
   </div>
 </div>
   

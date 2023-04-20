@@ -9,6 +9,9 @@
 
 div{
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button{
@@ -22,13 +25,24 @@ h4{
 }
 
 .dashboard-container{
-    display: center;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: url('../../../assets/photos/dashboard.jpg');
+    background-image: url('../../../assets/photos/dashboard3.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 81%;
+    height: 75.9%;
+    justify-content: space-evenly;
   }
+
+/* .clinics{
+display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-right: 10px;
+} */

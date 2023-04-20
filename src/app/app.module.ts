@@ -33,6 +33,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
+import { ComparaServiciiComponent } from './component/dashboard/compara-servicii/compara-servicii.component';
 
 
 @NgModule({
@@ -46,7 +49,9 @@ import { MatIconModule } from '@angular/material/icon';
     ResetPasswordComponent,
     HomeComponent,
     ProgramariAdultiComponent,
-    ProgramariCopiiComponent, 
+    ProgramariCopiiComponent,
+    IstoricProgramariComponent,
+    ComparaServiciiComponent, 
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
