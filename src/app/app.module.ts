@@ -34,6 +34,7 @@ import { DatePipe } from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
 import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
 import { ComparaServiciiComponent } from './component/dashboard/compara-servicii/compara-servicii.component';
 
@@ -73,7 +74,8 @@ import { ComparaServiciiComponent } from './component/dashboard/compara-servicii
     MatNativeDateModule,
     MatCheckboxModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -17,3 +17,7 @@
     align-items: center;
     height: fit-content;
 }
+
+::ng-deep div.mat-mdc-text-field-wrapper {
+    width: 280px;
+}
