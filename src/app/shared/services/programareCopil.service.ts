@@ -22,11 +22,13 @@ export class ProgramareCopilService{
         nume_insotitor: programare.nume_insotitor,
         email: programare.email,
         telefon: programare.telefon,
-        detalii: programare.detalii,
+        mesaj: programare.mesaj,
         data: programare.data,
         ora:programare.ora,
         clinica:programare.clinica,
-        specializare:programare.specializare
+        specializare:programare.specializare,
+        serviciu:programare.serviciu,
+        doctor:programare.doctor
       };
       return programareRef.doc().set(ProgramareCopilData, {merge: true});
     }

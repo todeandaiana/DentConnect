@@ -26,7 +26,7 @@ export class ProgramariAdultiComponent implements OnInit {
   nume_pacient: string;
   email: string;
   telefon: string;
-  detalii: string;
+  mesaj: string;
   newProgramareAdult: IProgramareAdult | null = null;
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -43,7 +43,6 @@ export class ProgramariAdultiComponent implements OnInit {
     phone: new FormControl('', [Validators.required, ValidatePhone('07')]),
     date: new FormControl('', [Validators.required]),
     hour: new FormControl('', [Validators.required, ValidateHour()]),
-    details: new FormControl(''),
     clinic: new FormControl('', [Validators.required]),
     specialization: new FormControl('', [Validators.required]),
     service: new FormControl('', [Validators.required]),
@@ -84,7 +83,6 @@ export class ProgramariAdultiComponent implements OnInit {
       nume_pacient: this.appointmentForm.value.pacient_name,
       email: this.appointmentForm.value.email,
       telefon: this.appointmentForm.value.phone,
-      detalii: this.appointmentForm.value.details,
       data: this.appointmentForm.value.date,
       ora: this.appointmentForm.value.hour,
       clinica: this.appointmentForm.value.clinic.nume,

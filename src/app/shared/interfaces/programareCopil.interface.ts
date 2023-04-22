@@ -6,7 +6,6 @@ export interface IProgramareCopil{
     nume_insotitor: string;
     email: string;
     telefon: string;
-    detalii: string;
     data: Date;
     ora: Time;
     clinica: string;
