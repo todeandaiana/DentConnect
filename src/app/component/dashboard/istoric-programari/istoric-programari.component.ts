@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
 export class IstoricProgramariComponent implements OnInit {
 
 
-  AdultAppointmentsList: {clinica:string, nume_pacient: string, data: string, ora:string, specializare:string, serviciu:string, doctor:string} [] = [];
-  ChildAppointmentsList: {clinica:string, nume_pacient: string, varsta_pacient:string, nume_insotitor:string, data: string, ora:string, specializare:string, serviciu:string, doctor:string} [] = [];
-  AdultdisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor'];
-  ChilddisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Vârstă pacient', 'Însoțitor', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor'];
+  AdultAppointmentsList: {clinica:string, nume_pacient: string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, status:string} [] = [];
+  ChildAppointmentsList: {clinica:string, nume_pacient: string, varsta_pacient:string, nume_insotitor:string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, status:string} [] = [];
+  AdultdisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Status'];
+  ChilddisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Vârstă pacient', 'Însoțitor', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Status'];
   public AdultdataSource:any;
   public ChilddataSource:any;
 
@@ -25,6 +25,7 @@ export class IstoricProgramariComponent implements OnInit {
   ngOnInit(): void {
     this.getAdultAppointments();
     this.getChildAppointments();
+    this.ChangeSatusColor();
     // document.getElementById('AdultTable').style.display='none';
     // document.getElementById('childTable').style.display='none';
   }
@@ -44,7 +45,7 @@ export class IstoricProgramariComponent implements OnInit {
             const timestampFirebase=appointment.data;
             const date = timestampFirebase.toDate();
             const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
-            this.AdultAppointmentsList.push({clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor});
+            this.AdultAppointmentsList.push({clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, status:appointment.status});
             this.AdultdataSource = new MatTableDataSource(this.AdultAppointmentsList);
           }
         });
@@ -63,7 +64,7 @@ export class IstoricProgramariComponent implements OnInit {
             const timestampFirebase=appointment.data;
             const date = timestampFirebase.toDate();
             const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
-            this.ChildAppointmentsList.push({clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, varsta_pacient:appointment.varsta_pacient, nume_insotitor:appointment.nume_insotitor, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor});
+            this.ChildAppointmentsList.push({clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, varsta_pacient:appointment.varsta_pacient, nume_insotitor:appointment.nume_insotitor, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, status:appointment.status});
             this.ChilddataSource = new MatTableDataSource(this.ChildAppointmentsList);
           }
         });
@@ -88,6 +89,19 @@ export class IstoricProgramariComponent implements OnInit {
   Back() {
     this.router.navigate(['/dashboard']);
   }
+
+  ChangeSatusColor(){
+    const status = document.getElementById('status');
+    if(status.innerHTML === "trimis"){
+      status.style.backgroundColor = "yellow";
+    } else if (status.innerHTML === "acceptat"){
+      status.style.backgroundColor = "green";
+    }
+    else {
+      status.style.backgroundColor = "red";
+    }
+  }
+
 
   // ShowAdultAppointments(){
   //   document.getElementById('adultTable').style.display='inline-table';

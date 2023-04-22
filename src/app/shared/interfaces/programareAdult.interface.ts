@@ -12,4 +12,5 @@ export interface IProgramareAdult{
     serviciu: string;
     doctor: string;
     mesaj: string;
+    status:string;
 }

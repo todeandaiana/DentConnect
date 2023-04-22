@@ -24,6 +24,7 @@ export class ProgramariCopiiComponent implements OnInit{
   email: string;
   telefon: string;
   mesaj: string;
+  status:string = 'trimis';
   newProgramareCopil: IProgramareCopil | null = null;
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -88,7 +89,8 @@ export class ProgramariCopiiComponent implements OnInit{
       specializare: this.appointmentForm.value.specialization.nume,
       serviciu:this.appointmentForm.value.service.nume,
       doctor:this.appointmentForm.value.doctor.nume,
-      mesaj: this.appointmentForm.value.message
+      mesaj: this.appointmentForm.value.message,
+      status:this.status
     };
     this.programare.sendProgramareCopil(this.newProgramareCopil);
     console.log(this.appointmentForm);

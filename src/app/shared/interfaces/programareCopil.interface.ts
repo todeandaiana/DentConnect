@@ -13,4 +13,5 @@ export interface IProgramareCopil{
     serviciu: string;
     doctor: string;
     mesaj: string;
+    status:string;
 }

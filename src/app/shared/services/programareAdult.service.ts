@@ -25,7 +25,8 @@ export class ProgramareAdultService{
         clinica:programare.clinica,
         specializare:programare.specializare,
         serviciu:programare.serviciu,
-        doctor:programare.doctor
+        doctor:programare.doctor,
+        status:programare.status
       };
       return programareRef.doc().set(ProgramareAdultData, {merge: true});
     }
