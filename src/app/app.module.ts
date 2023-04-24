@@ -38,7 +38,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
 import { ComparaServiciiComponent } from './component/dashboard/compara-servicii/compara-servicii.component';
-import { CrudProgramariComponent } from './component/admin/admin-dashboard/crud-programari/crud-programari.component';
+import { AdminDashboardComponent } from './component/admin/admin-dashboard/admin-dashboard.component';
 import { CrudUseriComponent } from './component/admin/admin-dashboard/crud-useri/crud-useri.component';
 import { AddProgramariComponent } from './component/admin/admin-dashboard/crud-programari/add-programari/add-programari.component';
 import { EditProgramariComponent } from './component/admin/admin-dashboard/crud-programari/edit-programari/edit-programari.component';
@@ -59,11 +59,11 @@ import { ShowProgramariComponent } from './component/admin/admin-dashboard/crud-
     ProgramariCopiiComponent,
     IstoricProgramariComponent,
     ComparaServiciiComponent,
-    CrudProgramariComponent,
-    CrudUseriComponent,
     AddProgramariComponent,
+    CrudUseriComponent,
     EditProgramariComponent,
-    ShowProgramariComponent
+    ShowProgramariComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

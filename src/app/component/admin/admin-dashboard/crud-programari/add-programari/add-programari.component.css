@@ -1,0 +1,23 @@
+.programari-adulti-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('../../../../../../assets/photos/dashboard5.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+::ng-deep div.mat-mdc-text-field-wrapper {
+    width: 280px;
+}

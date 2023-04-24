@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrudProgramariComponent } from './crud-programari.component';
+import { CrudProgramariComponent } from './admin-dashboard.component';
 
 describe('CrudProgramariComponent', () => {
   let component: CrudProgramariComponent;

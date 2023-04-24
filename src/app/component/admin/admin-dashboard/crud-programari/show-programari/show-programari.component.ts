@@ -51,10 +51,10 @@ export class ShowProgramariComponent implements OnInit {
 
   DeleteAppointment(){
 
-    
+
   }
 
   Back(){
-    this.router.navigate(['/crud-programari']);
+    this.router.navigate(['/admin-dashboard']);
   }
 }

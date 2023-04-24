@@ -12,10 +12,10 @@ import { ProgramariAdultiComponent } from './component/dashboard/programari-adul
 import { ProgramariCopiiComponent } from './component/dashboard/programari-copii/programari-copii.component';
 import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
 import { ComparaServiciiComponent } from './component/dashboard/compara-servicii/compara-servicii.component';
-import { CrudProgramariComponent } from './component/admin/admin-dashboard/crud-programari/crud-programari.component';
 import { AddProgramariComponent } from './component/admin/admin-dashboard/crud-programari/add-programari/add-programari.component';
 import { EditProgramariComponent } from './component/admin/admin-dashboard/crud-programari/edit-programari/edit-programari.component';
 import { ShowProgramariComponent } from './component/admin/admin-dashboard/crud-programari/show-programari/show-programari.component';
+import { AdminDashboardComponent } from './component/admin/admin-dashboard/admin-dashboard.component';
 
 
 const routes: Routes = [
@@ -30,7 +30,7 @@ const routes: Routes = [
   {path: 'istoric-programari', component: IstoricProgramariComponent, canActivate: [AuthGuard]},
   {path: 'programari-adulti', component: ProgramariAdultiComponent, canActivate: [AuthGuard]},
   {path: 'programari-copii', component: ProgramariCopiiComponent, canActivate: [AuthGuard]},
-  {path: 'crud-programari', component: CrudProgramariComponent},
+  {path: 'admin-dashboard', component: AdminDashboardComponent},
   {path: 'add-programari', component: AddProgramariComponent},
   {path: 'edit-programari', component: EditProgramariComponent},
   {path: 'show-programari', component: ShowProgramariComponent},
