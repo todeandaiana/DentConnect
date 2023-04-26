@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { GoogleMap } from '@angular/google-maps';
+import { IMarkerProperties } from 'src/app/shared/interfaces/MarkerProperties.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +13,20 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class DashboardComponent implements OnInit {
   public currentUserName: string = '';
   clinicsList: {nume: string, adresa: string, program: string, telefon: string} [] = [];
+
+  @ViewChild('myGoogleMap', { static: true }) map!: GoogleMap;
+
+  mapOptions: google.maps.MapOptions = {
+    center: {lat: 46.7730109, lng: 23.6},
+    zoom:13
+  }
+
+  markers: IMarkerProperties[] = [
+    { position: { lat: 46.76075511653318, lng: 23.613973325591896}, name: 'DentaPro Clinic' }, // DentaPro Clinic= sirbu =AM
+    { position: { lat: 46.76182936112267, lng: 23.564898467920205}, name: 'Stomestet'}, // Stomestet = manastur
+    { position: { lat: 46.77244059175123, lng: 23.5930983612925 }, name: 'DentaLux Clinic'}, // DentaLux Clinic= alverna = centru
+  ];
+
   constructor(private router: Router, private authService: AuthService, private firestore: AngularFirestore) {}
 
   ngOnInit(): void {
