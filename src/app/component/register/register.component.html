@@ -65,7 +65,7 @@
           </mat-form-field>
         </div>
 
-        <div>
+        <!-- <div>
             <mat-form-field appearance="fill">
               <mat-label>Reintroduceți parola</mat-label>
               <input matInput formControlName="confirmPassword" [type]="hide ? 'password' : 'text'"/>
@@ -76,7 +76,7 @@
         
             </mat-form-field>
           </div>
-          <div *ngIf="registerForm.hasError('mismatch')">Parolele nu sunt la fel!</div>
+          <div *ngIf="registerForm.hasError('mismatch')">Parolele nu sunt la fel!</div> -->
         <div>
           <button type="submit" mat-flat-button color="primary" [disabled]="!registerForm.valid">Mă înscriu</button>
         </div>

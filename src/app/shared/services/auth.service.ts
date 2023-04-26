@@ -41,7 +41,9 @@ export class AuthService {
         this.setUserData(user, uid)
         this.SendVerficationEmail(res.user);
       }, err => {
-        alert(err.message);
+        if (err.code == "auth/email-already-in-use") {
+          alert("Există un cont cu acest email!");
+        }
         this.router.navigate(['/register']);
       })
     }
@@ -51,6 +53,7 @@ export class AuthService {
     const userData ={
       uid: uid,
       email: user.email,
+      password: user.password,
       name: user.name,
       roleAs: user.roleAs
     };
