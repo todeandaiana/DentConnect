@@ -77,6 +77,11 @@ export class AddProgramariComponent implements OnInit{
     console.log(this.appointmentForm);
   }
 
+  onResetForm() {
+    const form = document.getElementById('appointment-form') as HTMLFormElement;
+    form.reset();
+  }
+
   onSendAdultAppointment() {
     this.newProgramareAdult = {
       nume_pacient: this.appointmentForm.value.pacient_name,
@@ -94,11 +99,6 @@ export class AddProgramariComponent implements OnInit{
     this.programare.sendProgramareAdult(this.newProgramareAdult);
     console.log(this.appointmentForm);
     this.router.navigate(['/admin-dashboard']);
-  }
-
-  onResetForm() {
-    const form = document.getElementById('appointment-form') as HTMLFormElement;
-    form.reset();
   }
 
 

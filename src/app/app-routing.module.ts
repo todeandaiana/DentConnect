@@ -16,6 +16,7 @@ import { AddProgramariComponent } from './component/admin/admin-dashboard/crud-p
 import { EditProgramariComponent } from './component/admin/admin-dashboard/crud-programari/edit-programari/edit-programari.component';
 import { ShowProgramariComponent } from './component/admin/admin-dashboard/crud-programari/show-programari/show-programari.component';
 import { AdminDashboardComponent } from './component/admin/admin-dashboard/admin-dashboard.component';
+import { GooglemapComponent } from './googlemap/googlemap.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'add-programari', component: AddProgramariComponent},
   {path: 'edit-programari', component: EditProgramariComponent},
   {path: 'show-programari', component: ShowProgramariComponent},
+  {path: 'googlemap', component: GooglemapComponent},
 
 
 

@@ -12,6 +12,8 @@ export class ShowProgramariComponent implements OnInit {
   AdultAppointmentsList: {clinica:string, nume_pacient: string, email:string, telefon: string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, mesaj:string,  status:string} [] = [];
   AdultdisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Email', 'Telefon', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Mesaj', 'Status', 'Editează', 'Șterge'];
   public AdultdataSource:any;
+  public edit: boolean = false;
+  public id:string;
 
   ngOnInit(): void {
     this.getAdultAppointments();
@@ -23,20 +25,18 @@ export class ShowProgramariComponent implements OnInit {
 
 
   getAdultAppointments(){
-    const userId = localStorage.getItem('uid');
     this.firestore
       .collection('programari_adulti')
       .get()
       .subscribe((snapshot) => {
         snapshot.forEach((doc) => {
           const appointment: any = doc.data();
-          if(appointment.user_id === userId ) {
             const timestampFirebase=appointment.data;
             const date = timestampFirebase.toDate();
             const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
             this.AdultAppointmentsList.push({clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, data: dateformat, ora: appointment.ora, email:appointment.email, telefon:appointment.telefon, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, mesaj:appointment.mesaj, status:appointment.status});
             this.AdultdataSource = new MatTableDataSource(this.AdultAppointmentsList);
-          }
+          
         });
       });
   }
@@ -46,13 +46,14 @@ export class ShowProgramariComponent implements OnInit {
   }
 
   EditAppointment(){
-    this.router.navigate(['/edit-programari']);
+    // this.router.navigate(['/edit-programari']);
+    this.edit = !this.edit;
   }
 
   DeleteAppointment(){
 
-
   }
+
 
   Back(){
     this.router.navigate(['/admin-dashboard']);

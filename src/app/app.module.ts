@@ -43,6 +43,7 @@ import { CrudUseriComponent } from './component/admin/admin-dashboard/crud-useri
 import { AddProgramariComponent } from './component/admin/admin-dashboard/crud-programari/add-programari/add-programari.component';
 import { EditProgramariComponent } from './component/admin/admin-dashboard/crud-programari/edit-programari/edit-programari.component';
 import { ShowProgramariComponent } from './component/admin/admin-dashboard/crud-programari/show-programari/show-programari.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { ShowProgramariComponent } from './component/admin/admin-dashboard/crud-
     MatIconModule,
     MatListModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
+    GoogleMapsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

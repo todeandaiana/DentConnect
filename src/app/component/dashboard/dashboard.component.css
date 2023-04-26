@@ -37,11 +37,7 @@ h4{
     height: 75.9%;
 }
 
-/* .clinics{
-display: flex;
-  flex-direction: row;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-right: 10px;
-} */
+.full{
+    width: 500px;
+    height: 400px;
+}
