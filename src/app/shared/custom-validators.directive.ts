@@ -35,13 +35,19 @@ export function ValidatePhone(prefix: string): ValidatorFn {
 
       return isValid ? null : { invalidHour: { value: control.value } };
   }
+}
+
+  export function ValidatePassword() : ValidatorFn{
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const password = control.value as string;
+
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/; // regex pentru a verifica structura parolei
+      //Minimum five characters, at least one uppercase letter, one lowercase letter, one number and one special character
+      const isValid = regex.test(password);
+
+      return isValid ? null : { invalidPassword: { value: control.value } };
+  }
   }
 
-  export function passwordMatchValidator(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} | null => {
-      const password = control.get('password');
-      const confirmPassword = control.get('confirmPassword');
-      return password && confirmPassword && password.value === confirmPassword.value ? null : { mismatch: true };
-     
-    };
-  }
+
+

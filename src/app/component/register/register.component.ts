@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { IUser } from 'src/app/shared/interfaces/user.interface';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { ValidateName } from 'src/app/shared/custom-validators.directive';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ValidateName, ValidatePassword } from 'src/app/shared/custom-validators.directive';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -15,17 +16,19 @@ export class RegisterComponent implements OnInit{
   newUser: IUser | null = null;
   hide=true;
 
+
   registerForm: FormGroup= new FormGroup({
     name: new FormControl('', [Validators.required, ValidateName()]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
-    // confirmPassword: new FormControl('', [Validators.required])
-  })
+    passwordConfirm: new FormControl('', [Validators.required, ValidatePassword()]),
+  }, this.passwordMatchValidator)
 
-  
-  constructor(private auth: AuthService){
-
+  passwordMatchValidator(form: FormGroup) {
+     return form.get('password').value === form.get('passwordConfirm').value ? null : {'mismatch': true};
   }
+
+  constructor(private auth: AuthService){}
 
   ngOnInit(): void {
   }
@@ -39,9 +42,7 @@ export class RegisterComponent implements OnInit{
       password: this.registerForm.value.password
     }
     this.auth.register(this.newUser);
-
-    // this.email='';
-    // this.password='';
     this.newUser = null;
   }
 }
+

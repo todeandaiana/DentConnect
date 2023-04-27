@@ -1,48 +1,3 @@
-<!-- <div class="container-fluid">
-    <div class="row mt-5">
-        <div class="col"></div>
-        <div class="col-6">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-4">
-                            <h4>Conectează-te!</h4>
-                        </div>
-                        <div class="mb-3">
-                          <label class="fa-solid fa-envelope">Email</label>
-                          <input type="email" class="form-control" name="email" [(ngModel)]="email">
-                        </div>
-
-                        <div class="mb-3">
-                          <label class="fa-solid fa-lock">Password</label>
-                          <input type="password" class="form-control" name="password" [(ngModel)]="password">
-                        </div>
-                        <div class="example-container">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Enter your password</mat-label>
-                            <input matInput [type]="hide ? 'password' : 'text'">
-                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            </button>
-                          </mat-form-field>
-                        </div>
-                        <button type="button" class="btn btn-success" (click)="login()">Login</button>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <a href="/register" style="text-decoration: none;"><span class="fa-solid fa-registered"> Register</span></a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="/forgot-password" class="fa-solid fa-key" style="text-decoration: none;"> Forgot password? </a>
-                            </div>
-                        </div>
-                      </form>
-                </div>
-            </div>
-        </div>
-        <div class="col"></div>
-    </div>
-</div> -->
-
 <div class="login-container">
   <h1>Intră în contul tău</h1>
   <div>
@@ -65,9 +20,20 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error *ngIf="loginForm.get('password').hasError('required')">Câmp obligatoriu!</mat-error>
-    
         </mat-form-field>
       </div>
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Reintroduceți parola</mat-label>
+          <input matInput formControlName="passwordConfirm" [type]="hide ? 'password' : 'text'"/>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('passwordConfirm').hasError('required')">Câmp obligatoriu!</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-error *ngIf="loginForm.hasError('mismatch')">Parolele nu sunt la fel!</mat-error>
 
       <div>
         <button type="submit" mat-flat-button color="primary" [disabled]="!loginForm.valid">Mă conectez</button>
