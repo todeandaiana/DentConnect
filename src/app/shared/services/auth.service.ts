@@ -4,6 +4,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import { BehaviorSubject } from 'rxjs';
+import * as bcrypt from 'bcryptjs';
 
 
 @Injectable({
@@ -48,17 +49,32 @@ export class AuthService {
       })
     }
 
+  // setUserData(user:any, uid: any){
+  //   const userRef:any = this.firestore.collection(`users`);
+  //   const userData ={
+  //     uid: uid,
+  //     email: user.email,
+  //     password: user.password,
+  //     name: user.name,
+  //     roleAs: user.roleAs
+  //   };
+  //   return userRef.doc(uid).set(userData, {merge: true});
+  // }
+
   setUserData(user:any, uid: any){
     const userRef:any = this.firestore.collection(`users`);
     const userData ={
       uid: uid,
       email: user.email,
-      password: user.password,
+      password: '', // setăm inițial parola la null
       name: user.name,
       roleAs: user.roleAs
     };
-    return userRef.doc(uid).set(userData, {merge: true});
-
+    // criptăm parola utilizând bcrypt.hash
+    return bcrypt.hash(user.password, 10).then((hash: string) => {
+      userData.password = hash; // actualizăm parola cu hash-ul generat
+      return userRef.doc(uid).set(userData, {merge: true});
+    });
   }
 
   //sign out

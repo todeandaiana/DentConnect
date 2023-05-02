@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidateName, ValidatePassword } from 'src/app/shared/custom-validators.directive';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit{
       name: this.registerForm.value.name,
       roleAs: this.roleAs,
       email: this.registerForm.value.email,
-      password: this.registerForm.value.password
+      password: this.registerForm.value.password,
     }
     this.auth.register(this.newUser);
     this.newUser = null;
