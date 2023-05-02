@@ -87,9 +87,9 @@
       <mat-form-field appearance="fill">
         <mat-label>Status</mat-label>
         <mat-select formControlName="status">
-          <mat-option value="trimis">Trimis</mat-option>
-          <mat-option value="acceptat">Acceptat</mat-option>
-          <mat-option value="refuzat">Refuzat</mat-option>
+          <mat-option value="Trimis">Trimis</mat-option>
+          <mat-option value="Acceptat">Acceptat</mat-option>
+          <mat-option value="Refuzat">Refuzat</mat-option>
         </mat-select>
         <mat-error *ngIf="appointmentForm.get('status').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field>

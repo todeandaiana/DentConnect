@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { DocumentReference } from '@angular/fire/firestore';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
@@ -9,19 +10,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./show-programari.component.css']
 })
 export class ShowProgramariComponent implements OnInit {
-  AdultAppointmentsList: {clinica:string, nume_pacient: string, email:string, telefon: string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, mesaj:string,  status:string} [] = [];
+  AdultAppointmentsList: {id: string, clinica:string, nume_pacient: string, email:string, telefon: string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, mesaj:string,  status:string} [] = [];
   AdultdisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Email', 'Telefon', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Mesaj', 'Status', 'Editează', 'Șterge'];
   public AdultdataSource:any;
   public edit: boolean = false;
   public id:string;
 
+  appointments: any[];
+
   ngOnInit(): void {
     this.getAdultAppointments();
-    // document.getElementById('AdultTable').style.display='none';
-    // document.getElementById('childTable').style.display='none';
   }
 
-  constructor(private firestore: AngularFirestore, private router: Router) {}
+  constructor(private firestore: AngularFirestore, private router: Router) {
+    // this.firestore.collection('programari_adulti').valueChanges().subscribe(appointments => {
+    //   this.appointments = appointments;
+    // });
+  }
 
 
   getAdultAppointments(){
@@ -34,9 +39,8 @@ export class ShowProgramariComponent implements OnInit {
             const timestampFirebase=appointment.data;
             const date = timestampFirebase.toDate();
             const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
-            this.AdultAppointmentsList.push({clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, data: dateformat, ora: appointment.ora, email:appointment.email, telefon:appointment.telefon, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, mesaj:appointment.mesaj, status:appointment.status});
-            this.AdultdataSource = new MatTableDataSource(this.AdultAppointmentsList);
-          
+            this.AdultAppointmentsList.push({id: doc.id, clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, data: dateformat, ora: appointment.ora, email:appointment.email, telefon:appointment.telefon, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, mesaj:appointment.mesaj, status:appointment.status});
+            this.AdultdataSource = new MatTableDataSource(this.AdultAppointmentsList);          
         });
       });
   }
@@ -45,13 +49,14 @@ export class ShowProgramariComponent implements OnInit {
     this.router.navigate(['/add-programari']);
   }
 
-  EditAppointment(){
-    // this.router.navigate(['/edit-programari']);
-    this.edit = !this.edit;
+  EditAppointment(appointment:any){
+    console.log(appointment);
+    this.router.navigate(['/edit-programari'], {state: {id:appointment.id}});
   }
 
-  DeleteAppointment(){
-
+  DeleteAppointment(appointment: any) : void {
+    this.firestore.collection('programari_adulti').doc(appointment.id).delete();
+    this.getAdultAppointments();
   }
 
 

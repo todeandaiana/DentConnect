@@ -92,9 +92,9 @@ export class IstoricProgramariComponent implements OnInit {
 
   ChangeSatusColor(){
     const status = document.getElementById('status');
-    if(status.innerHTML === "trimis"){
+    if(status.innerHTML === "Trimis"){
       status.style.backgroundColor = "yellow";
-    } else if (status.innerHTML === "acceptat"){
+    } else if (status.innerHTML === "Acceptat"){
       status.style.backgroundColor = "green";
     }
     else {

@@ -1,14 +1,12 @@
 import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { Router } from "@angular/router";
-import { AuthService } from "./auth.service";
+
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProgramareAdultService{
-    constructor(private fireauth : AngularFireAuth, private router: Router, private firestore: AngularFirestore, private authService: AuthService) {
+    constructor(private firestore: AngularFirestore) {
        }
 
 
@@ -60,7 +58,6 @@ export class ProgramareAdultService{
     
     getDoctors(id:string, clinic_id:string): Promise<any>{
       let doctorList:any = [];
-      console.log(clinic_id, id);
       return new Promise<any>((resolve)=> {
       this.firestore.collection('doctori', ref => ref.where('id_specializari', "array-contains", id)).get().subscribe(snapshot =>{
         snapshot.forEach((doc) => {
