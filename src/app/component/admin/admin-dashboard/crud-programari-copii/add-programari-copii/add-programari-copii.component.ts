@@ -1,32 +1,27 @@
 import { DatePipe, Time } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Route } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { IProgramareAdult } from 'src/app/shared/interfaces/programareAdult.interface';
-import { ProgramareAdultService } from 'src/app/shared/services/programareAdult.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {
-  ValidateName,
-  ValidatePhone,
-  ValidateHour
-} from 'src/app/shared/custom-validators.directive';
+import { ValidateHour, ValidateName, ValidatePhone } from 'src/app/shared/custom-validators.directive';
+import { IProgramareCopil } from 'src/app/shared/interfaces/programareCopil.interface';
+import { ProgramareCopilService } from 'src/app/shared/services/programareCopil.service';
 
 @Component({
-  selector: 'app-add-programari',
-  templateUrl: './add-programari.component.html',
-  styleUrls: ['./add-programari.component.css']
+  selector: 'app-add-programari-copii',
+  templateUrl: './add-programari-copii.component.html',
+  styleUrls: ['./add-programari-copii.component.css']
 })
-export class AddProgramariComponent implements OnInit{
+export class AddProgramariCopiiComponent {
   data: Date;
   ora: Time;
   nume_pacient: string;
   email: string;
   telefon: string;
   mesaj: string;
-  status: string;
-  newProgramareAdult: IProgramareAdult | null = null;
+  status:string = 'Trimis';
+  newProgramareCopil: IProgramareCopil | null = null;
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   servicesList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -35,9 +30,10 @@ export class AddProgramariComponent implements OnInit{
   clinic_id: string;
   today: string;
 
-  
   appointmentForm: FormGroup = new FormGroup({
     pacient_name: new FormControl('', [Validators.required, ValidateName()]),
+    pacient_age: new FormControl('', Validators.required),
+    adult_name: new FormControl('', [Validators.required, ValidateName()]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, ValidatePhone('07')]),
     date: new FormControl('', [Validators.required]),
@@ -51,9 +47,10 @@ export class AddProgramariComponent implements OnInit{
   });
 
   ngOnInit(): void {
+    
   }
 
-  constructor(private router: Router, private programare: ProgramareAdultService, private firestore: AngularFirestore, private datepipe: DatePipe)
+  constructor(private router: Router, private programare: ProgramareCopilService, private firestore: AngularFirestore, private datepipe: DatePipe)
    {
     this.today=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
     this.getClinics();
@@ -67,6 +64,7 @@ export class AddProgramariComponent implements OnInit{
   get f() {
     return this.appointmentForm.controls;
   }
+
   Back() {
     this.router.navigate(['/admin-dashboard']);
   }
@@ -79,10 +77,12 @@ export class AddProgramariComponent implements OnInit{
     const form = document.getElementById('appointment-form') as HTMLFormElement;
     form.reset();
   }
-
-  onSendAdultAppointment() {
-    this.newProgramareAdult = {
+  
+  onSendChildAppointment(){
+    this.newProgramareCopil = {
       nume_pacient: this.appointmentForm.value.pacient_name,
+      varsta_pacient: this.appointmentForm.value.pacient_age,
+      nume_insotitor: this. appointmentForm.value.adult_name,
       email: this.appointmentForm.value.email,
       telefon: this.appointmentForm.value.phone,
       data: this.appointmentForm.value.date,
@@ -94,11 +94,11 @@ export class AddProgramariComponent implements OnInit{
       mesaj: this.appointmentForm.value.message,
       status:this.appointmentForm.value.status
     };
-    this.programare.sendProgramareAdult(this.newProgramareAdult);
+    this.programare.sendProgramareCopil(this.newProgramareCopil);
     console.log(this.appointmentForm);
-    this.router.navigate(['/show-programari']);
-  }
+    this.router.navigate(['/show-programari-copii']);
 
+  }
 
   getClinics() {
     this.firestore
@@ -158,3 +158,5 @@ export class AddProgramariComponent implements OnInit{
 
   }
 }
+
+  

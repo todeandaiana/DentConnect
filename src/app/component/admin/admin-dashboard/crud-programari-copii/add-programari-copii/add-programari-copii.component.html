@@ -1,11 +1,24 @@
-<div class="programari-adulti-container">
-    <h1>Programare</h1>
-    <form [formGroup]="appointmentForm" (submit)="updateAppointment()" class="form-container" id="appointment-form">
+ <div class="programari-copii-container">
+    <h1>Adaugă o programare a unui copil</h1>
+    <form [formGroup]="appointmentForm" (submit)="onSendChildAppointment()" class="form-container" id="appointment-form">
       <mat-form-field appearance="fill">
-        <mat-label>Nume</mat-label>
+        <mat-label>Nume pacient</mat-label>
         <input matInput formControlName="pacient_name" />
         <mat-error *ngIf="appointmentForm.get('pacient_name').hasError('required')">Câmp obligatoriu!</mat-error>
         <mat-error *ngIf="appointmentForm.get('pacient_name').hasError('invalidName')">Introduceți un nume valid!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+      <mat-label>Vârstă pacient</mat-label>
+      <input matInput formControlName="pacient_age" />
+      <mat-error *ngIf="appointmentForm.get('pacient_age').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Nume însoțitor</mat-label>
+        <input matInput formControlName="adult_name" />
+        <mat-error *ngIf="appointmentForm.get('adult_name').hasError('required')">Câmp obligatoriu!</mat-error>
+        <mat-error *ngIf="appointmentForm.get('adult_name').hasError('invalidName')">Introduceți un nume valid!</mat-error>
       </mat-form-field>
   
       <mat-form-field appearance="fill">
@@ -25,7 +38,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Clinică</mat-label>
         <mat-select (selectionChange)="changeClinic($event.value)" formControlName="clinic">
-            <mat-option *ngFor="let clinic of clinicsList" [value]="clinic.nume">
+          <mat-option *ngFor="let clinic of clinicsList" [value]="clinic">
             {{ clinic.nume }}
           </mat-option>
         </mat-select>
@@ -35,7 +48,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Specializare</mat-label>
         <mat-select (selectionChange)="changeSpecialization($event.value)" formControlName="specialization">
-          <mat-option *ngFor="let specialization of specializationsList$.getValue()" [value]="specialization.nume">
+          <mat-option *ngFor="let specialization of specializationsList$.getValue()" [value]="specialization">
             {{ specialization.nume }}
           </mat-option>
         </mat-select>
@@ -45,7 +58,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Serviciu</mat-label>
         <mat-select (selectionChange)="changeService($event.value)" formControlName="service">
-          <mat-option *ngFor="let service of servicesList$.getValue()" [value]="service.nume">
+          <mat-option *ngFor="let service of servicesList$.getValue()" [value]="service">
             {{ service.nume }}
           </mat-option>
         </mat-select>
@@ -56,7 +69,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Doctor</mat-label>
         <mat-select (selectionChange)="changeDoctor($event.value)" formControlName="doctor">
-          <mat-option *ngFor="let doctor of doctorsList$.getValue()" [value]="doctor.nume">
+          <mat-option *ngFor="let doctor of doctorsList$.getValue()" [value]="doctor">
             {{ doctor.nume }}
           </mat-option>
         </mat-select>
@@ -65,7 +78,7 @@
   
       <mat-form-field appearance="fill">
         <mat-label>Data</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="date" [value]="appointmentForm.value.date"/>
+        <input matInput [matDatepicker]="picker" formControlName="date" [min]="today" />
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -86,15 +99,16 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Status</mat-label>
-        <mat-select  formControlName="status">
+        <mat-select formControlName="status">
           <mat-option value="Trimis">Trimis</mat-option>
           <mat-option value="Acceptat">Acceptat</mat-option>
           <mat-option value="Refuzat">Refuzat</mat-option>
         </mat-select>
         <mat-error *ngIf="appointmentForm.get('status').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field>
-
-      <button type="submit" mat-flat-button color="primary" [disabled]="!appointmentForm.valid">Salvează</button>
-      <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la programări</button>
+      
+      <button type="submit" mat-flat-button color="primary" [disabled]="!appointmentForm.valid">Trimite</button>
+      <button type="button" mat-flat-button color="warn" (click)="onResetForm()">Reseteaza</button>
+      <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire pe pagina principală</button>
     </form>
   </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrudUseriComponent } from './crud-useri.component';
+import { AddServiciiComponent } from './add-servicii.component';
 
-describe('CrudUseriComponent', () => {
-  let component: CrudUseriComponent;
-  let fixture: ComponentFixture<CrudUseriComponent>;
+describe('AddServiciiComponent', () => {
+  let component: AddServiciiComponent;
+  let fixture: ComponentFixture<AddServiciiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CrudUseriComponent ]
+      declarations: [ AddServiciiComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CrudUseriComponent);
+    fixture = TestBed.createComponent(AddServiciiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

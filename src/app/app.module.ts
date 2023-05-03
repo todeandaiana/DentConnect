@@ -36,15 +36,25 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
+
 import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
 import { ComparaServiciiComponent } from './component/dashboard/compara-servicii/compara-servicii.component';
 import { AdminDashboardComponent } from './component/admin/admin-dashboard/admin-dashboard.component';
-import { CrudUseriComponent } from './component/admin/admin-dashboard/crud-useri/crud-useri.component';
 import { AddProgramariComponent } from './component/admin/admin-dashboard/crud-programari/add-programari/add-programari.component';
 import { EditProgramariComponent } from './component/admin/admin-dashboard/crud-programari/edit-programari/edit-programari.component';
 import { ShowProgramariComponent } from './component/admin/admin-dashboard/crud-programari/show-programari/show-programari.component';
 import { GoogleMapsModule } from '@angular/google-maps';
-
+import { AddProgramariCopiiComponent } from './component/admin/admin-dashboard/crud-programari-copii/add-programari-copii/add-programari-copii.component';
+import { EditProgramariCopiiComponent } from './component/admin/admin-dashboard/crud-programari-copii/edit-programari-copii/edit-programari-copii.component';
+import { ShowProgramariCopiiComponent } from './component/admin/admin-dashboard/crud-programari-copii/show-programari-copii/show-programari-copii.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ShowServiciiComponent } from './component/admin/admin-dashboard/crud-servicii/show-servicii/show-servicii.component';
+import { EditServiciiComponent } from './component/admin/admin-dashboard/crud-servicii/edit-servicii/edit-servicii.component';
+import { AddServiciiComponent } from './component/admin/admin-dashboard/crud-servicii/add-servicii/add-servicii.component';
+import { ShowUsersComponent } from './component/admin/admin-dashboard/crud-users/show-users/show-users.component';
+import { EditUsersComponent } from './component/admin/admin-dashboard/crud-users/edit-users/edit-users.component';
+import { AddUsersComponent } from './component/admin/admin-dashboard/crud-users/add-users/add-users.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -61,10 +71,18 @@ import { GoogleMapsModule } from '@angular/google-maps';
     IstoricProgramariComponent,
     ComparaServiciiComponent,
     AddProgramariComponent,
-    CrudUseriComponent,
     EditProgramariComponent,
     ShowProgramariComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AddProgramariCopiiComponent,
+    EditProgramariCopiiComponent,
+    ShowProgramariCopiiComponent,
+    ShowServiciiComponent,
+    EditServiciiComponent,
+    AddServiciiComponent,
+    ShowUsersComponent,
+    EditUsersComponent,
+    AddUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +107,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MatListModule,
     MatTableModule,
     MatTabsModule,
-    GoogleMapsModule
+    MatGridListModule,
+    GoogleMapsModule,
+    HttpClientModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

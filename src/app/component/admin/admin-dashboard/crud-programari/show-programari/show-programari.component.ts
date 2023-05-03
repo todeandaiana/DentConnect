@@ -23,9 +23,6 @@ export class ShowProgramariComponent implements OnInit {
   }
 
   constructor(private firestore: AngularFirestore, private router: Router) {
-    // this.firestore.collection('programari_adulti').valueChanges().subscribe(appointments => {
-    //   this.appointments = appointments;
-    // });
   }
 
 
@@ -56,7 +53,7 @@ export class ShowProgramariComponent implements OnInit {
 
   DeleteAppointment(appointment: any) : void {
     this.firestore.collection('programari_adulti').doc(appointment.id).delete();
-    this.getAdultAppointments();
+    // this.getAdultAppointments();
   }
 
 

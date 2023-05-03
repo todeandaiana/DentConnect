@@ -1,0 +1,31 @@
+<div class="servicii-container">
+    <h1>Serviciu</h1>
+    <form [formGroup]="serviceForm" (submit)="updateService()" class="form-container" id="service-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Nume</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="serviceForm.get('name').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Pret DentaPro Clinic</mat-label>
+        <input matInput formControlName="price1" />
+        <mat-error *ngIf="serviceForm.get('price1').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Pret Stomestet</mat-label>
+        <input matInput formControlName="price2" />
+        <mat-error *ngIf="serviceForm.get('price2').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Pret DentaLux Clinic</mat-label>
+        <input matInput formControlName="price3" />
+        <mat-error *ngIf="serviceForm.get('price3').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <button type="submit" mat-flat-button color="primary" [disabled]="!serviceForm.valid">Salvează</button>
+      <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la servicii</button>
+    </form>
+  </div>

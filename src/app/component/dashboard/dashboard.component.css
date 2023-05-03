@@ -1,11 +1,3 @@
-/* #welcome{
-    text-align: center;
-    font-size: 50px;
-}
-
-#programare{
-    align-items: center;
-} */
 
 div{
     text-align: center;
@@ -19,9 +11,10 @@ button{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-h4{
-    font-size: 50px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+#name{
+    font-size: 20px;
+    font-family: Comic Sans Ms;
+    font-weight: bold;
 }
 
 .dashboard-container{

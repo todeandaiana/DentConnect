@@ -18,15 +18,18 @@ export class AdminDashboardComponent implements OnInit{
     })
   }
 
-
-
   OnShowAdultAppointments(){
     this.router.navigate(['/show-programari']);
   }
 
   OnShowChildAppointment(){
-
+    this.router.navigate(['/show-programari-copii']);
+  }
+  OnShowServices(){
+    this.router.navigate(['/show-servicii']);
   }
 
-
+  OnShowUsers(){
+    this.router.navigate(['/show-users']);
+  }
 }

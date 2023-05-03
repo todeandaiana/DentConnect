@@ -5,22 +5,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ValidateHour, ValidateName, ValidatePhone } from 'src/app/shared/custom-validators.directive';
-import { ProgramareAdultService } from 'src/app/shared/services/programareAdult.service';
+import { ProgramareCopilService } from 'src/app/shared/services/programareCopil.service';
 
 @Component({
-  selector: 'app-edit-programari',
-  templateUrl: './edit-programari.component.html',
-  styleUrls: ['./edit-programari.component.css']
+  selector: 'app-edit-programari-copii',
+  templateUrl: './edit-programari-copii.component.html',
+  styleUrls: ['./edit-programari-copii.component.css']
 })
-export class EditProgramariComponent implements OnInit{
-
+export class EditProgramariCopiiComponent implements OnInit {
   data: Date;
   ora: Time;
-  nume_pacient: string;
-  email: string;
-  telefon: string;
-  mesaj: string;
-  status: string;
+
+  status:string;
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   servicesList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -37,27 +33,30 @@ export class EditProgramariComponent implements OnInit{
     )
   }
 
-
-  constructor(private router: Router, private programare: ProgramareAdultService, private firestore: AngularFirestore, private datepipe: DatePipe) {
+  constructor(private router: Router, private programare: ProgramareCopilService, private firestore: AngularFirestore, private datepipe: DatePipe)
+   {
     this.today=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
     this.getClinics();
     this.appointmentForm=new FormGroup({
-      pacient_name: new FormControl('', [Validators.required, ValidateName()]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', [Validators.required, ValidatePhone('07')]),
-      date: new FormControl('', [Validators.required]),
-      hour: new FormControl('', [Validators.required, ValidateHour()]),
-      clinic: new FormControl('', [Validators.required]),
-      specialization: new FormControl('', [Validators.required]),
-      service: new FormControl('', [Validators.required]),
-      doctor: new FormControl('', Validators.required),
-      message: new FormControl(''),
-      status: new FormControl('', Validators.required)
-    });
-    this.appointmentId = this.router.getCurrentNavigation().extras.state['id'];
+        pacient_name: new FormControl('', [Validators.required, ValidateName()]),
+        pacient_age: new FormControl('', Validators.required),
+        adult_name: new FormControl('', [Validators.required, ValidateName()]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        phone: new FormControl('', [Validators.required, ValidatePhone('07')]),
+        date: new FormControl('', [Validators.required]),
+        hour: new FormControl('', [Validators.required, ValidateHour()]),
+        clinic: new FormControl('', [Validators.required]),
+        specialization: new FormControl('', [Validators.required]),
+        service: new FormControl('', [Validators.required]),
+        doctor: new FormControl('', Validators.required),
+        message: new FormControl(''),
+        status: new FormControl('', Validators.required)
+      });
+      this.appointmentId = this.router.getCurrentNavigation().extras.state['id'];
     this.getAppointment();
-    
+
   }
+
 
   DateFilter = (d:Date) : boolean => {
     const day = d.getDay();
@@ -68,13 +67,11 @@ export class EditProgramariComponent implements OnInit{
     return this.appointmentForm.controls;
   }
 
+  Back() {
+    this.router.navigate(['/show-programari-copii']);  }
 
   onFormGroup() {
     console.log(this.appointmentForm);
-  }
-
-  Back(){
-    this.router.navigate(['/show-programari']);
   }
 
   async initializeLists(){
@@ -98,8 +95,9 @@ export class EditProgramariComponent implements OnInit{
     }, 500)
   }
 
+
   getAppointment(){
-    this.firestore.collection('programari_adulti').doc(this.appointmentId).get().subscribe( (doc) =>
+    this.firestore.collection('programari_copii').doc(this.appointmentId).get().subscribe( (doc) =>
     {
         const appointment: any = doc.data();
           const timestampFirebase=appointment.data;
@@ -107,6 +105,8 @@ export class EditProgramariComponent implements OnInit{
           this.appointmentForm.patchValue({
             clinic: appointment.clinica, 
             pacient_name: appointment.nume_pacient, 
+            pacient_age: appointment.varsta_pacient,
+            adult_name:appointment.nume_insotitor,
             date: date, 
             hour: appointment.ora, 
             email:appointment.email, 
@@ -133,8 +133,8 @@ export class EditProgramariComponent implements OnInit{
       });
   }
 
-
   changeClinic(clinic: any) {
+    console.log(clinic);
     this.clinic_id=clinic.id;
     this.programare
       .getSpecializations(clinic.id)
@@ -148,6 +148,7 @@ export class EditProgramariComponent implements OnInit{
   }
 
   changeSpecialization(specialization:any){
+    console.log(specialization);
     this.specialization_id=specialization.id;
     this.programare
       .getServices(specialization.id)
@@ -161,6 +162,7 @@ export class EditProgramariComponent implements OnInit{
   }
 
   changeService(service:any){
+    console.log(service);
     this.programare
     .getDoctors(this.specialization_id, this.clinic_id)
      .then((res) => {
@@ -173,30 +175,36 @@ export class EditProgramariComponent implements OnInit{
   }
 
   changeDoctor(doctor:any){
+    console.log(doctor);
+
   }
 
-  updateAppointment() {
+  updateAppointment(){
     this.firestore
-      .collection('programari_adulti')
-      .doc(this.appointmentId)
-      .update({
-        nume_pacient: this.appointmentForm.value.pacient_name,
-        email: this.appointmentForm.value.email,
-        telefon: this.appointmentForm.value.phone,
-        data: this.appointmentForm.value.date,
-        ora: this.appointmentForm.value.hour,
-        clinica: this.appointmentForm.value.clinic,
-        specializare: this.appointmentForm.value.specialization,
-        serviciu: this.appointmentForm.value.service,
-        doctor: this.appointmentForm.value.doctor,
-        mesaj: this.appointmentForm.value.message,
-        status:this.appointmentForm.value.status
-      })
-      .then(() => {
-        this.router.navigate(["/show-programari"]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    .collection('programari_copii')
+    .doc(this.appointmentId)
+    .update({
+      nume_pacient: this.appointmentForm.value.pacient_name,
+      varsta_pacient: this.appointmentForm.value.pacient_age,
+      nume_insotitor: this. appointmentForm.value.adult_name,
+      email: this.appointmentForm.value.email,
+      telefon: this.appointmentForm.value.phone,
+      data: this.appointmentForm.value.date,
+      ora: this.appointmentForm.value.hour,
+      clinica: this.appointmentForm.value.clinic.nume,
+      specializare: this.appointmentForm.value.specialization.nume,
+      serviciu:this.appointmentForm.value.service.nume,
+      doctor:this.appointmentForm.value.doctor.nume,
+      mesaj: this.appointmentForm.value.message,
+      status:this.appointmentForm.value.status
+    })
+    .then(() => {
+      this.router.navigate(["/admin-dashboard"]);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 }
+
+  

@@ -27,7 +27,7 @@ export class ProgramariAdultiComponent implements OnInit {
   email: string;
   telefon: string;
   mesaj: string;
-  status: string = 'trimis';
+  status: string = 'Trimis';
   newProgramareAdult: IProgramareAdult | null = null;
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
