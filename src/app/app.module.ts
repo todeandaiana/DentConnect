@@ -55,6 +55,15 @@ import { ShowUsersComponent } from './component/admin/admin-dashboard/crud-users
 import { EditUsersComponent } from './component/admin/admin-dashboard/crud-users/edit-users/edit-users.component';
 import { AddUsersComponent } from './component/admin/admin-dashboard/crud-users/add-users/add-users.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { AddDoctoriComponent } from './component/admin/admin-dashboard/crud-doctori/add-doctori/add-doctori.component';
+import { EditDoctoriComponent } from './component/admin/admin-dashboard/crud-doctori/edit-doctori/edit-doctori.component';
+import { ShowDoctoriComponent } from './component/admin/admin-dashboard/crud-doctori/show-doctori/show-doctori.component';
+import { AddCliniciComponent } from './component/admin/admin-dashboard/crud-clinici/add-clinici/add-clinici.component';
+import { EditCliniciComponent } from './component/admin/admin-dashboard/crud-clinici/edit-clinici/edit-clinici.component';
+import { ShowCliniciComponent } from './component/admin/admin-dashboard/crud-clinici/show-clinici/show-clinici.component';
+import { AddSpecializariComponent } from './component/admin/admin-dashboard/crud-specializari/add-specializari/add-specializari.component';
+import { EditSpecializariComponent } from './component/admin/admin-dashboard/crud-specializari/edit-specializari/edit-specializari.component';
+import { ShowSpecializariComponent } from './component/admin/admin-dashboard/crud-specializari/show-specializari/show-specializari.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +91,16 @@ import {MatGridListModule} from '@angular/material/grid-list';
     AddServiciiComponent,
     ShowUsersComponent,
     EditUsersComponent,
-    AddUsersComponent
+    AddUsersComponent,
+    AddDoctoriComponent,
+    EditDoctoriComponent,
+    ShowDoctoriComponent,
+    AddCliniciComponent,
+    EditCliniciComponent,
+    ShowCliniciComponent,
+    AddSpecializariComponent,
+    EditSpecializariComponent,
+    ShowSpecializariComponent
   ],
   imports: [
     BrowserModule,

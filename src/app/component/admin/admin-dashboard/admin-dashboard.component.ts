@@ -18,6 +18,29 @@ export class AdminDashboardComponent implements OnInit{
     })
   }
 
+  OnShowClinics(){
+    this.router.navigate(['/show-clinici']);
+
+  }
+
+  OnShowSpecializations(){
+    this.router.navigate(['/show-specializari']);
+
+  }
+
+  OnShowServices(){
+    this.router.navigate(['/show-servicii']);
+  }
+
+  OnShowDoctors(){
+    this.router.navigate(['/show-doctors']);
+
+  }
+
+  OnShowUsers(){
+    this.router.navigate(['/show-users']);
+  }
+
   OnShowAdultAppointments(){
     this.router.navigate(['/show-programari']);
   }
@@ -25,11 +48,6 @@ export class AdminDashboardComponent implements OnInit{
   OnShowChildAppointment(){
     this.router.navigate(['/show-programari-copii']);
   }
-  OnShowServices(){
-    this.router.navigate(['/show-servicii']);
-  }
-
-  OnShowUsers(){
-    this.router.navigate(['/show-users']);
-  }
+  
+ 
 }

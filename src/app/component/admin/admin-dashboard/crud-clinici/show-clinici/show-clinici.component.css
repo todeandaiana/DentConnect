@@ -1,0 +1,35 @@
+.show-clinici-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('../../../../../../assets/photos/background5.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 75.9%;
+}
+
+::ng-deep tr.mat-mdc-row:hover{
+    background-color: rgb(138, 184, 253)!important;
+}
+
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  div{
+    text-align: center;
+    justify-content: space-between;
+  }
+
+  .add-button{
+    display: flex;
+    text-align: right;
+  }

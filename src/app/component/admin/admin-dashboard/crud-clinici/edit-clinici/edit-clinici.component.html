@@ -1,0 +1,37 @@
+<div class="clinici-container">
+    <h1>Clinică</h1>
+    <form [formGroup]="clinicForm" (submit)="updateClinic()" class="form-container" id="clinic-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Nume clinică</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="clinicForm.get('name').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>CUI</mat-label>
+        <input matInput formControlName="CUI" />
+        <mat-error *ngIf="clinicForm.get('CUI').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Adresă</mat-label>
+        <input matInput formControlName="address" />
+        <mat-error *ngIf="clinicForm.get('address').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Program</mat-label>
+        <input matInput formControlName="schedule" />
+        <mat-error *ngIf="clinicForm.get('schedule').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Telefon</mat-label>
+        <input matInput formControlName="phone" />
+        <mat-error *ngIf="clinicForm.get('phone').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <button type="submit" mat-flat-button color="primary" [disabled]="!clinicForm.valid">Salvează</button>
+      <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la clinici</button>
+    </form>
+  </div>

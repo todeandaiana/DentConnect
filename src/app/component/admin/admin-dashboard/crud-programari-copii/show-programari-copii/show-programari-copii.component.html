@@ -4,14 +4,6 @@
     </div>
     <div class="demo-button-container">
     <button mat-raised-button (click)="AddAppointment()" class="add-button">Adaugă o programare</button>
-
-    <!-- <button
-        mat-raised-button
-        [disabled]="!dataSource.length"
-        (click)="removeData()"
-        class="demo-button">
-      Remove data
-    </button> -->
   </div>
   
   <table mat-table [dataSource]="ChilddataSource"  #myTable class="mat-elevation-z8" id="childTable">
