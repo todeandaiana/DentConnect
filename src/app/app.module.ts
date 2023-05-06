@@ -20,8 +20,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
-import { ProgramariAdultiComponent } from './component/dashboard/programari-adulti/programari-adulti.component';
-import { ProgramariCopiiComponent } from './component/dashboard/programari-copii/programari-copii.component';
+import { ProgramariAdultiComponent } from './component/dashboard/programari/programari-adulti.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -44,9 +43,6 @@ import { AddProgramariComponent } from './component/admin/admin-dashboard/crud-p
 import { EditProgramariComponent } from './component/admin/admin-dashboard/crud-programari/edit-programari/edit-programari.component';
 import { ShowProgramariComponent } from './component/admin/admin-dashboard/crud-programari/show-programari/show-programari.component';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { AddProgramariCopiiComponent } from './component/admin/admin-dashboard/crud-programari-copii/add-programari-copii/add-programari-copii.component';
-import { EditProgramariCopiiComponent } from './component/admin/admin-dashboard/crud-programari-copii/edit-programari-copii/edit-programari-copii.component';
-import { ShowProgramariCopiiComponent } from './component/admin/admin-dashboard/crud-programari-copii/show-programari-copii/show-programari-copii.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowServiciiComponent } from './component/admin/admin-dashboard/crud-servicii/show-servicii/show-servicii.component';
 import { EditServiciiComponent } from './component/admin/admin-dashboard/crud-servicii/edit-servicii/edit-servicii.component';
@@ -64,6 +60,13 @@ import { ShowCliniciComponent } from './component/admin/admin-dashboard/crud-cli
 import { AddSpecializariComponent } from './component/admin/admin-dashboard/crud-specializari/add-specializari/add-specializari.component';
 import { EditSpecializariComponent } from './component/admin/admin-dashboard/crud-specializari/edit-specializari/edit-specializari.component';
 import { ShowSpecializariComponent } from './component/admin/admin-dashboard/crud-specializari/show-specializari/show-specializari.component';
+import { ComparaDoctoriComponent } from './component/dashboard/compara-doctori/compara-doctori.component';
+import { AddDateDisponibileComponent } from './component/admin/admin-dashboard/crud-date/add-date-disponibile/add-date-disponibile.component';
+import { EditDateDisponibileComponent } from './component/admin/admin-dashboard/crud-date/edit-date-disponibile/edit-date-disponibile.component';
+import { ShowDateDisponibileComponent } from './component/admin/admin-dashboard/crud-date/show-date-disponibile/show-date-disponibile.component';
+import { AddOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/add-ore-disponibile/add-ore-disponibile.component';
+import { EditOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/edit-ore-disponibile/edit-ore-disponibile.component';
+import { ShowOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/show-ore-disponibile/show-ore-disponibile.component';
 
 @NgModule({
   declarations: [
@@ -76,16 +79,12 @@ import { ShowSpecializariComponent } from './component/admin/admin-dashboard/cru
     ResetPasswordComponent,
     HomeComponent,
     ProgramariAdultiComponent,
-    ProgramariCopiiComponent,
     IstoricProgramariComponent,
     ComparaServiciiComponent,
     AddProgramariComponent,
     EditProgramariComponent,
     ShowProgramariComponent,
     AdminDashboardComponent,
-    AddProgramariCopiiComponent,
-    EditProgramariCopiiComponent,
-    ShowProgramariCopiiComponent,
     ShowServiciiComponent,
     EditServiciiComponent,
     AddServiciiComponent,
@@ -100,7 +99,14 @@ import { ShowSpecializariComponent } from './component/admin/admin-dashboard/cru
     ShowCliniciComponent,
     AddSpecializariComponent,
     EditSpecializariComponent,
-    ShowSpecializariComponent
+    ShowSpecializariComponent,
+    ComparaDoctoriComponent,
+    AddDateDisponibileComponent,
+    EditDateDisponibileComponent,
+    ShowDateDisponibileComponent,
+    AddOreDisponibileComponent,
+    EditOreDisponibileComponent,
+    ShowOreDisponibileComponent
   ],
   imports: [
     BrowserModule,

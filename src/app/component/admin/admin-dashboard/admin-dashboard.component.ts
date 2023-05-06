@@ -33,7 +33,7 @@ export class AdminDashboardComponent implements OnInit{
   }
 
   OnShowDoctors(){
-    this.router.navigate(['/show-doctors']);
+    this.router.navigate(['/show-doctori']);
 
   }
 
@@ -41,13 +41,9 @@ export class AdminDashboardComponent implements OnInit{
     this.router.navigate(['/show-users']);
   }
 
-  OnShowAdultAppointments(){
+  OnShowAppointments(){
     this.router.navigate(['/show-programari']);
   }
 
-  OnShowChildAppointment(){
-    this.router.navigate(['/show-programari-copii']);
-  }
-  
  
 }

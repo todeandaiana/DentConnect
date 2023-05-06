@@ -1,11 +1,26 @@
 <div class="programari-adulti-container">
     <h1>Adaugă o programare</h1>
-    <form [formGroup]="appointmentForm" (submit)="onSendAdultAppointment()" class="form-container" id="appointment-form">
+    <form [formGroup]="appointmentForm" (submit)="onSendAppointment()" class="form-container" id="appointment-form">
       <mat-form-field appearance="fill">
         <mat-label>Nume pacient</mat-label>
         <input matInput formControlName="pacient_name" />
         <mat-error *ngIf="appointmentForm.get('pacient_name').hasError('required')">Câmp obligatoriu!</mat-error>
         <mat-error *ngIf="appointmentForm.get('pacient_name').hasError('invalidName')">Introduceți un nume valid!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tip pacient</mat-label>
+        <mat-select formControlName="type" (selectionChange)="onTypeChange($event)">
+          <mat-option value="Adult">Adult</mat-option>
+          <mat-option value="Copil">Copil</mat-option>
+        </mat-select>
+        <mat-error *ngIf="appointmentForm.get('type').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" *ngIf="showName">
+        <mat-label>Nume însoțitor</mat-label>
+        <input matInput formControlName="adult_name">
+        <mat-error *ngIf="appointmentForm.get('age').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field>
   
       <mat-form-field appearance="fill">

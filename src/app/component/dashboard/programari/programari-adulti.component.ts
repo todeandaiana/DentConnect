@@ -2,6 +2,7 @@ import { DatePipe, Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { Route } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { IProgramare } from 'src/app/shared/interfaces/programare.interface';
 import { ProgramareAdultService } from 'src/app/shared/services/programare.service';
@@ -12,20 +13,22 @@ import {
   ValidateHour
 } from 'src/app/shared/custom-validators.directive';
 
+
 @Component({
-  selector: 'app-add-programari',
-  templateUrl: './add-programari.component.html',
-  styleUrls: ['./add-programari.component.css']
+  selector: 'app-programari-adulti',
+  templateUrl: './programari-adulti.component.html',
+  styleUrls: ['./programari-adulti.component.css'],
 })
-export class AddProgramariComponent implements OnInit{
+
+export class ProgramariAdultiComponent implements OnInit {
   data: Date;
   ora: Time;
   nume_pacient: string;
   email: string;
   telefon: string;
   mesaj: string;
-  status: string;
-  newProgramare: IProgramare | null = null;
+  status: string = 'Trimis';
+  newProgramareAdult: IProgramare | null = null;
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   servicesList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -33,13 +36,13 @@ export class AddProgramariComponent implements OnInit{
   specialization_id: string;
   clinic_id: string;
   today: string;
-  showName= false;
+  showName = false;
 
   
   appointmentForm: FormGroup = new FormGroup({
     pacient_name: new FormControl('', [Validators.required, ValidateName()]),
-    type:new FormControl('', [Validators.required]),
-    adult_name:new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
+    adult_name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, ValidatePhone('07')]),
     date: new FormControl('', [Validators.required]),
@@ -49,10 +52,12 @@ export class AddProgramariComponent implements OnInit{
     service: new FormControl('', [Validators.required]),
     doctor: new FormControl('', Validators.required),
     message: new FormControl(''),
-    status: new FormControl('', Validators.required)
+    terms: new FormControl(false, [Validators.requiredTrue])
   });
 
   ngOnInit(): void {
+    // this.getClinicName();
+    // const uid = localStorage.getItem("uid");
   }
 
   constructor(private router: Router, private programare: ProgramareAdultService, private firestore: AngularFirestore, private datepipe: DatePipe)
@@ -70,31 +75,26 @@ export class AddProgramariComponent implements OnInit{
     return this.appointmentForm.controls;
   }
   Back() {
-    this.router.navigate(['/admin-dashboard']);
+    this.router.navigate(['/dashboard']);
   }
 
   onFormGroup() {
     console.log(this.appointmentForm);
   }
 
-  onResetForm() {
-    const form = document.getElementById('appointment-form') as HTMLFormElement;
-    form.reset();
-  }
-
   onTypeChange(event:any){
-    if(event.value === 'Copil'){
-      this.showName=true;
-    }else{
-      this.showName=false;
+    if (event.value === 'Copil') {
+      this.showName = true;
+    } else {
+      this.showName = false;
     }
   }
 
-  onSendAppointment() {
-    this.newProgramare = {
+  onSendAdultAppointment() {
+    this.newProgramareAdult = {
       nume_pacient: this.appointmentForm.value.pacient_name,
-      tip:this.appointmentForm.value.type,
-      nume_insotitor:this.appointmentForm.value.adult_name,
+      tip: this.appointmentForm.value.type,
+      nume_insotitor: this.appointmentForm.value.adult_name,
       email: this.appointmentForm.value.email,
       telefon: this.appointmentForm.value.phone,
       data: this.appointmentForm.value.date,
@@ -104,11 +104,16 @@ export class AddProgramariComponent implements OnInit{
       serviciu:this.appointmentForm.value.service.nume,
       doctor:this.appointmentForm.value.doctor.nume,
       mesaj: this.appointmentForm.value.message,
-      status:this.appointmentForm.value.status
+      status:this.status
     };
-    this.programare.sendProgramare(this.newProgramare);
+    this.programare.sendProgramare(this.newProgramareAdult);
     console.log(this.appointmentForm);
-    this.router.navigate(['/show-programari']);
+    this.router.navigate(['/dashboard']);
+  }
+
+  onResetForm() {
+    const form = document.getElementById('appointment-form') as HTMLFormElement;
+    form.reset();
   }
 
 
@@ -170,3 +175,7 @@ export class AddProgramariComponent implements OnInit{
 
   }
 }
+
+
+
+

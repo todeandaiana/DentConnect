@@ -9,7 +9,7 @@
   
       <h2 class="example-margin">Se găsește la următoarele clinici:</h2>
       <div *ngFor="let clinic of clinicsList">
-        <mat-checkbox (change)="updateClinicSelection($event, clinic.id_clinica)">{{clinic.nume}}</mat-checkbox>
+        <mat-checkbox [checked]="ClinicExists(clinic)">{{clinic.nume}}</mat-checkbox>
       </div>
 
       <button type="submit" mat-flat-button color="primary" [disabled]="!specializationForm.valid">Salvează</button>

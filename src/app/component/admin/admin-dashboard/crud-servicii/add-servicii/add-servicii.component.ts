@@ -14,6 +14,8 @@ export class AddServiciiComponent implements OnInit {
   newService : IService | null = null;
   serviceForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
+    clinics: new FormControl({id:' jdjs', price: 'dksnkjdn', avialable: true}),
+    clinica: new FormControl(true),
     price1: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
     price2: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
     price3: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])

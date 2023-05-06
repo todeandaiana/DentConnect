@@ -36,41 +36,17 @@ export class EditSpecializariComponent implements OnInit {
     })
   }
 
-  updateClinicSelection(event:any, id_clinica:string){
-    if(event.checked === true){
-      this.selectedClinicId.push(id_clinica);
-    }
-    else {
-      const index = this.selectedClinicId.indexOf(id_clinica);
-      if(index !== -1){
-        this.selectedClinicId.splice(index,1);
-      }
-    }
-  }
-
-  // clinicExists(id_clinica:string): boolean{
-  //   const clinicRef = this.firestore.collection('specializari', ref => ref.where('id_clinici', "array-contains", id_clinica)).get().subscribe( () =>{
-  //     if(clinicRef){
-  //       return true;
-  //     }else{
-  //       return false;
+  // updateClinicSelection(event:any, id_clinica:string){
+  //   if(event.checked === true){
+  //     this.selectedClinicId.push(id_clinica);
+  //   }
+  //   else {
+  //     const index = this.selectedClinicId.indexOf(id_clinica);
+  //     if(index !== -1){
+  //       this.selectedClinicId.splice(index,1);
   //     }
-  //   })
+  //   }
   // }
-
-  // clinicExists(idClinica: string): boolean {
-  //   const clinicaRef = this.firestore.collection('specializari' , ref => ref.where('id_clinici', "array-contains", idClinica));
-  //   clinicaRef.get().subscribe((doc) => {
-  //     if (doc) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-      
-  //   });
-  //   return true;
-  // }
-
 
   Back(){
     this.router.navigate(["/show-specializari"]);
@@ -101,7 +77,37 @@ export class EditSpecializariComponent implements OnInit {
       console.error(error);
     });
   }
+
+  ClinicExists(clinic:any){
+    return this.clinicsId.includes(clinic.id_clinica);
   }
+  }
+
+  // clinicExists(id_clinica:string): boolean{
+  //   const clinicRef = this.firestore.collection('specializari', ref => ref.where('id_clinici', "array-contains", id_clinica)).get().subscribe( () =>{
+  //     if(clinicRef){
+  //       return true;
+  //     }else{
+  //       return false;
+  //     }
+  //   })
+  // }
+
+  // clinicExists(idClinica: string): boolean {
+  //   const clinicaRef = this.firestore.collection('specializari' , ref => ref.where('id_clinici', "array-contains", idClinica));
+  //   clinicaRef.get().subscribe((doc) => {
+  //     if (doc) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+      
+  //   });
+  //   return true;
+  // }
+
+
+ 
 
   // sendSpecialization(specialization :any){
   //   const specializationRef:any = this.firestore.collection(`specializari`);

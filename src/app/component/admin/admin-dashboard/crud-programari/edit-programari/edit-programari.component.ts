@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ValidateHour, ValidateName, ValidatePhone } from 'src/app/shared/custom-validators.directive';
-import { ProgramareAdultService } from 'src/app/shared/services/programareAdult.service';
+import { ProgramareAdultService } from 'src/app/shared/services/programare.service';
 
 @Component({
   selector: 'app-edit-programari',

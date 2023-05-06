@@ -42,8 +42,9 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/programari-adulti']);
   }
 
-  OnChildAppointment(){
-    this.router.navigate(['/programari-copii']);
+  OnCompareDoctors(){
+    this.router.navigate(['/compara-doctori']);
+
   }
 
   OnHistoryAppointment(){
