@@ -46,10 +46,10 @@ export class ProgramareAdultService{
     getServices(id: string) : Promise<any> {
       let serviceList:any = [];
       return new Promise<any>((resolve)=> {
-      this.firestore.collection('servicii', ref => ref.where('id_specializari', "==", id )).get().subscribe(snapshot =>{
+      this.firestore.collection('serviciii', ref => ref.where('id_specializare', "==", id )).get().subscribe(snapshot =>{
         snapshot.forEach((doc) => {
           const service: any = doc.data();
-          serviceList.push({ id: doc.id, nume: service.nume, id_specializari: service.id_specializari});
+          serviceList.push({ id: doc.id, nume: service.nume, id_specializari: service.id_specializare});
         });
         resolve(serviceList);
       })
@@ -63,8 +63,8 @@ export class ProgramareAdultService{
       this.firestore.collection('doctori', ref => ref.where('id_specializari', "array-contains", id)).get().subscribe(snapshot =>{
         snapshot.forEach((doc) => {
           const doctor: any = doc.data();
-          if(doctor.id_clinici === clinic_id)
-          doctorList.push({ id: doc.id, nume: doctor.nume, id_specializari: doctor.id_specializari, id_clinici:doctor.id_clinici});
+          if(doctor.id_clinica === clinic_id)
+          doctorList.push({ id: doc.id, nume: doctor.nume, id_specializari: doctor.id_specializari, id_clinici:doctor.id_clinica});
         });
         resolve(doctorList);
       })

@@ -35,6 +35,8 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSliderModule} from '@angular/material/slider';
+
 
 import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
 import { ComparaServiciiComponent } from './component/dashboard/compara-servicii/compara-servicii.component';
@@ -67,6 +69,9 @@ import { ShowDateDisponibileComponent } from './component/admin/admin-dashboard/
 import { AddOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/add-ore-disponibile/add-ore-disponibile.component';
 import { EditOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/edit-ore-disponibile/edit-ore-disponibile.component';
 import { ShowOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/show-ore-disponibile/show-ore-disponibile.component';
+import { AddReviewDoctoriComponent } from './component/dashboard/review-doctori/add-review-doctori/add-review-doctori.component';
+import { EditReviewDoctoriComponent } from './component/dashboard/review-doctori/edit-review-doctori/edit-review-doctori.component';
+import { ShowReviewDoctoriComponent } from './component/dashboard/review-doctori/show-review-doctori/show-review-doctori.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +111,10 @@ import { ShowOreDisponibileComponent } from './component/admin/admin-dashboard/c
     ShowDateDisponibileComponent,
     AddOreDisponibileComponent,
     EditOreDisponibileComponent,
-    ShowOreDisponibileComponent
+    ShowOreDisponibileComponent,
+    AddReviewDoctoriComponent,
+    EditReviewDoctoriComponent,
+    ShowReviewDoctoriComponent
   ],
   imports: [
     BrowserModule,
@@ -132,6 +140,7 @@ import { ShowOreDisponibileComponent } from './component/admin/admin-dashboard/c
     MatTableModule,
     MatTabsModule,
     MatGridListModule,
+    MatSliderModule,
     GoogleMapsModule,
     HttpClientModule
   ],

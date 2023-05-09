@@ -20,7 +20,8 @@ export class AddSpecializariComponent implements OnInit{
   }
 
   specializationForm: FormGroup =new FormGroup({
-    name: new FormControl('', Validators.required)
+    name: new FormControl('', Validators.required),
+    clinics: new FormControl('', Validators.required)
   })
 
   constructor(private firestore: AngularFirestore, private router: Router) {}
@@ -31,10 +32,11 @@ export class AddSpecializariComponent implements OnInit{
     })
   }
 
-  updateClinicSelection(event:any, id_clinica:string){
-    if(event.checked === true){
-      this.clinicsId.push(id_clinica);
-    }
+  updateClinicSelection(event:any []){
+    this.clinicsId =[];
+    event.forEach(element=>{
+      this.clinicsId.push(element.id_clinica);
+    })
   }
 
   Back(){

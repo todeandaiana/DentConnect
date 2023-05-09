@@ -102,7 +102,6 @@ export class EditServiciiComponent implements OnInit{
   }
 
   
-
   updateService() {
     this.firestore
     .collection('serviciii')
@@ -157,39 +156,4 @@ export class EditServiciiComponent implements OnInit{
     }
   }
 
-  // updateSpecializationSelection(event:any, id_specializare:string){
-  //   if(event.checked === true){
-  //     this.specializationId = id_specializare;
-  //   }
-  // }
-
-  // onSendService(){
-  //   console.log(this.selectedClinicsAndPrices);
-  //   this.newService ={
-  //     nume: this.serviceForm.value.name,
-  //     id_specializare: this.serviceForm.value.specializations.id_specializare,
-  //     preturi: this.selectedClinicsAndPrices.filter(value => value.pret !== '')
-    
-  //   };
-  //   console.log(this.newService);
-  //   this.sendService(this.newService);
-  //   this.router.navigate(['/show-servicii']);
-  // }
-
-  // sendService(service:any){
-  //   const serviceRef:any = this.firestore.collection(`serviciii`);
-  //   const ServiceData ={
-  //     nume: service.nume,
-  //     id_specializare: service.id_specializare,
-  //     preturi: service.preturi
-  //   };
-  //   return serviceRef.add(ServiceData).then((docRef:any) => {
-  //     const id_serviciu = docRef.id;
-  //     return serviceRef.doc(id_serviciu).update({id_serviciu: id_serviciu});
-  //   }).catch((error:any) => {
-  //     console.error("Eroare la salvarea documentului: ", error);
-  //   });
-  // }
-
-  
 }

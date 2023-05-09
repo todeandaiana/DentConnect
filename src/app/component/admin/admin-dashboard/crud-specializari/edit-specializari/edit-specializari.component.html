@@ -7,10 +7,14 @@
         <mat-error *ngIf="specializationForm.get('name').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field>
   
-      <h2 class="example-margin">Se găsește la următoarele clinici:</h2>
-      <div *ngFor="let clinic of clinicsList">
-        <mat-checkbox [checked]="ClinicExists(clinic)" (change)="updateClinicsId($event, clinic)">{{clinic.nume}}</mat-checkbox>
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Clinici</mat-label>
+        <mat-select [(value)]="selectedClinics" multiple formControlName="clinics"  (selectionChange)="updateClinicSelection($event.value)">
+          <mat-option  *ngFor="let clinic of clinicsList" [value]="clinic.nume">
+              {{clinic.nume}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
 
       <button type="submit" mat-flat-button color="primary" [disabled]="!specializationForm.valid">Salvează</button>
       <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la specializări</button>

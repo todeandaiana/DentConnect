@@ -33,6 +33,9 @@ import { ShowDoctoriComponent } from './component/admin/admin-dashboard/crud-doc
 import { ComparaDoctoriComponent } from './component/dashboard/compara-doctori/compara-doctori.component';
 import { RoleGuard } from './guards/role.guard';
 import { AdminRoleGuard } from './guards/admin-role.guard';
+import { AddReviewDoctoriComponent } from './component/dashboard/review-doctori/add-review-doctori/add-review-doctori.component';
+import { EditReviewDoctoriComponent } from './component/dashboard/review-doctori/edit-review-doctori/edit-review-doctori.component';
+import { ShowReviewDoctoriComponent } from './component/dashboard/review-doctori/show-review-doctori/show-review-doctori.component';
 
 
 const routes: Routes = [
@@ -43,12 +46,18 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'reset-password', component: ResetPasswordComponent},
 
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard, RoleGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   
-  {path: 'compara-servicii', component: ComparaServiciiComponent, canActivate: [AuthGuard, RoleGuard]},
-  {path: 'istoric-programari', component: IstoricProgramariComponent, canActivate: [AuthGuard, RoleGuard]},
-  {path: 'programari-adulti', component: ProgramariAdultiComponent, canActivate: [AuthGuard, RoleGuard]},
-  {path: 'compara-doctori', component: ComparaDoctoriComponent, canActivate: [AuthGuard, RoleGuard]},
+  {path: 'compara-servicii', component: ComparaServiciiComponent, canActivate: [AuthGuard]},
+  {path: 'istoric-programari', component: IstoricProgramariComponent, canActivate: [AuthGuard]},
+  {path: 'programari-adulti', component: ProgramariAdultiComponent, canActivate: [AuthGuard]},
+  {path: 'compara-doctori', component: ComparaDoctoriComponent, canActivate: [AuthGuard]},
+  {path: 'add-review-doctori', component: AddReviewDoctoriComponent, canActivate: [AuthGuard]},
+
+  {path: 'edit-review-doctori', component: EditReviewDoctoriComponent, canActivate: [AuthGuard]},
+
+  {path: 'show-review-doctori', component: ShowReviewDoctoriComponent, canActivate: [AuthGuard]},
+
 
 
   {path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard, AdminRoleGuard]},

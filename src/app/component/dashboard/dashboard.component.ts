@@ -44,7 +44,6 @@ export class DashboardComponent implements OnInit {
 
   OnCompareDoctors(){
     this.router.navigate(['/compara-doctori']);
-
   }
 
   OnHistoryAppointment(){

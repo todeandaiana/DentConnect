@@ -11,6 +11,7 @@ import { ISpecialization } from 'src/app/shared/interfaces/specialization.interf
 })
 export class EditSpecializariComponent implements OnInit {
   clinicsList: any[] =[];
+  selectedClinics: any[] =[];
   clinicsId: string[] = [];
   selectedClinicId: string[] = [];
   newSpecialization: ISpecialization | null = null;
@@ -18,35 +19,47 @@ export class EditSpecializariComponent implements OnInit {
   specializationId:string;
 
   ngOnInit(): void {
-    this.getClinics();
+    this.getAllClinics();
   }
 
   constructor(private firestore: AngularFirestore, private router: Router) {
     this.specializationForm = new FormGroup({
-      name: new FormControl('', Validators.required)
+      name: new FormControl('', Validators.required),
+      clinics: new FormControl('', Validators.required)
     })
 
     this.specializationId = this.router.getCurrentNavigation().extras.state['id'];
     this.getSpecialization();
   }
 
-  getClinics(){
+  getAllClinics(){
     this.firestore.collection('clinici').valueChanges().subscribe(clinics => {
       this.clinicsList = clinics;
     })
   }
 
-  // updateClinicSelection(event:any, id_clinica:string){
-  //   if(event.checked === true){
-  //     this.selectedClinicId.push(id_clinica);
-  //   }
-  //   else {
-  //     const index = this.selectedClinicId.indexOf(id_clinica);
-  //     if(index !== -1){
-  //       this.selectedClinicId.splice(index,1);
-  //     }
-  //   }
-  // }
+  getClinics(clinicsId: string[]){
+    this.firestore.collection('clinici').get().subscribe((snapshot) => {
+      snapshot.forEach((doc) => {
+        const clinic: any = doc.data();
+        if (clinicsId.includes(doc.id)) { 
+          this.selectedClinics.push(clinic.nume); 
+        }
+      });
+      this.specializationForm.patchValue({
+        clinics: this.selectedClinics
+      })
+    });
+
+  }
+
+  updateClinicSelection(event:any[]){
+    this.clinicsId =[];
+    event.forEach(element=>{
+      const found = this.clinicsList.find(value=> value.nume === element);
+      this.clinicsId.push(found.id_clinica);
+    })
+  }
 
   Back(){
     this.router.navigate(["/show-specializari"]);
@@ -56,10 +69,11 @@ export class EditSpecializariComponent implements OnInit {
   getSpecialization(){
     this.firestore.collection('specializari').doc(this.specializationId).get().subscribe( (doc) => {
       const specialization: any = doc.data();
+      this.getClinics(specialization.id_clinici);
       this.specializationForm.patchValue({
         name: specialization.nume,
+        clinics: this.clinicsList
       })
-      this.clinicsId=specialization.id_clinici;
     })
   }
 
@@ -79,64 +93,24 @@ export class EditSpecializariComponent implements OnInit {
     });
   }
 
-  ClinicExists(clinic:any){
-    return this.clinicsId.includes(clinic.id_clinica);
-  }
-
-  updateClinicsId(event:any, clinic:any){
-    console.log(this.clinicsId.find(value => value === clinic.id_clinica), clinic.id_clinica);
-    if(event.checked && !this.clinicsId.find(value => value === clinic.id_clinica)){
-      this.clinicsId.push(clinic.id_clinica);
-    }
-
-    if(!event.checked && this.clinicsId.find(value => value === clinic.id_clinica)){
-      // const index = this.clinicsId.indexOf(id_clinica);
-      this.clinicsId = this.clinicsId.filter(value => value !== clinic.id_clinica);
-    }
-    console.log(this.clinicsId);
-
-  }
-  }
-
-  // clinicExists(id_clinica:string): boolean{
-  //   const clinicRef = this.firestore.collection('specializari', ref => ref.where('id_clinici', "array-contains", id_clinica)).get().subscribe( () =>{
-  //     if(clinicRef){
-  //       return true;
-  //     }else{
-  //       return false;
-  //     }
-  //   })
+  // ClinicExists(clinic:any){
+  //   return this.clinicsId.includes(clinic.id_clinica);
   // }
 
-  // clinicExists(idClinica: string): boolean {
-  //   const clinicaRef = this.firestore.collection('specializari' , ref => ref.where('id_clinici', "array-contains", idClinica));
-  //   clinicaRef.get().subscribe((doc) => {
-  //     if (doc) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-      
-  //   });
-  //   return true;
+  // updateClinicsId(event:any, clinic:any){
+  //   console.log(this.clinicsId.find(value => value === clinic.id_clinica), clinic.id_clinica);
+  //   if(event.checked && !this.clinicsId.find(value => value === clinic.id_clinica)){
+  //     this.clinicsId.push(clinic.id_clinica);
+  //   }
+
+  //   if(!event.checked && this.clinicsId.find(value => value === clinic.id_clinica)){
+  //     // const index = this.clinicsId.indexOf(id_clinica);
+  //     this.clinicsId = this.clinicsId.filter(value => value !== clinic.id_clinica);
+  //   }
+  //   console.log(this.clinicsId);
+
   // }
-
-
- 
-
-  // sendSpecialization(specialization :any){
-  //   const specializationRef:any = this.firestore.collection(`specializari`);
-  //   const SpecializationData ={
-  //     nume: specialization.nume,
-  //     id_clinici: specialization.id_clinici
-  //   };
-  //   return specializationRef.add(SpecializationData).then((docRef:any) => {
-  //     const id_specializare = docRef.id;
-  //     return specializationRef.doc(id_specializare).update({id_specializare: id_specializare});
-  //   }).catch((error:any) => {
-  //     console.error("Eroare la salvarea documentului: ", error);
-  //   });
-  // }
+}
 
   
 

@@ -1,0 +1,66 @@
+<!-- <div class="add-review-doctori-container">
+    <h1>Spune-ți părerea!</h1>
+        <form [formGroup]="reviewForm" (submit)="onSendReview()" class="form-container" id="review-form">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nume pacient</mat-label>
+                <input matInput formControlName="pacient_name" />
+                <mat-error *ngIf="reviewForm.get('pacient_name').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Data examinării</mat-label>
+                <input matInput formControlName="date" />
+                <mat-error *ngIf="reviewForm.get('date').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Clinică</mat-label>
+                <input matInput formControlName="clinic" />
+                <mat-error *ngIf="reviewForm.get('clinic').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Doctor</mat-label>
+                <input matInput formControlName="doctor" />
+                <mat-error *ngIf="reviewForm.get('doctor').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Serviciu</mat-label>
+                <input matInput formControlName="service" />
+                <mat-error *ngIf="reviewForm.get('service').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-card class="example-result-card">
+                <mat-card-content>
+                  <h2>Acordă o notă doctorului</h2>
+                  <div class="example-label-container">
+                    <label id="example-name-label" class="example-name-label">Value</label>
+                    <label class="example-value-label">{{value}}</label>
+                  </div>
+                  <mat-slider
+                      class="example-margin"
+                      [disabled]="disabled"
+                      [max]="max"
+                      [min]="min"
+                      [step]="step"
+                      [discrete]="thumbLabel"
+                      [showTickMarks]="showTicks">
+                    <input matSliderThumb [(ngModel)]="value">
+                  </mat-slider>
+                </mat-card-content>
+              </mat-card>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Comentarii și feedback</mat-label>
+                <textarea matInput formControlName="feedback"></textarea>
+              </mat-form-field>
+
+              <mat-checkbox class="example-margin" formControlName="terms"> Am citit și sunt de acord cu <a href="https://drive.google.com/file/d/1PM3J80pSgcqfPzpGcPLNycTVFkR3P6lJ/view" target="_blank" >termenii și condițiile.</a></mat-checkbox>
+
+              <button type="submit" mat-flat-button color="primary" [disabled]="!reviewForm.valid">Trimite</button>
+              <button type="button" mat-flat-button color="warn" (click)="onResetForm()">Reseteaza</button>
+              <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire pe pagina principală</button>
+        </form>
+</div> -->

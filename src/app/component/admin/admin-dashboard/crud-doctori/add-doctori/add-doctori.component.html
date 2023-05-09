@@ -1,22 +1,28 @@
 <div class="doctori-container">
     <h1>Doctor</h1>
     <form [formGroup]="doctorForm" (submit)="onSendDoctor()" class="form-container">
+
       <mat-form-field appearance="fill">
         <mat-label>Nume doctor</mat-label>
         <input matInput formControlName="name" />
         <mat-error *ngIf="doctorForm.get('name').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Clinică</mat-label>
+        <mat-select formControlName="clinic" (selectionChange)="updateClinicSelection($event.value)">
+          <mat-option *ngFor="let clinic of clinicsList" [value]="clinic"
+          >{{clinic.nume}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Specializări</mat-label>
+        <mat-select formControlName="specializations" multiple (selectionChange)="updateSpecializationSelection($event.value)">
+          <mat-option *ngFor="let specialization of specializationsListFiltered" [value]="specialization">{{specialization.nume}}</mat-option>
+        </mat-select>
+      </mat-form-field>
   
-      <h2 class="example-margin">Clinica</h2>
-      <div *ngFor="let clinic of clinicsList">
-        <mat-checkbox checked="false" (change)="updateClinicSelection($event, clinic.id_clinica)">{{clinic.nume}}</mat-checkbox>
-      </div>
-
-      <h2 class="example-margin">Specializare</h2>
-      <div *ngFor="let specialization of specializationsList">
-        <mat-checkbox checked="false" (change)="updateSpecializationSelection($event, specialization.id_specializare)">{{specialization.nume}}</mat-checkbox>
-      </div>
-
       <button type="submit" mat-flat-button color="primary" [disabled]="!doctorForm.valid">Salvează</button>
       <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la doctori</button>
     </form>

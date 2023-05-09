@@ -13,8 +13,8 @@ export class IstoricProgramariComponent implements OnInit {
 
   AdultAppointmentsList: {clinica:string, nume_pacient: string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, status:string} [] = [];
   ChildAppointmentsList: {clinica:string, nume_pacient: string, nume_insotitor:string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, status:string} [] = [];
-  AdultdisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Status'];
-  ChilddisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient','Însoțitor', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Status'];
+  AdultdisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Review'];
+  ChilddisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient','Însoțitor', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Review'];
   public AdultdataSource:any;
   public ChilddataSource:any;
 
@@ -81,6 +81,10 @@ export class IstoricProgramariComponent implements OnInit {
 
   OnChildAppointment(){
     this.router.navigate(['/programari-copii']);
+  }
+
+  OnReviewDoctor(appointment:any){
+    this.router.navigate(["/add-review-doctori"]);
   }
 
   Back() {

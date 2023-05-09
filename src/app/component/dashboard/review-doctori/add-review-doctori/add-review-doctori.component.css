@@ -1,16 +1,13 @@
-.users-container{
+.add-review-doctori-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: url('../../../../../../assets/photos/background5.jpg');
+    background-image: url('../../../../../assets/photos/programare-adult2.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 75.9%;
-
-    
 }
 
 .form-container{
