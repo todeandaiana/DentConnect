@@ -31,51 +31,53 @@ import { AddDoctoriComponent } from './component/admin/admin-dashboard/crud-doct
 import { EditDoctoriComponent } from './component/admin/admin-dashboard/crud-doctori/edit-doctori/edit-doctori.component';
 import { ShowDoctoriComponent } from './component/admin/admin-dashboard/crud-doctori/show-doctori/show-doctori.component';
 import { ComparaDoctoriComponent } from './component/dashboard/compara-doctori/compara-doctori.component';
+import { RoleGuard } from './guards/role.guard';
+import { AdminRoleGuard } from './guards/admin-role.guard';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {pathMatch: 'full', path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'verify-email', component: VerifyEmailComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'reset-password', component: ResetPasswordComponent},
 
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard, RoleGuard]},
   
-  {path: 'compara-servicii', component: ComparaServiciiComponent, canActivate: [AuthGuard]},
-  {path: 'istoric-programari', component: IstoricProgramariComponent, canActivate: [AuthGuard]},
-  {path: 'programari-adulti', component: ProgramariAdultiComponent, canActivate: [AuthGuard]},
-  {path: 'compara-doctori', component: ComparaDoctoriComponent, canActivate: [AuthGuard]},
+  {path: 'compara-servicii', component: ComparaServiciiComponent, canActivate: [AuthGuard, RoleGuard]},
+  {path: 'istoric-programari', component: IstoricProgramariComponent, canActivate: [AuthGuard, RoleGuard]},
+  {path: 'programari-adulti', component: ProgramariAdultiComponent, canActivate: [AuthGuard, RoleGuard]},
+  {path: 'compara-doctori', component: ComparaDoctoriComponent, canActivate: [AuthGuard, RoleGuard]},
 
 
-  {path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard]},
+  {path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard, AdminRoleGuard]},
 
-  {path: 'add-programari', component: AddProgramariComponent, canActivate: [AuthGuard]},
-  {path: 'edit-programari', component: EditProgramariComponent, canActivate: [AuthGuard]},
-  {path: 'show-programari', component: ShowProgramariComponent, canActivate: [AuthGuard]},
+  {path: 'add-programari', component: AddProgramariComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'edit-programari', component: EditProgramariComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'show-programari', component: ShowProgramariComponent, canActivate: [AuthGuard, AdminRoleGuard]},
   // {path: 'googlemap', component: GooglemapComponent, canActivate: [AuthGuard]},
 
 
-  {path: 'add-users', component: AddUsersComponent, canActivate: [AuthGuard]},
-  {path: 'edit-users', component: EditUsersComponent, canActivate: [AuthGuard]},
-  {path: 'show-users', component: ShowUsersComponent, canActivate: [AuthGuard]},
+  {path: 'add-users', component: AddUsersComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'edit-users', component: EditUsersComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'show-users', component: ShowUsersComponent, canActivate: [AuthGuard, AdminRoleGuard]},
 
-  {path: 'add-clinici', component: AddCliniciComponent, canActivate: [AuthGuard]},
-  {path: 'edit-clinici', component: EditCliniciComponent, canActivate: [AuthGuard]},
-  {path: 'show-clinici', component: ShowCliniciComponent, canActivate: [AuthGuard]},
+  {path: 'add-clinici', component: AddCliniciComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'edit-clinici', component: EditCliniciComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'show-clinici', component: ShowCliniciComponent, canActivate: [AuthGuard, AdminRoleGuard]},
 
-  {path: 'add-specializari', component: AddSpecializariComponent, canActivate: [AuthGuard]},
-  {path: 'edit-specializari', component: EditSpecializariComponent, canActivate: [AuthGuard]},
-  {path: 'show-specializari', component: ShowSpecializariComponent, canActivate: [AuthGuard]},
+  {path: 'add-specializari', component: AddSpecializariComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'edit-specializari', component: EditSpecializariComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'show-specializari', component: ShowSpecializariComponent, canActivate: [AuthGuard, AdminRoleGuard]},
 
-  {path: 'add-servicii', component: AddServiciiComponent, canActivate: [AuthGuard]},
-  {path: 'edit-servicii', component: EditServiciiComponent, canActivate: [AuthGuard]},
-  {path: 'show-servicii', component: ShowServiciiComponent, canActivate: [AuthGuard]},
+  {path: 'add-servicii', component: AddServiciiComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'edit-servicii', component: EditServiciiComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'show-servicii', component: ShowServiciiComponent, canActivate: [AuthGuard, AdminRoleGuard]},
 
-  {path: 'add-doctori', component: AddDoctoriComponent, canActivate: [AuthGuard]},
-  {path: 'edit-doctori', component: EditDoctoriComponent, canActivate: [AuthGuard]},
-  {path: 'show-doctori', component: ShowDoctoriComponent, canActivate: [AuthGuard]},
+  {path: 'add-doctori', component: AddDoctoriComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'edit-doctori', component: EditDoctoriComponent, canActivate: [AuthGuard, AdminRoleGuard]},
+  {path: 'show-doctori', component: ShowDoctoriComponent, canActivate: [AuthGuard, AdminRoleGuard]},
 
 ];
 

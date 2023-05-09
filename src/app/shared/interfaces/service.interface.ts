@@ -1,6 +1,8 @@
+import { IPrice } from "./price.interface";
+
 export interface IService{
     nume:string;
-    pret1:string;
-    pret2:string;
-    pret3:string;
+    id_specializare:string;
+    preturi: IPrice[];
+
 }

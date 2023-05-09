@@ -18,21 +18,29 @@
             <th mat-header-cell *matHeaderCellDef> Nume serviciu</th>
             <td mat-cell *matCellDef="let service"> {{service.nume}} </td>
           </ng-container>
+
+          <ng-container matColumnDef="Specializare">
+            <th mat-header-cell *matHeaderCellDef> Nume specializare</th>
+            <td mat-cell *matCellDef="let service"> 
+              <ng-container *ngFor="let specialization of specializationsList">
+                <div *ngIf="DisplaySpecialization(specialization, service.id_specializare)">
+                  {{specialization.nume}}
+                </div>
+              </ng-container>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Clinici">
+            <th mat-header-cell *matHeaderCellDef> Clinici</th>
+            <td mat-cell *matCellDef="let service"> 
+              <ng-container *ngFor="let clinic of clinicsList">
+                <div *ngIf="DisplayClinic(clinic, service.preturi)">
+                  {{clinic.nume}} - {{DisplayPrice(clinic, service.preturi)}} lei
+                </div>
+              </ng-container>
+            </td>
+          </ng-container>
       
-          <ng-container matColumnDef="Pret DentaPro Clinic">
-            <th mat-header-cell *matHeaderCellDef> Pret DentaPro Clinic</th>
-            <td mat-cell *matCellDef="let service"> {{service.pret1}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Pret Stomestet">
-            <th mat-header-cell *matHeaderCellDef> Pret Stomestet</th>
-            <td mat-cell *matCellDef="let service"> {{service.pret2}}  </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Pret DentaLux Clinic">
-            <th mat-header-cell *matHeaderCellDef> Pret DentaLux Clinic</th>
-            <td mat-cell *matCellDef="let service"> {{service.pret3}}  </td>
-          </ng-container>
           <ng-container matColumnDef="Editează">
             <th mat-header-cell *matHeaderCellDef> Editează</th>
             <td mat-cell *matCellDef="let service"> 

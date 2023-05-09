@@ -19,15 +19,18 @@ export class AuthService {
 
   //login method
   login(email:string, password: string){
-    this.fireauth.signInWithEmailAndPassword(email,password).then( res=>{
+    this.fireauth.signInWithEmailAndPassword(email,password).then(res=>{
+      console.log(res.user);
       if(res.user)
         localStorage.setItem('uid', res.user.uid);
 
-      if(res.user?.emailVerified == true) {
-        this.router.navigate(['/dashboard']);
-      }else{
+      if(res.user?.emailVerified == false) {
         this.router.navigate(['/verify-email']);
       }
+      else{
+          // this.router.navigate(["/dashboard"]);
+      }
+
       this.setCurrentUser();
     }, err=>{
       alert(err.message);
@@ -49,18 +52,6 @@ export class AuthService {
       })
     }
 
-  // setUserData(user:any, uid: any){
-  //   const userRef:any = this.firestore.collection(`users`);
-  //   const userData ={
-  //     uid: uid,
-  //     email: user.email,
-  //     password: user.password,
-  //     name: user.name,
-  //     roleAs: user.roleAs
-  //   };
-  //   return userRef.doc(uid).set(userData, {merge: true});
-  // }
-
   setUserData(user:any, uid: any){
     const userRef:any = this.firestore.collection(`users`);
     const userData ={
@@ -81,9 +72,8 @@ export class AuthService {
   logout(){
     this.fireauth.signOut().then( () => {
       this.currentUser$.next(undefined);
-      localStorage.removeItem('uid');
+      localStorage.clear();
       this.router.navigate(['/']);
-
     }, err => {
       alert(err.message);
     })
@@ -126,6 +116,18 @@ export class AuthService {
       this.firestore.collection(`users`).doc(uid).get().subscribe(user => {
         console.log(user.data());
         this.currentUser$.next(user.data());
+        const loggedin:any=user.data();
+        localStorage.setItem("role", loggedin.roleAs);
+        if(loggedin.roleAs === 'customer'){
+            this.router.navigate(["/dashboard"]);
+          }else {
+            if(loggedin.roleAs === 'admin'){
+              this.router.navigate(["/admin-dashboard"]);
+            }
+            else {
+              this.router.navigate(["/"]);
+            }
+          }
       })
     } else {
       this.currentUser$.next(undefined);
