@@ -57,15 +57,14 @@ export class AuthService {
     const userData ={
       uid: uid,
       email: user.email,
-      password: '', // setăm inițial parola la null
+      // password: '', // setăm inițial parola la null
       name: user.name,
       roleAs: user.roleAs
     };
     // criptăm parola utilizând bcrypt.hash
-    return bcrypt.hash(user.password, 10).then((hash: string) => {
-      userData.password = hash; // actualizăm parola cu hash-ul generat
+    // return bcrypt.hash(user.password, 10).then((hash: string) => {
+    //   userData.password = hash; // actualizăm parola cu hash-ul generat
       return userRef.doc(uid).set(userData, {merge: true});
-    });
   }
 
   //sign out

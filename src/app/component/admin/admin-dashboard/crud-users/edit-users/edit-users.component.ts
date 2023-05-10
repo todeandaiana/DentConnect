@@ -26,7 +26,7 @@ export class EditUsersComponent implements OnInit{
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       // password: new FormControl('', Validators.required),
-      role: new FormControl('', Validators.required)
+      // role: new FormControl('', Validators.required)
     })
 
     this.uid=this.router.getCurrentNavigation().extras.state['id'];
@@ -41,7 +41,7 @@ export class EditUsersComponent implements OnInit{
         name:user.name,
         email:user.email,
         // password:user.password,
-        role:user.roleAs
+        // role:user.roleAs
       })
     })
   }
@@ -51,7 +51,7 @@ export class EditUsersComponent implements OnInit{
       name:this.userForm.value.name,
       email:this.userForm.value.email,
       // password:this.userForm.value.password,
-      roleAs:this.userForm.value.role
+      // roleAs:this.userForm.value.role
     })
     .then( ()=> {
       this.router.navigate(["/show-users"]);

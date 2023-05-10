@@ -21,8 +21,7 @@ export class ForgotPasswordComponent implements OnInit{
     
   }
   forgotPassword(){
-    this.auth.forgotPassword(this.email);
-    this.email='';
+    this.auth.forgotPassword(this.forgotpasswordForm.value.email);
   }
 
   back() {

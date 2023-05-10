@@ -45,5 +45,9 @@ export class AdminDashboardComponent implements OnInit{
     this.router.navigate(['/show-programari']);
   }
 
+  OnShowReviews(){
+    this.router.navigate(['/show-review-doctori']);
+  }
+
  
 }

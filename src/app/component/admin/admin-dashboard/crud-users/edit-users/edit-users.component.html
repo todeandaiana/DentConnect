@@ -19,11 +19,11 @@
         <mat-error *ngIf="userForm.get('password').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field> -->
 
-      <mat-form-field appearance="fill">
+      <!-- <mat-form-field appearance="fill">
         <mat-label>Rol</mat-label>
         <input matInput formControlName="role" />
         <mat-error *ngIf="userForm.get('role').hasError('required')">Câmp obligatoriu!</mat-error>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <button type="submit" mat-flat-button color="primary" [disabled]="!userForm.valid">Salvează</button>
       <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la utilizatori</button>
