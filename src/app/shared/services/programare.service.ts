@@ -27,7 +27,12 @@ export class ProgramareAdultService{
         doctor:programare.doctor,
         status:programare.status
       };
-      return programareRef.doc().set(ProgramareData, {merge: true});
+      return programareRef.add(ProgramareData).then((docRef:any) => {
+        const id_programare = docRef.id;
+        return programareRef.doc(id_programare).update({id_programare: id_programare});
+      }).catch((error:any) => {
+        console.error("Eroare la salvarea documentului: ", error);
+      });
     }
 
     getSpecializations(id: string) : Promise<any> {

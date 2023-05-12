@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { IPrice } from 'src/app/shared/interfaces/price.interface';
 
 @Component({
   selector: 'app-compara-servicii',
@@ -11,54 +11,73 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ComparaServiciiComponent implements OnInit{
 
-  servicesList: {id:string, specializare:string, nume:string, pret1: string, pret2:string, pret3:string} [] = [];
-  public dataSource:any;
+  ServicesList: {id: string, nume:string, id_specializare:string, preturi: IPrice[]} [] = [];
+  ServicesdisplayedColumns: string[] = ['Nr.crt', 'Nume', 'Specializare', 'Clinici'];
+  clinicsList: any[] =[];
+  specializationsList:any[] =[];
 
-  displayedColumns: string[] = ['Nr.crt', 'Specializare', 'Serviciu', 'DentaPro Clinic', 'Stomestet', 'DentaLux Clinic'];
+  public ServicedataSource:any;
+  public edit: boolean = false;
+  public id:string;
+  public panelOpenState = false;
+
+  services: any[];
 
   ngOnInit(): void {
-  }
-
-  constructor(private firestore: AngularFirestore, private router: Router){
+    this.getClinics();
+    this.getSpecializations();
     this.getServices();
-
   }
 
-  getServices() {
+  constructor(private firestore: AngularFirestore, private router: Router) {
+  }
+
+  getClinics(){
+    this.firestore.collection('clinici').valueChanges().subscribe(clinics => {
+      this.clinicsList = clinics;
+    })
+  }
+
+  getSpecializations(){
+    this.firestore.collection('specializari').valueChanges().subscribe(specializations => {
+      this.specializationsList = specializations;
+    })
+  }
+
+
+  getServices(){
     this.firestore
-      .collection('servicii')
+      .collection('serviciii')
       .get()
       .subscribe((snapshot) => {
         snapshot.forEach((doc) => {
           const service: any = doc.data();
-
-          this.firestore.collection('specializari').doc(service.id_specializari).get().subscribe((specializationDoc) =>{
-            const specialization:any=specializationDoc.data() ;
-            service.specialization=specialization.nume;
-            this.servicesList.push({id:doc.id, specializare: service.specialization, nume: service.nume, pret1: service.pret1, pret2:service.pret2, pret3: service.pret3});
-            this.dataSource=new MatTableDataSource(this.servicesList)});
-          }
-          )
+            this.ServicesList.push({id: doc.id, nume: service.nume, id_specializare:service.id_specializare, preturi:service.preturi});
+            this.ServicedataSource = new MatTableDataSource(this.ServicesList);          
+        });
       });
-    }
+  }
 
+  DisplaySpecialization(specialization:any, specializationId: string){
+    return specializationId === specialization.id_specializare;
+  }
+
+  DisplayClinic(clinic:any, clinicsId: any[]){
+    return clinicsId.filter(value => value.id_clinica === clinic.id_clinica).length>0;
+  }
+
+  DisplayPrice(clinic:any, prices: any[]){      
+    return prices.find(value => value.id_clinica === clinic.id_clinica).pret;
+
+  }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log(filterValue);
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    this.ServicedataSource.filter = filterValue.trim();
   }
 
-  OnAdultAppointment(){
-    this.router.navigate(['/programari-adulti']);
-  }
-
-  OnChildAppointment(){
-    this.router.navigate(['/programari-copii']);
-  }
-
-  Back() {
+  Back(){
     this.router.navigate(['/dashboard']);
   }
-
 }
+

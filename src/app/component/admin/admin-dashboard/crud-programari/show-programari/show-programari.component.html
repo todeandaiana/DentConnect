@@ -4,14 +4,6 @@
     </div>
     <div class="demo-button-container">
     <button mat-raised-button (click)="AddAppointment()" class="add-button">Adaugă o programare</button>
-
-    <!-- <button
-        mat-raised-button
-        [disabled]="!dataSource.length"
-        (click)="removeData()"
-        class="demo-button">
-      Remove data
-    </button> -->
   </div>
   
   <table mat-table [dataSource]="AdultdataSource" class="mat-elevation-z8" id="adultTable">
@@ -30,6 +22,16 @@
           <ng-container matColumnDef="Pacient">
             <th mat-header-cell *matHeaderCellDef> Pacient</th>
             <td mat-cell *matCellDef="let appointment"> {{appointment.nume_pacient}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Tip">
+            <th mat-header-cell *matHeaderCellDef> Tip</th>
+            <td mat-cell *matCellDef="let appointment"> {{appointment.tip}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Însoțitor">
+            <th mat-header-cell *matHeaderCellDef> Însoțitor</th>
+            <td mat-cell *matCellDef="let appointment"> {{appointment.nume_insotitor}} </td>
           </ng-container>
 
           <ng-container matColumnDef="Email">

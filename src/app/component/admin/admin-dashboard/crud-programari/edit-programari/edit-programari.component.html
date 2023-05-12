@@ -2,10 +2,22 @@
     <h1>Programare</h1>
     <form [formGroup]="appointmentForm" (submit)="updateAppointment()" class="form-container" id="appointment-form">
       <mat-form-field appearance="fill">
-        <mat-label>Nume</mat-label>
+        <mat-label>Nume pacient</mat-label>
         <input matInput formControlName="pacient_name" />
         <mat-error *ngIf="appointmentForm.get('pacient_name').hasError('required')">Câmp obligatoriu!</mat-error>
         <mat-error *ngIf="appointmentForm.get('pacient_name').hasError('invalidName')">Introduceți un nume valid!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tip pacient</mat-label>
+        <input matInput formControlName="type"/>
+        <mat-error *ngIf="appointmentForm.get('type').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" *ngIf="showAdultName()">
+        <mat-label>Nume însoțitor</mat-label>
+        <input matInput formControlName="adult_name">
+        <mat-error *ngIf="appointmentForm.get('adult_name').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field>
   
       <mat-form-field appearance="fill">

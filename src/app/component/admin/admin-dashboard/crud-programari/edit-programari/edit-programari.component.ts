@@ -43,6 +43,8 @@ export class EditProgramariComponent implements OnInit{
     this.getClinics();
     this.appointmentForm=new FormGroup({
       pacient_name: new FormControl('', [Validators.required, ValidateName()]),
+      type: new FormControl('', Validators.required),
+      adult_name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required, ValidatePhone('07')]),
       date: new FormControl('', [Validators.required]),
@@ -77,6 +79,15 @@ export class EditProgramariComponent implements OnInit{
     this.router.navigate(['/show-programari']);
   }
 
+  showAdultName(){
+    if(this.appointmentForm.controls["type"].value === 'Copil'){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   async initializeLists(){
     const foundClinic = this.clinicsList.find( (clinic) => this.appointmentForm.value.clinic === clinic.nume);
     await this.changeClinic(foundClinic);
@@ -101,11 +112,13 @@ export class EditProgramariComponent implements OnInit{
   getAppointment(){
     this.firestore.collection('programari_adulti').doc(this.appointmentId).get().subscribe( (doc) =>
     {
-        const appointment: any = doc.data();
+          const appointment: any = doc.data();
           const timestampFirebase=appointment.data;
           const date = timestampFirebase.toDate();
           this.appointmentForm.patchValue({
             clinic: appointment.clinica, 
+            type: appointment.tip,
+            adult_name:appointment.nume_insotitor,
             pacient_name: appointment.nume_pacient, 
             date: date, 
             hour: appointment.ora, 
@@ -181,6 +194,8 @@ export class EditProgramariComponent implements OnInit{
       .doc(this.appointmentId)
       .update({
         nume_pacient: this.appointmentForm.value.pacient_name,
+        tip:this.appointmentForm.value.type,
+        nume_insotitor:this.appointmentForm.value.adult_name,
         email: this.appointmentForm.value.email,
         telefon: this.appointmentForm.value.phone,
         data: this.appointmentForm.value.date,

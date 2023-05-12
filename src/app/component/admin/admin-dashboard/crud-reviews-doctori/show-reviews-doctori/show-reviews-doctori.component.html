@@ -1,0 +1,83 @@
+<div class="show-programari-container">
+    <div>
+        <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
+    </div>
+
+    <table mat-table [dataSource]="ReviewdataSource" class="mat-elevation-z8" id="adultTable">    
+    <ng-container matColumnDef="Nr.crt">
+      <th mat-header-cell *matHeaderCellDef> Nr.crt</th>
+      <td mat-cell *matCellDef="let review; let i =index"> {{i+1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Clinica">
+      <th mat-header-cell *matHeaderCellDef> Clinica</th>
+      <td mat-cell *matCellDef="let review"> {{review.clinica}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Pacient">
+      <th mat-header-cell *matHeaderCellDef> Pacient</th>
+      <td mat-cell *matCellDef="let review"> {{review.nume_pacient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Tip">
+      <th mat-header-cell *matHeaderCellDef> Tip </th>
+      <td mat-cell *matCellDef="let review"> {{review.tip}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Însoțitor">
+      <th mat-header-cell *matHeaderCellDef> Însoțitor</th>
+      <td mat-cell *matCellDef="let review"> {{review.nume_insotitor}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Data examinării">
+      <th mat-header-cell *matHeaderCellDef> Data examinării</th>
+      <td mat-cell *matCellDef="let review"> {{review.data}} </td>
+    </ng-container>
+          
+    <ng-container matColumnDef="Specializare">
+      <th mat-header-cell *matHeaderCellDef> Specializare </th>
+      <td mat-cell *matCellDef="let review"> {{review.specializare}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Serviciu">
+      <th mat-header-cell *matHeaderCellDef> Serviciu</th>
+      <td mat-cell *matCellDef="let review"> {{review.serviciu}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Doctor">
+      <th mat-header-cell *matHeaderCellDef> Doctor</th>
+      <td mat-cell *matCellDef="let review"> {{review.doctor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Nota">
+      <th mat-header-cell *matHeaderCellDef> Nota </th>
+      <td mat-cell *matCellDef="let review"> {{review.nota}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Comentarii">
+      <th mat-header-cell *matHeaderCellDef> Comentarii </th>
+      <td mat-cell *matCellDef="let review"> {{review.cometarii}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Editează">
+        <th mat-header-cell *matHeaderCellDef> Editează</th>
+        <td mat-cell *matCellDef="let review"> 
+            <button mat-raised-button color="primary" (click)="EditReview(review)" class="demo-button">Editează</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Șterge">
+        <th mat-header-cell *matHeaderCellDef> Șterge</th>
+        <td mat-cell *matCellDef="let review">
+            <button mat-raised-button color="warn" (click)="DeleteReview(review)" class="demo-button">Șterge</button>
+        </td>
+      </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="ReviewdisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: ReviewdisplayedColumns;"></tr>
+  
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Nu există această recenzie!</td>
+    </tr>
+</table>
+

@@ -11,20 +11,24 @@ import { Router } from '@angular/router';
 export class IstoricProgramariComponent implements OnInit {
 
 
-  AdultAppointmentsList: {clinica:string, nume_pacient: string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, status:string} [] = [];
-  ChildAppointmentsList: {clinica:string, nume_pacient: string, nume_insotitor:string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, status:string} [] = [];
+  AdultAppointmentsList: {id:string, clinica:string, nume_pacient: string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, status:string} [] = [];
+  ChildAppointmentsList: {id:string, clinica:string, nume_pacient: string, nume_insotitor:string, data: string, ora:string, specializare:string, serviciu:string, doctor:string, status:string} [] = [];
+  ReviewsList: {id:string, id_programare:string, clinica:string, nume_pacient: string, tip:string ,nume_insotitor:string, data: string, specializare:string, serviciu:string, doctor:string, nota:number, comentarii:string} [] = [];
+
   AdultdisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Review'];
   ChilddisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient','Însoțitor', 'Data', 'Ora', 'Specializare', 'Serviciu', 'Doctor', 'Review'];
+  ReviewdisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Tip', 'Însoțitor', 'Data examinării', 'Specializare', 'Serviciu', 'Doctor', 'Nota', 'Comentarii'];
+
   public AdultdataSource:any;
   public ChilddataSource:any;
+  public ReviewdataSource:any;
 
-
+  DisableReview= false;
 
   ngOnInit(): void {
     this.getAdultAppointments();
     this.getChildAppointments();
-    // this.ChangeSatusColor();
-
+    this.getReviews();
   }
 
   constructor(private firestore: AngularFirestore, private router: Router) {}
@@ -42,7 +46,7 @@ export class IstoricProgramariComponent implements OnInit {
             const timestampFirebase=appointment.data;
             const date = timestampFirebase.toDate();
             const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
-            this.AdultAppointmentsList.push({clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, status:appointment.status});
+            this.AdultAppointmentsList.push({id:doc.id,clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, status:appointment.status});
             this.AdultdataSource = new MatTableDataSource(this.AdultAppointmentsList);
           }
         });
@@ -61,8 +65,27 @@ export class IstoricProgramariComponent implements OnInit {
             const timestampFirebase=appointment.data;
             const date = timestampFirebase.toDate();
             const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
-            this.ChildAppointmentsList.push({clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, nume_insotitor:appointment.nume_insotitor, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, status:appointment.status});
+            this.ChildAppointmentsList.push({id:doc.id, clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, nume_insotitor:appointment.nume_insotitor, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, status:appointment.status});
             this.ChilddataSource = new MatTableDataSource(this.ChildAppointmentsList);
+          }
+        });
+      });
+  }
+
+  getReviews(){
+    const userId = localStorage.getItem('uid');
+    this.firestore
+      .collection('recenzii')
+      .get()
+      .subscribe((snapshot) => {
+        snapshot.forEach((doc) => {
+          const review: any = doc.data();
+          if(review.user_id === userId ) {
+            const timestampFirebase=review.data;
+            const date = timestampFirebase.toDate();
+            const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
+            this.ReviewsList.push({id:doc.id, id_programare:review.id_programare, clinica: review.clinica, nume_pacient: review.nume_pacient, tip:review.tip, nume_insotitor:review.nume_insotitor, data: dateformat, specializare:review.specializare, serviciu: review.serviciu, doctor:review.doctor, nota:review.nota, comentarii:review.comentarii});
+            this.ReviewdataSource = new MatTableDataSource(this.ReviewsList);
           }
         });
       });
@@ -72,56 +95,26 @@ export class IstoricProgramariComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.AdultdataSource.filter = filterValue.trim().toLowerCase();
     this.ChilddataSource.filter = filterValue.trim().toLowerCase();
-
   }
 
-  OnAdultAppointment(){
-    this.router.navigate(['/programari-adulti']);
-  }
 
-  OnChildAppointment(){
-    this.router.navigate(['/programari-copii']);
-  }
 
   OnReviewDoctor(appointment:any){
-    this.router.navigate(["/add-review-doctori"]);
+    console.log(appointment);
+    this.router.navigate(['/add-review-doctori'], {state: {id:appointment.id}});
+  }
+
+  ReviewExists(appointment:any){
+    const exista = this.ReviewsList.find(recenzie => recenzie.id_programare === appointment.id_programare);
+    if(exista){
+      this.DisableReview =true;
+    } else {
+      this.DisableReview = false;
+    }
   }
 
   Back() {
     this.router.navigate(['/dashboard']);
   }
-
-  // ChangeSatusColor(){
-  //   const status = document.getElementById('status');
-  //   if(status.innerHTML === "Trimis"){
-  //     status.style.backgroundColor = "yellow";
-  //   } else if (status.innerHTML === "Acceptat"){
-  //     status.style.backgroundColor = "green";
-  //   }
-  //   else {
-  //     status.style.backgroundColor = "red";
-  //   }
-  // }
-
-
-  // ShowAdultAppointments(){
-  //   document.getElementById('adultTable').style.display='inline-table';
-  //   document.getElementById('childTable').style.display='none';
-  // }
-
-  // ShowChildAppointments() {
-  //   document.getElementById('adultTable').style.display='none';
-  //   document.getElementById('childTable').style.display='inline-table';
-  // }
-
-
-
-
-
-
-
-
-
-
-
+  
 }

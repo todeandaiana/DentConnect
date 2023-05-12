@@ -1,38 +1,26 @@
 .istoric-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-image: url('../../../../assets/photos/background5.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 75.9%;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url('../../../../assets/photos/background5.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  justify-content: space-evenly;
+  height: 75.9%;
 }
 ::ng-deep tr.mat-mdc-row:hover{
-  background-color: rgb(138, 184, 253)!important;
+background-color: rgb(138, 184, 253)!important;
 }
 
-/* #adultTable{
-  display: inline-table;
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
 }
 
-#childTable{
-  display: inline-table;
-} */
-/* table {
-    width: 100%;
-    display: none;
-} */
-  
-  .mat-mdc-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-
-  div{
-    text-align: center;
-    justify-content: space-between;
-  }
+div{
+  text-align: left;
+  justify-content: space-between;
+}

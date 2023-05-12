@@ -36,6 +36,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
@@ -70,8 +72,9 @@ import { AddOreDisponibileComponent } from './component/admin/admin-dashboard/cr
 import { EditOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/edit-ore-disponibile/edit-ore-disponibile.component';
 import { ShowOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/show-ore-disponibile/show-ore-disponibile.component';
 import { AddReviewDoctoriComponent } from './component/dashboard/review-doctori/add-review-doctori/add-review-doctori.component';
-import { EditReviewDoctoriComponent } from './component/dashboard/review-doctori/edit-review-doctori/edit-review-doctori.component';
 import { ShowReviewDoctoriComponent } from './component/dashboard/review-doctori/show-review-doctori/show-review-doctori.component';
+import { EditReviewsDoctoriComponent } from './component/admin/admin-dashboard/crud-reviews-doctori/edit-reviews-doctori/edit-reviews-doctori.component';
+import { ShowReviewsDoctoriComponent } from './component/admin/admin-dashboard/crud-reviews-doctori/show-reviews-doctori/show-reviews-doctori.component';
 
 @NgModule({
   declarations: [
@@ -113,8 +116,9 @@ import { ShowReviewDoctoriComponent } from './component/dashboard/review-doctori
     EditOreDisponibileComponent,
     ShowOreDisponibileComponent,
     AddReviewDoctoriComponent,
-    EditReviewDoctoriComponent,
-    ShowReviewDoctoriComponent
+    ShowReviewDoctoriComponent,
+    EditReviewsDoctoriComponent,
+    ShowReviewsDoctoriComponent
   ],
   imports: [
     BrowserModule,
@@ -141,6 +145,8 @@ import { ShowReviewDoctoriComponent } from './component/dashboard/review-doctori
     MatTabsModule,
     MatGridListModule,
     MatSliderModule,
+    MatCardModule,
+    MatExpansionModule,
     GoogleMapsModule,
     HttpClientModule
   ],
