@@ -23,14 +23,9 @@ export class AuthService {
       console.log(res.user);
       if(res.user)
         localStorage.setItem('uid', res.user.uid);
-
       if(res.user?.emailVerified == false) {
         this.router.navigate(['/verify-email']);
       }
-      else{
-          // this.router.navigate(["/dashboard"]);
-      }
-
       this.setCurrentUser();
     }, err=>{
       alert(err.message);
@@ -57,14 +52,10 @@ export class AuthService {
     const userData ={
       uid: uid,
       email: user.email,
-      // password: '', // setăm inițial parola la null
       name: user.name,
       roleAs: user.roleAs
     };
-    // criptăm parola utilizând bcrypt.hash
-    // return bcrypt.hash(user.password, 10).then((hash: string) => {
-    //   userData.password = hash; // actualizăm parola cu hash-ul generat
-      return userRef.doc(uid).set(userData, {merge: true});
+    return userRef.doc(uid).set(userData, {merge: true});
   }
 
   //sign out
@@ -113,8 +104,8 @@ export class AuthService {
     const uid = localStorage.getItem("uid");
     if(uid){
       this.firestore.collection(`users`).doc(uid).get().subscribe(user => {
-        console.log(user.data());
         this.currentUser$.next(user.data());
+        console.log(user.data());
         const loggedin:any=user.data();
         localStorage.setItem("role", loggedin.roleAs);
         if(loggedin.roleAs === 'customer'){
@@ -134,4 +125,7 @@ export class AuthService {
   }
 }
   
+
+
+
 

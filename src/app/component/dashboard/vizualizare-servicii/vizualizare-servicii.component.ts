@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { IPrice } from 'src/app/shared/interfaces/price.interface';
 
 @Component({
-  selector: 'app-compara-servicii',
-  templateUrl: './compara-servicii.component.html',
-  styleUrls: ['./compara-servicii.component.css']
+  selector: 'app-vizualizare-servicii',
+  templateUrl: './vizualizare-servicii.component.html',
+  styleUrls: ['./vizualizare-servicii.component.css']
 })
-export class ComparaServiciiComponent implements OnInit{
+export class VizualizareServiciiComponent implements OnInit{
 
   ServicesList: {id: string, nume:string, id_specializare:string, preturi: IPrice[]} [] = [];
   ServicesdisplayedColumns: string[] = ['Nr.crt', 'Nume', 'Specializare', 'Clinici'];
@@ -46,10 +46,7 @@ export class ComparaServiciiComponent implements OnInit{
 
 
   getServices(){
-    this.firestore
-      .collection('serviciii')
-      .get()
-      .subscribe((snapshot) => {
+    this.firestore.collection('serviciii').get().subscribe((snapshot) => {
         snapshot.forEach((doc) => {
           const service: any = doc.data();
             this.ServicesList.push({id: doc.id, nume: service.nume, id_specializare:service.id_specializare, preturi:service.preturi});

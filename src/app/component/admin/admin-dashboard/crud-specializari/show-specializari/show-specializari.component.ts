@@ -59,7 +59,6 @@ export class ShowSpecializariComponent implements OnInit{
 
   DeleteSpecialization(specialization: any) : void {
     this.firestore.collection('specializari').doc(specialization.id).delete();
-    // this.getServices();
   }
 
   Back(){

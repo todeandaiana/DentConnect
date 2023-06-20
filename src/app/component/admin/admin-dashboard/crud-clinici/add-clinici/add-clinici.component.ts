@@ -40,19 +40,6 @@ export class AddCliniciComponent implements OnInit{
     this.router.navigate(['/show-clinici']);
   }
 
-  // sendClinic(clinic:any, id_clinica:any){
-  //   const clinicRef:any = this.firestore.collection(`clinici`);
-  //   const ClinicData ={
-  //     id_clinica: id_clinica,
-  //     nume: clinic.nume,
-  //     adresa:clinic.adresa,
-  //     CUI: clinic.CUI,
-  //     program:clinic.program,
-  //     telefon:clinic.telefon
-  //   };
-  //   return clinicRef.doc(id_clinica).set(ClinicData, {merge: true});
-  // }
-
   sendClinic(clinic:any){
     const clinicRef:any = this.firestore.collection(`clinici`);
     const ClinicData ={

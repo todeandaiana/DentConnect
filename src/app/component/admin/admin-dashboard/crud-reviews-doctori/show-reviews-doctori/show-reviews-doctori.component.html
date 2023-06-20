@@ -1,4 +1,4 @@
-<div class="show-programari-container">
+<div class="show-reviews-container">
     <div>
         <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
     </div>
@@ -73,8 +73,8 @@
         </td>
       </ng-container>
     
-    <tr mat-header-row *matHeaderRowDef="ReviewdisplayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: ReviewdisplayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="ReviewsdisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: ReviewsdisplayedColumns;"></tr>
   
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">Nu există această recenzie!</td>

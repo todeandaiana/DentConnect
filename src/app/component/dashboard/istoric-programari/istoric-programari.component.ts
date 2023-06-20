@@ -36,17 +36,14 @@ export class IstoricProgramariComponent implements OnInit {
   
   getAdultAppointments(){
     const userId = localStorage.getItem('uid');
-    this.firestore
-      .collection('programari_adulti', ref => ref.where('tip', '==', 'Adult'))
-      .get()
-      .subscribe((snapshot) => {
+    this.firestore.collection('programari_adulti', ref => ref.where('tip', '==', 'Adult')).get().subscribe((snapshot) => {
         snapshot.forEach((doc) => {
-          const appointment: any = doc.data();
-          if(appointment.user_id === userId ) {
-            const timestampFirebase=appointment.data;
+          const programare: any = doc.data();
+          if(programare.user_id === userId ) {
+            const timestampFirebase=programare.data;
             const date = timestampFirebase.toDate();
             const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
-            this.AdultAppointmentsList.push({id:doc.id,clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, status:appointment.status});
+            this.AdultAppointmentsList.push({id:doc.id,clinica: programare.clinica, nume_pacient: programare.nume_pacient, data: dateformat, ora: programare.ora, specializare:programare.specializare, serviciu: programare.serviciu, doctor:programare.doctor, status:programare.status});
             this.AdultdataSource = new MatTableDataSource(this.AdultAppointmentsList);
           }
         });

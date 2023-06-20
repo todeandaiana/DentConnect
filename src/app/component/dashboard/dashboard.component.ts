@@ -38,20 +38,20 @@ export class DashboardComponent implements OnInit {
     this.getClinics();
   }
 
-  OnAdultAppointment(){
+  OnProgramari(){
     this.router.navigate(['/programari-adulti']);
   }
 
-  OnCompareDoctors(){
-    this.router.navigate(['/compara-doctori']);
+  OnVizualizareDoctori(){
+    this.router.navigate(['/vizualizare-doctori']);
   }
 
-  OnHistoryAppointment(){
+  OnIstoricProgramari(){
     this.router.navigate(['/istoric-programari']);
   }
 
-  OnCompareServices(){
-    this.router.navigate(['/compara-servicii']);
+  OnVizualizareServicii(){
+    this.router.navigate(['/vizualizare-servicii']);
   }
 
 

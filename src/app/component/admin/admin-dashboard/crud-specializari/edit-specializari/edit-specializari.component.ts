@@ -50,7 +50,6 @@ export class EditSpecializariComponent implements OnInit {
         clinics: this.selectedClinics
       })
     });
-
   }
 
   updateClinicSelection(event:any[]){
@@ -78,10 +77,7 @@ export class EditSpecializariComponent implements OnInit {
   }
 
   updateSpecialization(){
-    this.firestore
-    .collection('specializari')
-    .doc(this.specializationId)
-    .update({
+    this.firestore.collection('specializari').doc(this.specializationId).update({
       nume: this.specializationForm.value.name,
       id_clinici: this.clinicsId
     })
@@ -93,23 +89,6 @@ export class EditSpecializariComponent implements OnInit {
     });
   }
 
-  // ClinicExists(clinic:any){
-  //   return this.clinicsId.includes(clinic.id_clinica);
-  // }
-
-  // updateClinicsId(event:any, clinic:any){
-  //   console.log(this.clinicsId.find(value => value === clinic.id_clinica), clinic.id_clinica);
-  //   if(event.checked && !this.clinicsId.find(value => value === clinic.id_clinica)){
-  //     this.clinicsId.push(clinic.id_clinica);
-  //   }
-
-  //   if(!event.checked && this.clinicsId.find(value => value === clinic.id_clinica)){
-  //     // const index = this.clinicsId.indexOf(id_clinica);
-  //     this.clinicsId = this.clinicsId.filter(value => value !== clinic.id_clinica);
-  //   }
-  //   console.log(this.clinicsId);
-
-  // }
 }
 
   

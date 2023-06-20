@@ -83,25 +83,11 @@ export class AddReviewDoctoriComponent implements OnInit{
     console.log(this.newReviewDoctor);
     this.sendReview(this.newReviewDoctor);
     this.router.navigate(['/istoric-programari']);
-
   }
 
   sendReview(review:any){
     const reviewRef:any = this.firestore.collection('recenzii');
-      const ReviewData ={
-        id_programare: this.reviewId ,
-        user_id: localStorage['uid'],
-        nume_pacient: review.nume_pacient,
-        tip:review.tip,
-        nume_insotitor: review.nume_insotitor? review.nume_insotitor : '',
-        data: review.data,
-        clinica:review.clinica,
-        specializare:review.specializare,
-        serviciu:review.serviciu,
-        doctor:review.doctor,
-        nota: review.nota,
-        comentarii: review.comentarii
-      };
+      const ReviewData ={id_programare: this.reviewId ,user_id: localStorage['uid'],nume_pacient: review.nume_pacient,tip:review.tip,nume_insotitor: review.nume_insotitor? review.nume_insotitor : '',data: review.data,clinica:review.clinica,specializare:review.specializare,serviciu:review.serviciu,doctor:review.doctor,nota: review.nota,comentarii: review.comentarii};
       console.log(ReviewData);
       return reviewRef.add(ReviewData).then((docRef:any) => {
         const id_recenzie = docRef.id;

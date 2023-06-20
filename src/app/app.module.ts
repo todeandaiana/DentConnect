@@ -41,7 +41,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 
 import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
-import { ComparaServiciiComponent } from './component/dashboard/compara-servicii/compara-servicii.component';
+import { VizualizareServiciiComponent } from './component/dashboard/vizualizare-servicii/vizualizare-servicii.component';
 import { AdminDashboardComponent } from './component/admin/admin-dashboard/admin-dashboard.component';
 import { AddProgramariComponent } from './component/admin/admin-dashboard/crud-programari/add-programari/add-programari.component';
 import { EditProgramariComponent } from './component/admin/admin-dashboard/crud-programari/edit-programari/edit-programari.component';
@@ -64,15 +64,8 @@ import { ShowCliniciComponent } from './component/admin/admin-dashboard/crud-cli
 import { AddSpecializariComponent } from './component/admin/admin-dashboard/crud-specializari/add-specializari/add-specializari.component';
 import { EditSpecializariComponent } from './component/admin/admin-dashboard/crud-specializari/edit-specializari/edit-specializari.component';
 import { ShowSpecializariComponent } from './component/admin/admin-dashboard/crud-specializari/show-specializari/show-specializari.component';
-import { ComparaDoctoriComponent } from './component/dashboard/compara-doctori/compara-doctori.component';
-import { AddDateDisponibileComponent } from './component/admin/admin-dashboard/crud-date/add-date-disponibile/add-date-disponibile.component';
-import { EditDateDisponibileComponent } from './component/admin/admin-dashboard/crud-date/edit-date-disponibile/edit-date-disponibile.component';
-import { ShowDateDisponibileComponent } from './component/admin/admin-dashboard/crud-date/show-date-disponibile/show-date-disponibile.component';
-import { AddOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/add-ore-disponibile/add-ore-disponibile.component';
-import { EditOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/edit-ore-disponibile/edit-ore-disponibile.component';
-import { ShowOreDisponibileComponent } from './component/admin/admin-dashboard/crud-ore-disponibile/show-ore-disponibile/show-ore-disponibile.component';
+import { VizualizareDoctoriComponent } from './component/dashboard/vizualizare-doctori/vizualizare-doctori.component';
 import { AddReviewDoctoriComponent } from './component/dashboard/review-doctori/add-review-doctori/add-review-doctori.component';
-import { ShowReviewDoctoriComponent } from './component/dashboard/review-doctori/show-review-doctori/show-review-doctori.component';
 import { EditReviewsDoctoriComponent } from './component/admin/admin-dashboard/crud-reviews-doctori/edit-reviews-doctori/edit-reviews-doctori.component';
 import { ShowReviewsDoctoriComponent } from './component/admin/admin-dashboard/crud-reviews-doctori/show-reviews-doctori/show-reviews-doctori.component';
 
@@ -88,7 +81,7 @@ import { ShowReviewsDoctoriComponent } from './component/admin/admin-dashboard/c
     HomeComponent,
     ProgramariAdultiComponent,
     IstoricProgramariComponent,
-    ComparaServiciiComponent,
+    VizualizareServiciiComponent,
     AddProgramariComponent,
     EditProgramariComponent,
     ShowProgramariComponent,
@@ -108,15 +101,8 @@ import { ShowReviewsDoctoriComponent } from './component/admin/admin-dashboard/c
     AddSpecializariComponent,
     EditSpecializariComponent,
     ShowSpecializariComponent,
-    ComparaDoctoriComponent,
-    AddDateDisponibileComponent,
-    EditDateDisponibileComponent,
-    ShowDateDisponibileComponent,
-    AddOreDisponibileComponent,
-    EditOreDisponibileComponent,
-    ShowOreDisponibileComponent,
+    VizualizareDoctoriComponent,
     AddReviewDoctoriComponent,
-    ShowReviewDoctoriComponent,
     EditReviewsDoctoriComponent,
     ShowReviewsDoctoriComponent
   ],
@@ -124,6 +110,7 @@ import { ShowReviewsDoctoriComponent } from './component/admin/admin-dashboard/c
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    
     FormsModule,
     CoreModule,
     AngularFireAuthModule,

@@ -45,7 +45,7 @@ export class ShowServiciiComponent implements OnInit{
 
   getServices(){
     this.firestore
-      .collection('serviciii')
+      .collection('servicii')
       .get()
       .subscribe((snapshot) => {
         snapshot.forEach((doc) => {

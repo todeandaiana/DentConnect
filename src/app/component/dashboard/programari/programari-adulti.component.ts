@@ -52,7 +52,8 @@ export class ProgramariAdultiComponent implements OnInit {
     service: new FormControl('', [Validators.required]),
     doctor: new FormControl('', Validators.required),
     message: new FormControl(''),
-    terms: new FormControl(false, [Validators.requiredTrue])
+    terms: new FormControl(false, [Validators.requiredTrue]),
+    GDPR: new FormControl(false, [Validators.requiredTrue])
   });
 
   ngOnInit(): void {
