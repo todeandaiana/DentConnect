@@ -11,8 +11,8 @@ import { IPrice } from 'src/app/shared/interfaces/price.interface';
 })
 export class VizualizareServiciiComponent implements OnInit{
 
-  ServicesList: {id: string, nume:string, id_specializare:string, preturi: IPrice[]} [] = [];
-  ServicesdisplayedColumns: string[] = ['Nr.crt', 'Nume', 'Specializare', 'Clinici'];
+  ServicesList: {id: string, nume:string, id_specializare:string, preturi: IPrice[], descriere:string} [] = [];
+  ServicesdisplayedColumns: string[] = ['Nr.crt', 'Nume', 'Descriere', 'Specializare', 'Clinici'];
   clinicsList: any[] =[];
   specializationsList:any[] =[];
 
@@ -49,7 +49,7 @@ export class VizualizareServiciiComponent implements OnInit{
     this.firestore.collection('serviciii').get().subscribe((snapshot) => {
         snapshot.forEach((doc) => {
           const service: any = doc.data();
-            this.ServicesList.push({id: doc.id, nume: service.nume, id_specializare:service.id_specializare, preturi:service.preturi});
+            this.ServicesList.push({id: doc.id, nume: service.nume, id_specializare:service.id_specializare, preturi:service.preturi, descriere:service.descriere});
             this.ServicedataSource = new MatTableDataSource(this.ServicesList);          
         });
       });

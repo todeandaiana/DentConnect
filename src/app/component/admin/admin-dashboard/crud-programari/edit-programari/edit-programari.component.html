@@ -106,7 +106,7 @@
         <mat-error *ngIf="appointmentForm.get('status').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field>
 
-      <button type="submit" mat-flat-button color="primary" [disabled]="!appointmentForm.valid">Salvează</button>
+      <button type="submit" mat-flat-button color="primary">Salvează</button>
       <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la programări</button>
     </form>
   </div>

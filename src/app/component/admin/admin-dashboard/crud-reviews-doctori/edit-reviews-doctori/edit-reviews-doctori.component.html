@@ -1,1 +1,88 @@
-<p>edit-reviews-doctori works!</p>
+<div class="review-container">
+    <h1>Recenzie</h1>
+    <form [formGroup]="reviewForm" (submit)="updateReview()" class="form-container" id="review-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Nume pacient</mat-label>
+        <input matInput formControlName="pacient_name" />
+        <mat-error *ngIf="reviewForm.get('pacient_name').hasError('required')">Câmp obligatoriu!</mat-error>
+        <mat-error *ngIf="reviewForm.get('pacient_name').hasError('invalidName')">Introduceți un nume valid!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tip pacient</mat-label>
+        <input matInput formControlName="type"/>
+        <mat-error *ngIf="reviewForm.get('type').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" *ngIf="showAdultName()">
+        <mat-label>Nume însoțitor</mat-label>
+        <input matInput formControlName="adult_name">
+        <mat-error *ngIf="reviewForm.get('adult_name').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Data</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" [value]="reviewForm.value.date"/>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="reviewForm.get('date').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Clinică</mat-label>
+        <mat-select (selectionChange)="changeClinic($event.value)" formControlName="clinic">
+            <mat-option *ngFor="let clinic of clinicsList" [value]="clinic.nume">
+            {{ clinic.nume }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="reviewForm.get('clinic').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Specializare</mat-label>
+        <mat-select (selectionChange)="changeSpecialization($event.value)" formControlName="specialization">
+          <mat-option *ngFor="let specialization of specializationsList$.getValue()" [value]="specialization.nume">
+            {{ specialization.nume }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="reviewForm.get('specialization').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Serviciu</mat-label>
+        <mat-select (selectionChange)="changeService($event.value)" formControlName="service">
+          <mat-option *ngFor="let service of servicesList$.getValue()" [value]="service.nume">
+            {{ service.nume }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="reviewForm.get('service').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Doctor</mat-label>
+        <mat-select (selectionChange)="changeDoctor($event.value)" formControlName="doctor">
+          <mat-option *ngFor="let doctor of doctorsList$.getValue()" [value]="doctor.nume">
+            {{ doctor.nume }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="reviewForm.get('doctor').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nota</mat-label>
+        <input matInput formControlName="mark">
+        <mat-error *ngIf="reviewForm.get('mark').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Comentarii și feedback</mat-label>
+        <textarea matInput formControlName="message"></textarea>
+      </mat-form-field>
+
+
+      <button type="submit" mat-flat-button color="primary">Salvează</button>
+      <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la recenzii</button>
+    </form>
+  </div>

@@ -39,7 +39,9 @@ export class AddReviewDoctoriComponent implements OnInit{
       service: new FormControl('', Validators.required),
       grade: new FormControl('', Validators.required),
       feedback: new FormControl('', Validators.required),
-      terms: new FormControl(false, [Validators.requiredTrue])
+      terms: new FormControl(false, [Validators.requiredTrue]),
+      GDPR: new FormControl(false, [Validators.requiredTrue]),
+
     })
 
     this.reviewId = this.router.getCurrentNavigation().extras.state['id'];
