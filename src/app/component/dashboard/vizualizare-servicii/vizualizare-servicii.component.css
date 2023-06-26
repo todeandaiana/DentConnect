@@ -23,3 +23,11 @@ div{
   text-align: left;
   justify-content: space-between;
 }
+
+#descriere{
+  width: 600px;
+}
+
+#clinici{
+  width: 200px;
+}

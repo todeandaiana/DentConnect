@@ -1,5 +1,4 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { tick } from '@angular/core/testing';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
@@ -32,7 +31,8 @@ export class AddServiciiComponent implements OnInit {
   serviceForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     specializations: new FormControl('', Validators.required),
-    price: new FormControl('', [Validators.required])
+    price: new FormControl('', [Validators.required]),
+    description: new FormControl('', Validators.required)
   })
 
   ngOnInit(): void {
@@ -99,7 +99,8 @@ export class AddServiciiComponent implements OnInit {
     this.newService ={
       nume: this.serviceForm.value.name,
       id_specializare: this.serviceForm.value.specializations.id_specializare,
-      preturi: this.selectedClinicsAndPrices.filter(value => value.pret !== '')
+      preturi: this.selectedClinicsAndPrices.filter(value => value.pret !== ''),
+      descriere:this.serviceForm.value.description
     
     };
     console.log(this.newService);
@@ -116,7 +117,8 @@ export class AddServiciiComponent implements OnInit {
     const ServiceData ={
       nume: service.nume,
       id_specializare: service.id_specializare,
-      preturi: service.preturi
+      preturi: service.preturi,
+      descriere: service.descriere
     };
     return serviceRef.add(ServiceData).then((docRef:any) => {
       const id_serviciu = docRef.id;

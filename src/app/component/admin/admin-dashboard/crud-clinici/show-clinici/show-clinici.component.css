@@ -8,8 +8,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 75.9%;
-}
+    height: 79.2%;}
 
 ::ng-deep tr.mat-mdc-row:hover{
     background-color: rgb(138, 184, 253)!important;

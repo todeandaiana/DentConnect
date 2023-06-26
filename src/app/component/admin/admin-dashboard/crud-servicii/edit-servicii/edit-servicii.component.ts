@@ -46,7 +46,8 @@ export class EditServiciiComponent implements OnInit{
     this.serviceForm= new FormGroup({
       name: new FormControl('', Validators.required),
       specializations: new FormControl('', Validators.required),
-      price: new FormControl('', [Validators.required])
+      price: new FormControl('', [Validators.required]),
+      description: new FormControl('', Validators.required)
     })
 
     this.serviceId = this.router.getCurrentNavigation().extras.state['id'];
@@ -95,8 +96,9 @@ export class EditServiciiComponent implements OnInit{
       console.log(this.selectedClinicsAndPrices);
       this.serviceForm.patchValue({
         name: service.nume,
+        description: service.descriere,
         specializations:this.specializationsList,
-        // price: this.selectedClinicsAndPrices
+
       })
     })
   }
@@ -108,6 +110,7 @@ export class EditServiciiComponent implements OnInit{
     .doc(this.serviceId)
     .update({
       nume: this.serviceForm.value.name,
+      descriere: this.serviceForm.value.description,
       id_specializare: this.serviceForm.value.specializations.id_specializare,
       preturi: this.selectedClinicsAndPrices.filter(value => value.pret !== '')
     })

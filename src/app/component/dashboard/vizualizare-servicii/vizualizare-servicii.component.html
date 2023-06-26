@@ -22,7 +22,7 @@
 
         <ng-container matColumnDef="Descriere">
           <th mat-header-cell *matHeaderCellDef> Descriere</th>
-          <td mat-cell *matCellDef="let service"> {{service.descriere}} </td>
+          <td id="descriere" mat-cell *matCellDef="let service"> {{service.descriere}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Specializare">
@@ -38,7 +38,7 @@
 
         <ng-container matColumnDef="Clinici">
           <th mat-header-cell *matHeaderCellDef> Clinici</th>
-          <td mat-cell *matCellDef="let service"> 
+          <td id="clinici"  mat-cell *matCellDef="let service"> 
             <ng-container *ngFor="let clinic of clinicsList">
               <div *ngIf="DisplayClinic(clinic, service.preturi)">
                 {{clinic.nume}} - {{DisplayPrice(clinic, service.preturi)}} lei

@@ -7,6 +7,12 @@
       <input matInput formControlName="name" />
       <mat-error *ngIf="serviceForm.get('name').hasError('required')">Câmp obligatoriu!</mat-error>
     </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Descriere</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="serviceForm.get('description').hasError('required')">Câmp obligatoriu!</mat-error>
+    </mat-form-field>
     
     <mat-form-field appearance="fill">
       <mat-label>Specializare</mat-label>

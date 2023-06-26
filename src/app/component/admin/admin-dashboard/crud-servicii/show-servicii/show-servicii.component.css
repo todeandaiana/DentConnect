@@ -32,3 +32,12 @@ table {
     display: flex;
     text-align: right;
   }
+
+
+  #descriere{
+    width: 600px;
+  }
+
+  #clinica{
+    width: 200px ;
+  }
