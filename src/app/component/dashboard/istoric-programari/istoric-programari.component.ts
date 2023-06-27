@@ -42,7 +42,7 @@ export class IstoricProgramariComponent implements OnInit {
           if(programare.user_id === userId ) {
             const timestampFirebase=programare.data;
             const date = timestampFirebase.toDate();
-            const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
+            const dateformat= date.getFullYear()+ '-' +(date.getMonth()+1) + '-' + date.getDate() ;
             this.AdultAppointmentsList.push({id:doc.id,clinica: programare.clinica, nume_pacient: programare.nume_pacient, data: dateformat, ora: programare.ora, specializare:programare.specializare, serviciu: programare.serviciu, doctor:programare.doctor, status:programare.status});
             this.AdultdataSource = new MatTableDataSource(this.AdultAppointmentsList);
           }
@@ -61,7 +61,7 @@ export class IstoricProgramariComponent implements OnInit {
           if(appointment.user_id === userId ) {
             const timestampFirebase=appointment.data;
             const date = timestampFirebase.toDate();
-            const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
+            const dateformat= date.getFullYear()+ '-' +(date.getMonth()+1) + '-' + date.getDate() ;
             this.ChildAppointmentsList.push({id:doc.id, clinica: appointment.clinica, nume_pacient: appointment.nume_pacient, nume_insotitor:appointment.nume_insotitor, data: dateformat, ora: appointment.ora, specializare:appointment.specializare, serviciu: appointment.serviciu, doctor:appointment.doctor, status:appointment.status});
             this.ChilddataSource = new MatTableDataSource(this.ChildAppointmentsList);
           }
@@ -77,10 +77,10 @@ export class IstoricProgramariComponent implements OnInit {
       .subscribe((snapshot) => {
         snapshot.forEach((doc) => {
           const review: any = doc.data();
-          if(review.user_id === userId ) {
+          if(review.user_id === userId) {
             const timestampFirebase=review.data;
             const date = timestampFirebase.toDate();
-            const dateformat=date.getDate()+ '/' +(date.getMonth()+1) + '/' + date.getFullYear();
+            const dateformat= date.getFullYear()+ '-' +(date.getMonth()+1) + '-' + date.getDate() ;
             this.ReviewsList.push({id:doc.id, id_programare:review.id_programare, clinica: review.clinica, nume_pacient: review.nume_pacient, tip:review.tip, nume_insotitor:review.nume_insotitor, data: dateformat, specializare:review.specializare, serviciu: review.serviciu, doctor:review.doctor, nota:review.nota, comentarii:review.comentarii});
             this.ReviewdataSource = new MatTableDataSource(this.ReviewsList);
           }
@@ -102,11 +102,13 @@ export class IstoricProgramariComponent implements OnInit {
   }
 
   ReviewExists(appointment:any){
-    const exista = this.ReviewsList.find(recenzie => recenzie.id_programare === appointment.id_programare);
-    if(exista){
-      this.DisableReview =true;
+    const exista = this.ReviewsList.find(recenzie => recenzie.id_programare === appointment.id);
+    const today = new Date();
+    const appointmentDate:Date =new Date(appointment.data);
+    if(exista || appointmentDate.getTime() > today.getTime()){
+      return true;
     } else {
-      this.DisableReview = false;
+      return false;
     }
   }
 

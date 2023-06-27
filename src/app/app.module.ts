@@ -38,6 +38,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 import { IstoricProgramariComponent } from './component/dashboard/istoric-programari/istoric-programari.component';
@@ -68,6 +69,7 @@ import { VizualizareDoctoriComponent } from './component/dashboard/vizualizare-d
 import { AddReviewDoctoriComponent } from './component/dashboard/review-doctori/add-review-doctori/add-review-doctori.component';
 import { EditReviewsDoctoriComponent } from './component/admin/admin-dashboard/crud-reviews-doctori/edit-reviews-doctori/edit-reviews-doctori.component';
 import { ShowReviewsDoctoriComponent } from './component/admin/admin-dashboard/crud-reviews-doctori/show-reviews-doctori/show-reviews-doctori.component';
+import { PanelComponent } from './component/dashboard/vizualizare-doctori/panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +106,8 @@ import { ShowReviewsDoctoriComponent } from './component/admin/admin-dashboard/c
     VizualizareDoctoriComponent,
     AddReviewDoctoriComponent,
     EditReviewsDoctoriComponent,
-    ShowReviewsDoctoriComponent
+    ShowReviewsDoctoriComponent,
+    PanelComponent
   ],
   imports: [
     BrowserModule,
@@ -134,6 +137,7 @@ import { ShowReviewsDoctoriComponent } from './component/admin/admin-dashboard/c
     MatSliderModule,
     MatCardModule,
     MatExpansionModule,
+    MatSidenavModule,
     GoogleMapsModule,
     HttpClientModule
   ],

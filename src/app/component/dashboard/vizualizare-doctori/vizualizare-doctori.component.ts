@@ -12,15 +12,17 @@ import { IPrice } from 'src/app/shared/interfaces/price.interface';
 export class VizualizareDoctoriComponent {
 
   DoctorsList: {id: string, nume:string, id_specializari:string[], id_clinica:string } [] = [];
-  DoctorsdisplayedColumns: string[] = ['Nr.crt', 'Nume', 'Clinica', 'Specializari', 'Nota'];
+  DoctorsdisplayedColumns: string[] = ['Nr.crt', 'Nume', 'Clinica', 'Specializari', 'Nota', ' '];
   clinicsList: any[] =[];
   specializationsList:any[] =[];
   reviewsList:any[] =[];
+  selectedDoctor: string = '';
 
   public DoctordataSource:any;
   public edit: boolean = false;
   public id:string;
   public panelOpenState = false;
+  public showPanel = false;
 
   services: any[];
 
@@ -71,22 +73,17 @@ export class VizualizareDoctoriComponent {
     return clinicId === clinic.id_clinica;
   }
 
-  DisplayNota(review:any, doctor:string){
-    return doctor === review.doctor;
-  }
-
-  MarkExists(doctor:any, review:any){
-    return doctor.nume === review.doctor;
-  }
-
-  AllMarks(doctor:any, review:any) :any[]{
-    const note:any[]=[];
-    if (review.doctor === doctor && review.nota){
-      note.push(review.nota);
+  DisplayMedia(index: number) {
+    let suma:number=0;
+    const doctorReviews :any[] = this.reviewsList.filter(review => review.doctor == this.DoctorsList[index].nume)
+    
+    if(doctorReviews.length === 0){
+      return 0;
     }
-    return note;
-  }
 
+    suma = doctorReviews.reduce((acc, review) => acc + Number(review.nota), 0);
+    return suma/doctorReviews.length;
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
@@ -95,5 +92,14 @@ export class VizualizareDoctoriComponent {
 
   Back(){
     this.router.navigate(['/dashboard']);
+  }
+
+  displayPanel(index: number) {
+    this.showPanel = true;
+    this.selectedDoctor = this.DoctorsList[index].nume;
+  }
+
+  onClose() {
+    this.showPanel = false;
   }
 }

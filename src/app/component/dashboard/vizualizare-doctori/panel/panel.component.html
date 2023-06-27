@@ -1,0 +1,15 @@
+<mat-drawer #drawer class="sidenav" mode="side" [opened]="showPanel">
+    <div class="sidenav-close-button">
+        <button type="button" mat-button (click)="closePanel()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <h2 class="title">{{doctor}}</h2>
+    <ng-container *ngFor="let data of displayReviews()">
+        <div class="card">
+            <h3>{{data.nume_pacient}}</h3>
+            <div>{{data.nota}}</div>
+            <div>{{data.comentarii}}</div>
+        </div>
+    </ng-container>
+</mat-drawer>
