@@ -21,7 +21,6 @@
     <mat-form-field appearance="fill" *ngIf="showName">
       <mat-label>Nume însoțitor</mat-label>
       <input matInput formControlName="adult_name">
-      <mat-error *ngIf="appointmentForm.get('adult_name').hasError('required')">Câmp obligatoriu!</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -82,26 +81,19 @@
     <mat-form-field appearance="fill">
       <mat-label>Data</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="date" [min]="today" />
-      <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker (closed)="changeDate()" #picker></mat-datepicker>
       <mat-error *ngIf="appointmentForm.get('date').hasError('required')">Câmp obligatoriu!</mat-error>
     </mat-form-field>
 
-    <!-- <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Data</mat-label>
-      <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" [min]="today">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="appointmentForm.get('date').hasError('required')">Câmp obligatoriu!</mat-error>
-    </mat-form-field> -->
-
     <mat-form-field appearance="fill">
       <mat-label>Ora</mat-label>
-      <input matInput formControlName="hour" />
+      <mat-select formControlName="hour">
+        <mat-option *ngFor="let hour of hoursList$.getValue()" [value]="hour">
+          {{ hour }}
+        </mat-option>
+      </mat-select>
       <mat-error *ngIf="appointmentForm.get('hour').hasError('required')">Câmp obligatoriu!</mat-error>
-      <mat-hint>HH:MM</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
@@ -111,8 +103,6 @@
 
     <mat-checkbox class="example-margin" formControlName="terms"> Am citit și sunt de acord cu <a href="https://drive.google.com/file/d/1PM3J80pSgcqfPzpGcPLNycTVFkR3P6lJ/view" target="_blank" >termenii și condițiile </a></mat-checkbox>
     <mat-checkbox class="example-margin" formControlName="GDPR"> Am citit și sunt de acord cu politica de prelucrare a datelor personale conform GDPR.</mat-checkbox>
-
-
 
 
     <button type="submit" mat-flat-button color="primary" [disabled]="!appointmentForm.valid">Trimite</button>

@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { AngularFirestore, QueryFn } from "@angular/fire/compat/firestore";
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProgramareAdultService{
+
     constructor(private firestore: AngularFirestore) {
        }
 
@@ -73,6 +74,35 @@ export class ProgramareAdultService{
         });
         resolve(doctorList);
       })
+      })
+    }
+
+
+    getBookedHours(data:string, doctor:string): Promise<any>{
+      console.log(data);
+      let hours:any[]=[];
+      let today = new Date(data);
+      let tomorrow= new Date(data);
+      tomorrow.setDate(tomorrow.getDate()+1);
+      const query: QueryFn = (ref) => {
+        if(doctor){
+          return ref.where('data', '>=', today).where('data', '<=', tomorrow).where('doctor', "==", doctor);
+        }
+        else {
+          return ref.where('data', '>=', today).where('data', '<=', tomorrow);
+        }
+
+      };
+      return new Promise<any>((resolve)=> {
+        this.firestore.collection('programari_adulti', query ).get().subscribe(snapshot =>{
+          snapshot.forEach((doc) => {
+            console.log(doc.data());
+            const appointment:any=doc.data();
+            hours.push(appointment.ora);
+          });
+          resolve(hours);
+        })
+
       })
     }
 }

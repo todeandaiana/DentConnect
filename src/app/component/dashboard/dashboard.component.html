@@ -15,7 +15,6 @@
     <div>
       <mat-list style="display: flex;">
         <mat-list-item *ngFor="let clinic of clinicsList" >
-          <!-- <img matListItemAvatar src="" alt=""> -->
           <h2 matListItemTitle>{{clinic.nume}}</h2>
           <h3 matListItemLine>{{clinic.program}}</h3>
           <h3 matListItemLine>{{clinic.adresa}}</h3>
@@ -34,7 +33,25 @@
                   [title]="marker.name"></map-marker>
     </google-map>
   </div>
-</div>
-  
+
+
+  <div class="contact">
+    <div class="contact-container">
+      <div>Ai ceva nelămuriri? </div>
+        <div>Contacteză-ne la: </div>
+        <div>
+          <mat-icon> email</mat-icon>dentconnect@gmail.com
+        </div>
+        <div>
+          <mat-icon> phone</mat-icon>0725896321/0264258741
+        </div>
+        <div>
+          <mat-icon>schedule</mat-icon>L-V 08:00 - 21:00
+        </div>
+    </div>
+  </div>
+
+
+  </div>
 
 

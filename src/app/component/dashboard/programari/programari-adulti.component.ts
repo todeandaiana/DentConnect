@@ -33,16 +33,18 @@ export class ProgramariAdultiComponent implements OnInit {
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   servicesList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   doctorsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]> ([]);
+  hoursList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]> ([]);
   specialization_id: string;
   clinic_id: string;
   today: string;
   showName = false;
+  allHours: string[] =['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
 
   
   appointmentForm: FormGroup = new FormGroup({
     pacient_name: new FormControl('', [Validators.required, ValidateName()]),
     type: new FormControl('', [Validators.required]),
-    adult_name: new FormControl('', [Validators.required]),
+    adult_name: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, ValidatePhone('07')]),
     date: new FormControl('', [Validators.required]),
@@ -57,8 +59,6 @@ export class ProgramariAdultiComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    // this.getClinicName();
-    // const uid = localStorage.getItem("uid");
   }
 
   constructor(private router: Router, private programare: ProgramareAdultService, private firestore: AngularFirestore, private datepipe: DatePipe)
@@ -69,7 +69,6 @@ export class ProgramariAdultiComponent implements OnInit {
 
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
   };
 
@@ -174,7 +173,17 @@ export class ProgramariAdultiComponent implements OnInit {
 
   changeDoctor(doctor:any){
     console.log(doctor);
+  }
 
+  changeDate(){
+    console.log(this.appointmentForm);
+    if(this.appointmentForm.controls['date'].value){
+      this.programare.getBookedHours(this.appointmentForm.controls['date'].value, this.appointmentForm.controls['doctor'].value.nume).then( (res)=> {
+        console.log(res);
+        const availableHour:string[]= this.allHours.filter(value => !res.includes(value));
+        this.hoursList$.next(availableHour);
+      })
+    }
   }
 }
 
