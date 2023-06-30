@@ -10,7 +10,6 @@ export class ProgramareAdultService{
     constructor(private firestore: AngularFirestore) {
        }
 
-
     sendProgramare(programare:any){
       const programareRef:any = this.firestore.collection(`programari_adulti`);
       const ProgramareData ={
@@ -25,8 +24,7 @@ export class ProgramareAdultService{
         clinica:programare.clinica,
         specializare:programare.specializare,
         serviciu:programare.serviciu,
-        doctor:programare.doctor,
-        status:programare.status
+        doctor:programare.doctor
       };
       return programareRef.add(ProgramareData).then((docRef:any) => {
         const id_programare = docRef.id;
