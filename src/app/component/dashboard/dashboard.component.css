@@ -8,13 +8,17 @@ div{
 
 button{
     font-size: 20px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+
 }
 
 #name{
     font-size: 20px;
-    font-family: Comic Sans Ms;
-    font-weight: bold;
+    font-family: Roboto, sans-serif;
+    font-weight: 800;
+
 }
 
 .dashboard-container{
@@ -27,26 +31,30 @@ button{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 79.2%;
+    height: 80.4%;
 
 }
 
-.contact-container{
+.buttons-container{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-
+    justify-content: space-between;
+    width: 700px;
+    margin: 80px 0px;
+    font-weight: 400;
 }
 
-.contact{
-    width: 100%;
+.list-element{
+    white-space: break-spaces;
+    width: 200px;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.list-container{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    margin-right: 10px;
-    margin-top: 10px;
+}
+
+h2{
+    font-size: 16px;
 }

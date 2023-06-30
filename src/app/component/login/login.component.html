@@ -23,19 +23,7 @@
         </mat-form-field>
       </div>
 
-      <!-- <div>
-        <mat-form-field appearance="fill">
-          <mat-label>Reintroduceți parola</mat-label>
-          <input matInput formControlName="passwordConfirm" [type]="hide ? 'password' : 'text'"/>
-          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error *ngIf="loginForm.get('passwordConfirm').hasError('required')">Câmp obligatoriu!</mat-error>
-        </mat-form-field>
-      </div>
-      <mat-error *ngIf="loginForm.hasError('mismatch')">Parolele nu sunt la fel!</mat-error> -->
-
-      <div>
+      <div class="submit-button">
         <button type="submit" mat-flat-button color="primary" [disabled]="!loginForm.valid">Mă conectez</button>
       </div>
 

@@ -1,54 +1,54 @@
 <div class="show-specializari-container">
-    <div>
-        <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
-    </div>
-    <div class="demo-button-container">
+    <div class="button-container">
+    <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
     <button mat-raised-button (click)="AddSpecialization()" class="add-button">Adaugă o specializare</button>
     </div>
   
-  <table mat-table [dataSource]="SpecializationdataSource" class="mat-elevation-z8" id="clinicTable">
+    <div class="table-container">
+      <table mat-table [dataSource]="SpecializationdataSource" class="mat-elevation-z8" id="clinicTable">
     
-          <ng-container matColumnDef="Nr.crt">
-            <th mat-header-cell *matHeaderCellDef> Nr.crt</th>
-            <td mat-cell *matCellDef="let specialization; let i =index"> {{i+1}} </td>
-          </ng-container>
-    
-    
-          <ng-container matColumnDef="Nume">
-            <th mat-header-cell *matHeaderCellDef> Nume specializare</th>
-            <td mat-cell *matCellDef="let specialization"> {{specialization.nume}} </td>
-          </ng-container>
+        <ng-container matColumnDef="Nr.crt">
+          <th mat-header-cell *matHeaderCellDef> Nr.crt</th>
+          <td mat-cell *matCellDef="let specialization; let i =index"> {{i+1}} </td>
+        </ng-container>
+  
+  
+        <ng-container matColumnDef="Nume">
+          <th mat-header-cell *matHeaderCellDef> Nume specializare</th>
+          <td mat-cell *matCellDef="let specialization"> {{specialization.nume}} </td>
+        </ng-container>
 
-          <ng-container matColumnDef="Clinici">
-            <th mat-header-cell *matHeaderCellDef> Clinici</th>
-            <td mat-cell *matCellDef="let specialization"> 
-              <ng-container *ngFor="let clinic of clinicsList">
-                <div *ngIf="DisplayClinic(clinic, specialization.id_clinici)">
-                  {{clinic.nume}}
-                </div>
-              </ng-container>
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="Clinici">
+          <th mat-header-cell *matHeaderCellDef> Clinici</th>
+          <td mat-cell *matCellDef="let specialization"> 
+            <ng-container *ngFor="let clinic of clinicsList">
+              <div *ngIf="DisplayClinic(clinic, specialization.id_clinici)">
+                {{clinic.nume}}
+              </div>
+            </ng-container>
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="Editează">
-            <th mat-header-cell *matHeaderCellDef> Editează</th>
-            <td mat-cell *matCellDef="let specialization"> 
-                <button mat-raised-button color="primary" (click)="EditSpecialization(specialization)" class="demo-button">Editează</button>
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="Editează">
+          <th mat-header-cell *matHeaderCellDef> Editează</th>
+          <td mat-cell *matCellDef="let specialization"> 
+              <button mat-raised-button color="primary" (click)="EditSpecialization(specialization)" class="demo-button">Editează</button>
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="Șterge">
-            <th mat-header-cell *matHeaderCellDef> Șterge</th>
-            <td mat-cell *matCellDef="let specialization">
-                <button mat-raised-button color="warn" (click)="DeleteSpecialization(specialization)" class="demo-button">Șterge</button>
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="Șterge">
+          <th mat-header-cell *matHeaderCellDef> Șterge</th>
+          <td mat-cell *matCellDef="let specialization">
+              <button mat-raised-button color="warn" (click)="DeleteSpecialization(specialization)" class="demo-button">Șterge</button>
+          </td>
+        </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="SpecializationsdisplayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: SpecializationsdisplayedColumns;"></tr>
-        
-          <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">Nu există această clinică!</td>
-          </tr>
-        </table>
+        <tr mat-header-row *matHeaderRowDef="SpecializationsdisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: SpecializationsdisplayedColumns;"></tr>
+      
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">Nu există această clinică!</td>
+        </tr>
+      </table>
+    </div>
 </div>

@@ -1,22 +1,26 @@
 .compara-servicii-container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
   background-image: url('../../../../assets/photos/background5.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   justify-content: space-evenly;
+  padding: 20px;
+  height: 80.4%;
+
 }
 ::ng-deep tr.mat-mdc-row:hover{
 background-color: rgb(138, 184, 253)!important;
 }
 
-.mat-mdc-form-field {
+
+
+.search{
   font-size: 14px;
-  width: 100%;
+  width: 300px;
 }
 
 div{
@@ -31,3 +35,8 @@ div{
 #clinici{
   width: 200px;
 }
+
+button{
+  margin-bottom: 10px;
+}
+

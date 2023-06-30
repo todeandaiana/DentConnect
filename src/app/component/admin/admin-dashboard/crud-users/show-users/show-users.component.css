@@ -2,13 +2,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     text-align: center;
     background-image: url('../../../../../../assets/photos/background5.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 79.2%;
+    height: 80.4%;
+    padding: 20px;
 }
 
 ::ng-deep tr.mat-mdc-row:hover{
@@ -19,9 +20,9 @@ table {
     width: 100%;
   }
   
-  .mat-mdc-form-field {
+  .search {
     font-size: 14px;
-    width: 100%;
+    width: 300px;
   }
 
   div{

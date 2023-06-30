@@ -27,7 +27,6 @@ export class ProgramariAdultiComponent implements OnInit {
   email: string;
   telefon: string;
   mesaj: string;
-  status: string = 'Trimis';
   newProgramareAdult: IProgramare | null = null;
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -105,7 +104,6 @@ export class ProgramariAdultiComponent implements OnInit {
       serviciu:this.appointmentForm.value.service.nume,
       doctor:this.appointmentForm.value.doctor.nume,
       mesaj: this.appointmentForm.value.message,
-      status:this.status
     };
     this.programare.sendProgramare(this.newProgramareAdult);
     console.log(this.appointmentForm);

@@ -13,19 +13,9 @@
         <mat-error *ngIf="userForm.get('email').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field>
   
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Parolă</mat-label>
-        <input matInput [disabled]="isInputDisabled" formControlName="password"/>
-        <mat-error *ngIf="userForm.get('password').hasError('required')">Câmp obligatoriu!</mat-error>
-      </mat-form-field> -->
-
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Rol</mat-label>
-        <input matInput formControlName="role" />
-        <mat-error *ngIf="userForm.get('role').hasError('required')">Câmp obligatoriu!</mat-error>
-      </mat-form-field> -->
-
-      <button type="submit" mat-flat-button color="primary" [disabled]="!userForm.valid">Salvează</button>
-      <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la utilizatori</button>
+      <div class="buttons-group">
+        <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la utilizatori</button>
+        <button type="submit" mat-flat-button color="primary" [disabled]="!userForm.valid">Salvează</button>
+      </div>
     </form>
   </div>

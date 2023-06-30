@@ -21,7 +21,6 @@
         </mat-select>
       </mat-form-field>
   
-  
       <h2 class="example-margin">Se găsește la următoarele clinici:</h2>
         <ng-container *ngFor="let price of selectedClinicsAndPrices">
           <div>
@@ -33,8 +32,9 @@
          </div>
         </ng-container>
   
-  
-      <button type="submit" mat-flat-button color="primary" [disabled]="!serviceForm.valid">Salvează</button>
-      <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la servicii</button>
+        <div class="buttons-group">
+          <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la servicii</button>
+          <button type="submit" mat-flat-button color="primary" [disabled]="!serviceForm.valid">Salvează</button>
+        </div>
     </form>
   </div>

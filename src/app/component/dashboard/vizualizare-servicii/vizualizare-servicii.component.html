@@ -1,57 +1,57 @@
 <div class="compara-servicii-container">
-  <div>
-      <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
-  </div>
+    <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
 
-  <mat-form-field>
+  <mat-form-field class="search">
     <mat-label>Caută un serviciu</mat-label>
     <input matInput (keyup)="applyFilter($event)" #input>
   </mat-form-field>
 
-<table mat-table [dataSource]="ServicedataSource" class="mat-elevation-z8" id="serviceTable">
+  <div class="table-container">
+    <table mat-table [dataSource]="ServicedataSource" class="mat-elevation-z8" id="serviceTable">
   
-        <ng-container matColumnDef="Nr.crt">
-          <th mat-header-cell *matHeaderCellDef> Nr.crt</th>
-          <td mat-cell *matCellDef="let service; let i =index"> {{i+1}} </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="Nume">
-          <th mat-header-cell *matHeaderCellDef> Nume serviciu</th>
-          <td mat-cell *matCellDef="let service"> {{service.nume}} </td>
-        </ng-container>
+      <ng-container matColumnDef="Nr.crt">
+        <th mat-header-cell *matHeaderCellDef> Nr.crt</th>
+        <td mat-cell *matCellDef="let service; let i =index"> {{i+1}} </td>
+      </ng-container>
 
-        <ng-container matColumnDef="Descriere">
-          <th mat-header-cell *matHeaderCellDef> Descriere</th>
-          <td id="descriere" mat-cell *matCellDef="let service"> {{service.descriere}} </td>
-        </ng-container>
+      <ng-container matColumnDef="Nume">
+        <th mat-header-cell *matHeaderCellDef> Nume serviciu</th>
+        <td mat-cell *matCellDef="let service"> {{service.nume}} </td>
+      </ng-container>
 
-        <ng-container matColumnDef="Specializare">
-          <th mat-header-cell *matHeaderCellDef> Nume specializare</th>
-          <td mat-cell *matCellDef="let service"> 
-            <ng-container *ngFor="let specialization of specializationsList">
-              <div *ngIf="DisplaySpecialization(specialization, service.id_specializare)">
-                {{specialization.nume}}
-              </div>
-            </ng-container>
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="Descriere">
+        <th mat-header-cell *matHeaderCellDef> Descriere</th>
+        <td id="descriere" mat-cell *matCellDef="let service"> {{service.descriere}} </td>
+      </ng-container>
 
-        <ng-container matColumnDef="Clinici">
-          <th mat-header-cell *matHeaderCellDef> Clinici</th>
-          <td id="clinici"  mat-cell *matCellDef="let service"> 
-            <ng-container *ngFor="let clinic of clinicsList">
-              <div *ngIf="DisplayClinic(clinic, service.preturi)">
-                {{clinic.nume}} - {{DisplayPrice(clinic, service.preturi)}} lei
-              </div>
-            </ng-container>
-          </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="ServicesdisplayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: ServicesdisplayedColumns;"></tr>
-      
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">Nu există aceast serviciu!</td>
-        </tr>
-      </table>
+      <ng-container matColumnDef="Specializare">
+        <th mat-header-cell *matHeaderCellDef> Nume specializare</th>
+        <td mat-cell *matCellDef="let service"> 
+          <ng-container *ngFor="let specialization of specializationsList">
+            <div *ngIf="DisplaySpecialization(specialization, service.id_specializare)">
+              {{specialization.nume}}
+            </div>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Clinici">
+        <th mat-header-cell *matHeaderCellDef> Clinici</th>
+        <td id="clinici"  mat-cell *matCellDef="let service"> 
+          <ng-container *ngFor="let clinic of clinicsList">
+            <div *ngIf="DisplayClinic(clinic, service.preturi)">
+              {{clinic.nume}} - {{DisplayPrice(clinic, service.preturi)}} lei
+            </div>
+          </ng-container>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="ServicesdisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: ServicesdisplayedColumns;"></tr>
+    
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Nu există aceast serviciu!</td>
+      </tr>
+    </table>
+  </div>
 </div>

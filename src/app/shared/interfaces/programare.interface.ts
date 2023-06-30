@@ -14,5 +14,4 @@ export interface IProgramare{
     serviciu: string;
     doctor: string;
     mesaj: string;
-    status:string;
 }

@@ -8,7 +8,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 79.2%;
+    height: 80.4%;
 }
 
 .form-container{
@@ -29,4 +29,11 @@ div{
 
 .disable{
     pointer-events: none;
+}
+
+.buttons-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 280px;  
 }

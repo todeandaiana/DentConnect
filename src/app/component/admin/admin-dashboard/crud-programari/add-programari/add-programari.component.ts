@@ -24,7 +24,6 @@ export class AddProgramariComponent implements OnInit{
   email: string;
   telefon: string;
   mesaj: string;
-  status: string;
   newProgramare: IProgramare | null = null;
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -49,7 +48,6 @@ export class AddProgramariComponent implements OnInit{
     service: new FormControl('', [Validators.required]),
     doctor: new FormControl('', Validators.required),
     message: new FormControl(''),
-    status: new FormControl('', Validators.required)
   });
 
   ngOnInit(): void {
@@ -104,7 +102,6 @@ export class AddProgramariComponent implements OnInit{
       serviciu:this.appointmentForm.value.service.nume,
       doctor:this.appointmentForm.value.doctor.nume,
       mesaj: this.appointmentForm.value.message,
-      status:this.appointmentForm.value.status
     };
     this.programare.sendProgramare(this.newProgramare);
     console.log(this.appointmentForm);

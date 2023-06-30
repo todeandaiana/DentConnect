@@ -1,68 +1,67 @@
 <div class="doctori-container">
-     <div>
-         <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
-     </div>
-   
-     <mat-form-field>
+    <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
+    
+    <mat-form-field class="search">
        <mat-label>Caută un doctor</mat-label>
        <input matInput (keyup)="applyFilter($event)" #input>
      </mat-form-field>
    
-   <table mat-table [dataSource]="DoctordataSource" class="mat-elevation-z8" id="doctorTable">
-     
-           <ng-container matColumnDef="Nr.crt">
-             <th mat-header-cell *matHeaderCellDef> Nr.crt</th>
-             <td mat-cell *matCellDef="let doctor; let i =index"> {{i+1}} </td>
-           </ng-container>
-     
-           <ng-container matColumnDef="Nume">
-             <th mat-header-cell *matHeaderCellDef> Nume doctor</th>
-             <td mat-cell *matCellDef="let doctor"> {{doctor.nume}} </td>
-           </ng-container>
+  <div class="table-container">
+    <table mat-table [dataSource]="DoctordataSource" class="mat-elevation-z8" id="doctorTable">
+            <ng-container matColumnDef="Nr.crt">
+              <th mat-header-cell *matHeaderCellDef> Nr.crt</th>
+              <td mat-cell *matCellDef="let doctor; let i =index"> {{i+1}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="Nume">
+              <th mat-header-cell *matHeaderCellDef> Nume doctor</th>
+              <td mat-cell *matCellDef="let doctor"> {{doctor.nume}} </td>
+            </ng-container>
 
-           <ng-container matColumnDef="Clinica">
-               <th mat-header-cell *matHeaderCellDef> Clinica</th>
-               <td mat-cell *matCellDef="let doctor"> 
-                 <ng-container *ngFor="let clinic of clinicsList">
-                   <div *ngIf="DisplayClinic(clinic, doctor.id_clinica)">
-                     {{clinic.nume}}
-                   </div>
-                 </ng-container>
-               </td>
-             </ng-container>
-   
-           <ng-container matColumnDef="Specializari">
-             <th mat-header-cell *matHeaderCellDef> Specializări</th>
-             <td mat-cell *matCellDef="let doctor"> 
-               <ng-container *ngFor="let specialization of specializationsList">
-                 <div *ngIf="DisplaySpecialization(specialization, doctor.id_specializari)">
-                   {{specialization.nume}}
-                 </div>
-               </ng-container>
-             </td>
-           </ng-container>
-
-           <ng-container matColumnDef="Nota">
-               <th mat-header-cell *matHeaderCellDef> Rating</th>
-               <td mat-cell *matCellDef="let doctor, let i =index"> 
-                  <div>{{DisplayMedia(i)}}/10</div>
-               </td>
-             </ng-container>
-
-             <ng-container matColumnDef=" ">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let doctor, let i =index"> 
-                   <button mat-button (click)="displayPanel(i)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+            <ng-container matColumnDef="Clinica">
+                <th mat-header-cell *matHeaderCellDef> Clinica</th>
+                <td mat-cell *matCellDef="let doctor"> 
+                  <ng-container *ngFor="let clinic of clinicsList">
+                    <div *ngIf="DisplayClinic(clinic, doctor.id_clinica)">
+                      {{clinic.nume}}
+                    </div>
+                  </ng-container>
+                </td>
+              </ng-container>
+    
+            <ng-container matColumnDef="Specializari">
+              <th mat-header-cell *matHeaderCellDef> Specializări</th>
+              <td mat-cell *matCellDef="let doctor"> 
+                <ng-container *ngFor="let specialization of specializationsList">
+                  <div *ngIf="DisplaySpecialization(specialization, doctor.id_specializari)">
+                    {{specialization.nume}}
+                  </div>
+                </ng-container>
               </td>
             </ng-container>
-   
-           <tr mat-header-row *matHeaderRowDef="DoctorsdisplayedColumns"></tr>
-           <tr mat-row *matRowDef="let row; columns: DoctorsdisplayedColumns;"></tr>
-         
-           <tr class="mat-row" *matNoDataRow>
-             <td class="mat-cell" colspan="4">Nu există aceast doctor!</td>
-           </tr>
-         </table>
-         <app-panel [showPanel]="showPanel" [datasource]="reviewsList" [doctor]="selectedDoctor" (closeEmitter)="onClose()"></app-panel>
-</div>
+
+            <ng-container matColumnDef="Nota">
+                <th mat-header-cell *matHeaderCellDef> Rating</th>
+                <td mat-cell *matCellDef="let doctor, let i =index"> 
+                    <div>{{DisplayMedia(i)}}/10</div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef=" ">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let doctor, let i =index"> 
+                    <button mat-button (click)="displayPanel(i)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+                </td>
+              </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="DoctorsdisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: DoctorsdisplayedColumns;"></tr>
+          
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">Nu există aceast doctor!</td>
+            </tr>
+    </table>
+  </div>
+          <app-panel [showPanel]="showPanel" [datasource]="reviewsList" [doctor]="selectedDoctor" (closeEmitter)="onClose()"></app-panel>
+  </div>
    

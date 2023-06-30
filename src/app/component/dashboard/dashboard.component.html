@@ -4,29 +4,17 @@
     Bine ai venit, {{currentUserName}}!
   </div>
 
-  <div>
+  <div class="buttons-container">
     <button type="button" mat-raised-button color="primary" (click)="OnVizualizareServicii()" >Servicii</button>
     <button type="button" mat-raised-button color="primary" (click)="OnVizualizareDoctori()" >Doctori stomatologi</button>
     <button type="button" mat-raised-button color="primary" (click)="OnProgramari()" >Programează-te</button>
     <button type="button" mat-raised-button color="primary" (click)="OnIstoricProgramari()">Istoric</button>
   </div>
 
-  <div class="clinics">
-    <div>
-      <mat-list style="display: flex;">
-        <mat-list-item *ngFor="let clinic of clinicsList" >
-          <h2 matListItemTitle>{{clinic.nume}}</h2>
-          <h3 matListItemLine>{{clinic.program}}</h3>
-          <h3 matListItemLine>{{clinic.adresa}}</h3>
-          <h3 matListItemLine>{{clinic.telefon}}</h3>
-        </mat-list-item>
-      </mat-list>
-    </div>
-  </div>
 
   <div class="map">
     <google-map height="280px"
-                width="800px"
+                width="700px"
                 [options]="mapOptions">
       <map-marker *ngFor="let marker of markers"
                   [position]="marker.position"
@@ -34,24 +22,18 @@
     </google-map>
   </div>
 
-
-  <div class="contact">
-    <div class="contact-container">
-      <div>Ai ceva nelămuriri? </div>
-        <div>Contacteză-ne la: </div>
-        <div>
-          <mat-icon> email</mat-icon>dentconnect@gmail.com
-        </div>
-        <div>
-          <mat-icon> phone</mat-icon>0725896321/0264258741
-        </div>
-        <div>
-          <mat-icon>schedule</mat-icon>L-V 08:00 - 21:00
-        </div>
+  <div class="clinics">
+    <div>
+      <mat-list class="list-container">
+        <mat-list-item *ngFor="let clinic of clinicsList" >
+          <h2 matListItemTitle>{{clinic.nume}}</h2>
+          <span class="list-element" matListItemLine>{{clinic.program}}</span>
+          <span class="list-element" matListItemLine>{{clinic.adresa}}</span>
+          <span class="list-element" matListItemLine>{{clinic.telefon}}</span>
+        </mat-list-item>
+      </mat-list>
     </div>
   </div>
-
-
-  </div>
+</div>
 
 

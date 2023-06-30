@@ -1,5 +1,7 @@
 <div class="programari-adulti-container">
     <h1>Programare</h1>
+
+    <div class="form-container1">
     <form [formGroup]="appointmentForm" (submit)="updateAppointment()" class="form-container" id="appointment-form">
       <mat-form-field appearance="fill">
         <mat-label>Nume pacient</mat-label>
@@ -96,17 +98,11 @@
         <textarea matInput formControlName="message"></textarea>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Status</mat-label>
-        <mat-select  formControlName="status">
-          <mat-option value="Trimis">Trimis</mat-option>
-          <mat-option value="Acceptat">Acceptat</mat-option>
-          <mat-option value="Refuzat">Refuzat</mat-option>
-        </mat-select>
-        <mat-error *ngIf="appointmentForm.get('status').hasError('required')">Câmp obligatoriu!</mat-error>
-      </mat-form-field>
+      <div class="buttons-group">
+        <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la programări</button>
+        <button type="submit" mat-flat-button color="primary">Salvează</button>
+      </div>
 
-      <button type="submit" mat-flat-button color="primary">Salvează</button>
-      <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la programări</button>
     </form>
+    </div>
   </div>

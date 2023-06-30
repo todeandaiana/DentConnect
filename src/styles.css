@@ -39,6 +39,25 @@
     padding: 10px;
   }
 
+  .table-container{
+    height: 600px;
+    overflow: auto;
+    width: 1300px;
+  }
+
+  .button-container{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+
+    .add-button{
+      display: flex;
+      text-align: right;
+      margin-left: 10px;
+    }
+  }
+  
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

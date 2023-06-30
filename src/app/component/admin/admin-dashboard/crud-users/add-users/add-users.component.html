@@ -19,7 +19,9 @@
         <!-- <mat-error *ngIf="userForm.get('password').hasError('required')">Câmp obligatoriu!</mat-error> -->
       </mat-form-field>
 
-      <button type="submit" mat-flat-button color="primary" [disabled]="!userForm.valid">Salvează</button>
-      <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la utilizatori</button>
+      <div class="buttons-group">
+        <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la utilizatori</button>
+        <button type="submit" mat-flat-button color="primary" [disabled]="!userForm.valid">Salvează</button>
+      </div>
     </form>
   </div>

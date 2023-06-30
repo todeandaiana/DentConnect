@@ -1,5 +1,7 @@
 <div class="add-review-doctori-container">
     <h1>Spune-ți părerea!</h1>
+
+    <div class="form-container1">
         <form [formGroup]="reviewForm" (submit)="onSendReview()" class="form-container" id="review-form">
 
             <mat-form-field appearance="fill">
@@ -23,7 +25,6 @@
               <mat-form-field appearance="fill">
                 <mat-label>Data</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="date" [value]="reviewForm.value.date"/>
-                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="reviewForm.get('date').hasError('required')">Câmp obligatoriu!</mat-error>
@@ -76,8 +77,10 @@
                 <mat-error *ngIf="reviewForm.get('GDPR').hasError('requiredTrue')">Câmp obligatoriu!</mat-error>
               </mat-checkbox>
 
-
-              <button type="submit" mat-flat-button color="primary" [disabled]="!reviewForm.valid">Trimite</button>
-              <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire pe pagina principală</button>
+              <div class="buttons-group">
+                <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire pe pagina principală</button>
+                <button type="submit" mat-flat-button color="primary" [disabled]="!reviewForm.valid">Trimite</button>
+              </div>
         </form>
+        </div>
 </div>

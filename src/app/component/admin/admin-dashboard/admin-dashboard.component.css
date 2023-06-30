@@ -8,14 +8,16 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 79.2%;
+    height: 80.4%;
 }
 
-div{
+.buttons-group {
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 1000px;
+    margin-top: 10px;
 }
 
 button{

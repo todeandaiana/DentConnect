@@ -79,6 +79,18 @@ export class ShowServiciiComponent implements OnInit{
 
   DeleteService(service: any) : void {
     this.firestore.collection('serviciii').doc(service.id).delete();
+
+    this.firestore.collection('programari_adulti', ref => ref.where('serviciu', "==", service.nume)).get().subscribe(snapshot => {
+      snapshot.forEach( (doc:any) => {
+        const programareRef = this.firestore.doc(`programari_adulti/${doc.id}`);
+        const today = new Date();
+        const info:any = doc.data();
+        const appointmentDate:Date =new Date(info.data);
+        if(appointmentDate>today){
+          programareRef.delete();
+        }
+      })
+    });
   }
 
   Back(){

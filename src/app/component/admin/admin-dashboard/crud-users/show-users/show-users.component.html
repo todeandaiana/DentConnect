@@ -1,9 +1,7 @@
 <div class="show-users-container">
-    <div>
-        <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
-    </div>
-    <div class="demo-button-container">
-    <button mat-raised-button (click)="AddUser()" class="add-button">Adaugă un utilizator</button>
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="Back()" class="demo-button">Pagina principală</button>
+      <button mat-raised-button (click)="AddUser()" class="add-button">Adaugă un utilizator</button>
     </div>
   
   <table mat-table [dataSource]="UserdataSource" class="mat-elevation-z8" >

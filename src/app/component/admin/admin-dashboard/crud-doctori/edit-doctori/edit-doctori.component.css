@@ -8,7 +8,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 79.2%;
+    height: 80.4%;
     
 }
 
@@ -21,5 +21,12 @@
 }
 
 ::ng-deep div.mat-mdc-text-field-wrapper {
+    width: 280px;
+}
+
+.buttons-group{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     width: 280px;
 }

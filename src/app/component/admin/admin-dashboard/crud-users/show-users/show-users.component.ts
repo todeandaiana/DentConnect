@@ -48,7 +48,6 @@ export class ShowUsersComponent {
 
   DeleteUser(user: any) : void {
     this.firestore.collection('users').doc(user.id).delete();
-    // this.getServices();
   }
 
   Back(){

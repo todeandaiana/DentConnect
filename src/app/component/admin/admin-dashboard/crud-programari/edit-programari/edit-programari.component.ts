@@ -20,7 +20,6 @@ export class EditProgramariComponent implements OnInit{
   email: string;
   telefon: string;
   mesaj: string;
-  status: string;
   clinicsList: { id: string; nume: string }[] = [];
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   servicesList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -54,7 +53,6 @@ export class EditProgramariComponent implements OnInit{
       service: new FormControl('', [Validators.required]),
       doctor: new FormControl('', Validators.required),
       message: new FormControl(''),
-      status: new FormControl('', Validators.required)
     });
     this.appointmentId = this.router.getCurrentNavigation().extras.state['id'];
     this.getAppointment();
@@ -128,7 +126,6 @@ export class EditProgramariComponent implements OnInit{
             service: appointment.serviciu, 
             doctor:appointment.doctor, 
             message:appointment.mesaj, 
-            status:appointment.status
           });
     });
   }
@@ -205,7 +202,6 @@ export class EditProgramariComponent implements OnInit{
         serviciu: this.appointmentForm.value.service,
         doctor: this.appointmentForm.value.doctor,
         mesaj: this.appointmentForm.value.message,
-        status:this.appointmentForm.value.status
       })
       .then(() => {
         this.router.navigate(["/show-programari"]);

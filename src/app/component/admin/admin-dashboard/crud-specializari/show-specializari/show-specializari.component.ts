@@ -59,6 +59,40 @@ export class ShowSpecializariComponent implements OnInit{
 
   DeleteSpecialization(specialization: any) : void {
     this.firestore.collection('specializari').doc(specialization.id).delete();
+
+    this.firestore.collection('serviciii').get().subscribe(snapshot => {
+      snapshot.forEach((doc: any) => {
+        const serviciuRef = this.firestore.doc(`serviciii/${doc.id}`); 
+        const data:any = doc.data();
+        if (data.id_specializare == specialization.id) {
+          serviciuRef.delete();
+        }
+      });
+    });
+
+    this.firestore.collection('doctori', ref => ref.where('id_specializari', "array-contains", specialization.id)).get().subscribe(snapshot => {
+      snapshot.forEach( (doc:any) => {
+        const doctorRef = this.firestore.doc(`doctori/${doc.id}`);
+        const data:any = doc.data();
+        if(data.id_specializari.length ===1){
+          doctorRef.delete();
+        }else {
+          data.id_specializari=data.id_specializari.filter((specializationId:any)=>specializationId !== specialization.id);
+        }
+      })
+    });
+
+    this.firestore.collection('programari_adulti', ref => ref.where('specializare', "==", specialization.nume)).get().subscribe(snapshot => {
+      snapshot.forEach( (doc:any) => {
+        const programareRef = this.firestore.doc(`programari_adulti/${doc.id}`);
+        const today = new Date();
+        const info:any = doc.data();
+        const appointmentDate:Date =new Date(info.data);
+        if(appointmentDate>today){
+          programareRef.delete();
+        }
+      })
+    });
   }
 
   Back(){

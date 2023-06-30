@@ -122,15 +122,6 @@ export class EditServiciiComponent implements OnInit{
     });
   }
 
-
-  // isAvailable(clinic:any){
-  //   if(specialization?.id_clinici === undefined){
-  //     return true;
-  //   }
-  //    return specialization?.id_clinici.includes(clinic.id_clinica);
-     
-  // }
-
   private selectedClinicExists(id_clinica:string){
     const found = this.selectedClinicsAndPrices.find(value => value.id_clinica === id_clinica)
     return found? true :false;
@@ -144,7 +135,6 @@ export class EditServiciiComponent implements OnInit{
   onPriceInput(event:any, id_clinica:string){
     console.log(event.target.value);
     if (event){
-      // console.log(this.selectedClinicExists(id_clinica));
       if(this.selectedClinicsAndPrices.length >0 && this.selectedClinicExists(id_clinica) ){
         this.selectedClinicsAndPrices.forEach(value => {
           if(value.id_clinica === id_clinica){

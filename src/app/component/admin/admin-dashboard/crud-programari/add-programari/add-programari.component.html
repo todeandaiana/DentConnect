@@ -1,5 +1,7 @@
 <div class="programari-adulti-container">
     <h1>Adaugă o programare</h1>
+
+    <div class="form-container1">
     <form [formGroup]="appointmentForm" (submit)="onSendAppointment()" class="form-container" id="appointment-form">
       <mat-form-field appearance="fill">
         <mat-label>Nume pacient</mat-label>
@@ -66,7 +68,6 @@
         </mat-select>
         <mat-error *ngIf="appointmentForm.get('service').hasError('required')">Câmp obligatoriu!</mat-error>
       </mat-form-field>
-  
       
       <mat-form-field appearance="fill">
         <mat-label>Doctor</mat-label>
@@ -99,18 +100,11 @@
         <textarea matInput formControlName="message"></textarea>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Status</mat-label>
-        <mat-select formControlName="status">
-          <mat-option value="Trimis">Trimis</mat-option>
-          <mat-option value="Acceptat">Acceptat</mat-option>
-          <mat-option value="Refuzat">Refuzat</mat-option>
-        </mat-select>
-        <mat-error *ngIf="appointmentForm.get('status').hasError('required')">Câmp obligatoriu!</mat-error>
-      </mat-form-field>
-
-      <button type="submit" mat-flat-button color="primary" [disabled]="!appointmentForm.valid">Adaugă</button>
-      <button type="button" mat-flat-button color="warn" (click)="onResetForm()">Reseteaza</button>
-      <button type="button" mat-flat-button color="primary" (click)="Back()">Revenire pe pagina principală</button>
+      <div class="buttons-group">
+        <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire pe pagina principală</button>
+        <button type="button" mat-flat-button color="warn" (click)="onResetForm()">Reseteaza</button>
+        <button type="submit" mat-flat-button color="primary" [disabled]="!appointmentForm.valid">Trimite</button>
+      </div>
     </form>
+    </div>
   </div>

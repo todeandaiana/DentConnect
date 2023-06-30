@@ -34,11 +34,6 @@ export class EditCliniciComponent implements OnInit{
     return this.clinicForm.controls;
   }
 
-
-  onFormGroup() {
-    console.log(this.clinicForm);
-  }
-
   Back(){
     this.router.navigate(['/show-clinici']);
   }
@@ -74,5 +69,4 @@ export class EditCliniciComponent implements OnInit{
       console.error(error);
     });
   }
-
 }
