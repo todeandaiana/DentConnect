@@ -13,7 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { CoreModule } from './core/core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// Firebase services + environment module
+
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';

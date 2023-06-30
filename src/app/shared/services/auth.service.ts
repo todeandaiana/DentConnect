@@ -1,11 +1,9 @@
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user.interface';
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import { BehaviorSubject } from 'rxjs';
-import * as bcrypt from 'bcryptjs';
-
 
 @Injectable({
   providedIn: 'root'
@@ -85,7 +83,7 @@ export class AuthService {
     this.fireauth.currentUser.then(u => u?.sendEmailVerification())
       .then(() =>{
         this.router.navigate(['/verify-email']);
-      }, (err: any) =>{
+      }, () =>{
           alert('Something Went Wrong. Not able to send mail to registered Email.');
       })
 

@@ -104,9 +104,6 @@ export class AddReviewDoctoriComponent implements OnInit{
     this.reviewForm.controls["pacient_name"].disable();
   }
 
-  
-
-
   onTypeChange(){
     if (this.reviewForm.controls["type"].value === 'Copil') {
       this.showAdultName = true;
@@ -115,11 +112,9 @@ export class AddReviewDoctoriComponent implements OnInit{
     }
   }
 
-
   get f() {
     return this.reviewForm.controls;
   }
-
 
   onFormGroup() {
     console.log(this.reviewForm);
@@ -128,9 +123,5 @@ export class AddReviewDoctoriComponent implements OnInit{
   Back(){
     this.router.navigate(['/istoric-programari']);
   }
-
-
-
-
-
+  
 }

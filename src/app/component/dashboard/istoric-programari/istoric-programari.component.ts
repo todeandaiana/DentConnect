@@ -94,8 +94,6 @@ export class IstoricProgramariComponent implements OnInit {
     this.ChilddataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
-
   OnReviewDoctor(appointment:any){
     console.log(appointment);
     this.router.navigate(['/add-review-doctori'], {state: {id:appointment.id}});

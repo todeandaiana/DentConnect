@@ -11,9 +11,7 @@ import { Router } from '@angular/router';
 export class ShowReviewsDoctoriComponent implements OnInit{
 
   ReviewsList: {id:string, id_programare:string, clinica:string, nume_pacient: string, tip:string ,nume_insotitor:string, data: string, specializare:string, serviciu:string, doctor:string, nota:number, comentarii:string} [] = [];
-
   ReviewsdisplayedColumns: string[] = ['Nr.crt', 'Clinica', 'Pacient', 'Tip', 'Însoțitor', 'Data examinării', 'Specializare', 'Serviciu', 'Doctor', 'Nota', 'Comentarii', 'Editează', 'Șterge'];
-
   public ReviewdataSource:any;
 
   ngOnInit():void{
@@ -44,14 +42,11 @@ export class ShowReviewsDoctoriComponent implements OnInit{
 
   EditReview(review:any){
     this.router.navigate(['/edit-reviews-doctori'], {state: {id:review.id}});
-
   }
 
   DeleteReview(review:any){
     this.firestore.collection('recenzii').doc(review.id).delete();
   }
-
-
 
 }
 

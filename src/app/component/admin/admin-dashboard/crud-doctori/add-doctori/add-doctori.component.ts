@@ -61,16 +61,6 @@ export class AddDoctoriComponent implements OnInit{
     console.log(this.specializationsId);
   }
 
-  // isAvailable(clinic:any){
-  //   const specialization = this.doctorForm.controls["clinic"].value;
-  //   if(specialization.id_clinica === undefined){
-  //     return true;
-  //   }
-  //   return specialization.id_clinici.includes(clinic.id_clinica);
-
-  // }
-
-
   onSendDoctor(){
     console.log(this.doctorForm.value.specializations.id_specializare);
     console.log(this.doctorForm.value.clinic.id_clinica);

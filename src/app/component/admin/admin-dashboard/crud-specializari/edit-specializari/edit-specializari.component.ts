@@ -64,7 +64,6 @@ export class EditSpecializariComponent implements OnInit {
     this.router.navigate(["/show-specializari"]);
   }
   
-
   getSpecialization(){
     this.firestore.collection('specializari').doc(this.specializationId).get().subscribe( (doc) => {
       const specialization: any = doc.data();

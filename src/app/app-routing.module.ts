@@ -31,7 +31,6 @@ import { AddDoctoriComponent } from './component/admin/admin-dashboard/crud-doct
 import { EditDoctoriComponent } from './component/admin/admin-dashboard/crud-doctori/edit-doctori/edit-doctori.component';
 import { ShowDoctoriComponent } from './component/admin/admin-dashboard/crud-doctori/show-doctori/show-doctori.component';
 import { VizualizareDoctoriComponent } from './component/dashboard/vizualizare-doctori/vizualizare-doctori.component';
-import { RoleGuard } from './guards/role.guard';
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { AddReviewDoctoriComponent } from './component/dashboard/review-doctori/add-review-doctori/add-review-doctori.component';
 import { ShowReviewsDoctoriComponent } from './component/admin/admin-dashboard/crud-reviews-doctori/show-reviews-doctori/show-reviews-doctori.component';
@@ -52,7 +51,6 @@ const routes: Routes = [
   {path: 'istoric-programari', component: IstoricProgramariComponent, canActivate: [AuthGuard]},
   {path: 'programari-adulti', component: ProgramariAdultiComponent, canActivate: [AuthGuard]},
   {path: 'vizualizare-doctori', component: VizualizareDoctoriComponent, canActivate: [AuthGuard]},
-
   {path: 'add-review-doctori', component: AddReviewDoctoriComponent, canActivate: [AuthGuard]},
 
 

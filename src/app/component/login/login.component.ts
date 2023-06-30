@@ -3,8 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,26 +18,11 @@ export class LoginComponent implements OnInit{
     password: new FormControl('', Validators.required),
   })
 
-  ngOnInit():void {
-  }
-  constructor(private auth: AuthService, private router:Router){}
+  ngOnInit():void {}
 
- 
-   login(){
-     this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
-      // setTimeout( () =>{
-      //   const role = localStorage.getItem("role");
-      // console.log(role);
-      // if(role === 'customer'){
-      //   this.router.navigate(["/dashboard"]);
-      // }else {
-      //   if(role === 'admin'){
-      //     this.router.navigate(["/admin-dashboard"]);
-      //   }
-      //   else {
-      //     this.router.navigate(["/"]);
-      //   }
-      // }
-      // }, 1000);
-  }
+  constructor(private auth: AuthService){}
+
+  login(){
+    this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
+}
 }

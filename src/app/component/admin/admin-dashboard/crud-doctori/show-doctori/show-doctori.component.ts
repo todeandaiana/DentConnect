@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { IDoctor } from 'src/app/shared/interfaces/doctor.interface';
 
 @Component({
   selector: 'app-show-doctori',
@@ -63,7 +62,6 @@ export class ShowDoctoriComponent implements OnInit{
     return specializationsId.includes(clinic.id_specializare);
   }
 
-
   AddDoctor(){
     this.router.navigate(['/add-doctori']);
   }
@@ -79,6 +77,5 @@ export class ShowDoctoriComponent implements OnInit{
   Back(){
     this.router.navigate(['/admin-dashboard']);
   }
-
 
 }

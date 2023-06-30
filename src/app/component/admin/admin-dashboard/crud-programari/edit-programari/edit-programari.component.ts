@@ -68,7 +68,6 @@ export class EditProgramariComponent implements OnInit{
     return this.appointmentForm.controls;
   }
 
-
   onFormGroup() {
     console.log(this.appointmentForm);
   }
@@ -99,7 +98,6 @@ export class EditProgramariComponent implements OnInit{
       const foundService = this.servicesList$.value.find( (service) => this.appointmentForm.value.service === service.nume);
       await this.changeService(foundService);
     }, 500)
-
 
     setTimeout( async () => {
       const foundDoctor = this.doctorsList$.value.find( (doctor) => this.appointmentForm.value.doctor === doctor.nume);

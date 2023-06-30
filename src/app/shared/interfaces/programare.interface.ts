@@ -1,5 +1,4 @@
 import { Time } from "@angular/common";
-import { Timestamp } from "@angular/fire/firestore";
 
 export interface IProgramare{
     nume_pacient: string;

@@ -16,8 +16,7 @@ export class MapService {
 
     geocode(request: google.maps.GeocoderRequest): Observable<MapGeocoderResponse> {
       return new Observable(observer => {
-        // Initialize the `Geocoder` lazily since the Google Maps API may
-        // not have been loaded when the provider is instantiated.
+
         if (!this._geocoder) {
           this._geocoder = new google.maps.Geocoder();
         }

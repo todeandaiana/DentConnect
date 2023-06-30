@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { IPrice } from 'src/app/shared/interfaces/price.interface';
 
 @Component({
   selector: 'app-vizualizare-doctori',

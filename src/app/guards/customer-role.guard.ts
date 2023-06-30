@@ -3,7 +3,6 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable, Subject, first } from 'rxjs';
 import { RoleService } from '../shared/services/role.service';
 import { AuthService } from '../shared/services/auth.service';
-import { faL } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
   providedIn: 'root'

@@ -37,7 +37,6 @@ export class ShowUsersComponent {
       });
   }
 
-  
   AddUser(){
     this.router.navigate(['/add-users']);
   }
@@ -53,8 +52,6 @@ export class ShowUsersComponent {
   Back(){
     this.router.navigate(['/admin-dashboard']);
   }
-
-
 
 }
 

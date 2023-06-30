@@ -22,9 +22,9 @@ export class DashboardComponent implements OnInit {
   }
 
   markers: IMarkerProperties[] = [
-    { position: { lat: 46.76075511653318, lng: 23.613973325591896}, name: 'DentaPro Clinic' }, // DentaPro Clinic= sirbu =AM
-    { position: { lat: 46.76182936112267, lng: 23.564898467920205}, name: 'Stomestet'}, // Stomestet = manastur
-    { position: { lat: 46.77244059175123, lng: 23.5930983612925 }, name: 'DentaLux Clinic'}, // DentaLux Clinic= alverna = centru
+    { position: { lat: 46.76075511653318, lng: 23.613973325591896}, name: 'DentaPro Clinic' }, 
+    { position: { lat: 46.76182936112267, lng: 23.564898467920205}, name: 'Stomestet'}, 
+    { position: { lat: 46.77244059175123, lng: 23.5930983612925 }, name: 'DentaLux Clinic'}
   ];
 
   constructor(private router: Router, private authService: AuthService, private firestore: AngularFirestore) {}
@@ -55,15 +55,15 @@ export class DashboardComponent implements OnInit {
   }
 
 
-    getClinics() {
-      this.firestore
-        .collection('clinici')
-        .get()
-        .subscribe((snapshot) => {
-          snapshot.forEach((doc) => {
-            const clinic: any = doc.data();
-            this.clinicsList.push({nume: clinic.nume, adresa: clinic.adresa, program:clinic.program, telefon: clinic.telefon});
-          });
+  getClinics() {
+    this.firestore
+      .collection('clinici')
+      .get()
+      .subscribe((snapshot) => {
+        snapshot.forEach((doc) => {
+          const clinic: any = doc.data();
+          this.clinicsList.push({nume: clinic.nume, adresa: clinic.adresa, program:clinic.program, telefon: clinic.telefon});
         });
-    }
+      });
   }
+}

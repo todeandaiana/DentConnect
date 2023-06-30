@@ -22,9 +22,7 @@ export class AddServiciiComponent implements OnInit {
   specializationId: string;
 
   selectedClinicsAndPrices: IPrice[] = [];
-
   showPrice: boolean = false;
-
   newService : IService | null = null;
 
 
@@ -40,11 +38,7 @@ export class AddServiciiComponent implements OnInit {
     this.getSpecializations();
   }
 
-  // 
-
   constructor(private router:Router, private firestore: AngularFirestore) {}
-
-
 
   getClinics(){
     this.firestore.collection('clinici').valueChanges().subscribe(clinics => {
@@ -57,7 +51,6 @@ export class AddServiciiComponent implements OnInit {
       this.specializationsList = specializations;
     })
   }
-
 
   isAvailable(clinic:any){
     const specialization = this.serviceForm.controls["specializations"].value;
@@ -127,6 +120,5 @@ export class AddServiciiComponent implements OnInit {
       console.error("Eroare la salvarea documentului: ", error);
     });
   }
-
-
+  
 }

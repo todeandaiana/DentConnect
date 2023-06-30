@@ -65,7 +65,6 @@ export class VizualizareServiciiComponent implements OnInit{
 
   DisplayPrice(clinic:any, prices: any[]){      
     return prices.find(value => value.id_clinica === clinic.id_clinica).pret;
-
   }
 
   applyFilter(event: Event) {

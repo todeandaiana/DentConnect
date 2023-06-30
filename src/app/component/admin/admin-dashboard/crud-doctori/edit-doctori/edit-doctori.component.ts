@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { collection, doc } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IDoctor } from 'src/app/shared/interfaces/doctor.interface';
@@ -53,9 +52,6 @@ export class EditDoctoriComponent implements OnInit {
       const clinic: any = doc.data();
       console.log(clinic);
       this.selectedClinic = clinic.nume;
-      // this.doctorForm.patchValue({
-      //   clinic: clinic
-      // });
       this.clinicId=clinic.id_clinica;
       console.log(this.selectedClinic);
     })
@@ -138,7 +134,6 @@ export class EditDoctoriComponent implements OnInit {
   get f() {
     return this.doctorForm.controls;
   }
-
 
   onFormGroup() {
     console.log(this.doctorForm);

@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, Validator, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 
 export function ValidatePhone(prefix: string): ValidatorFn {
@@ -42,7 +42,6 @@ export function ValidatePhone(prefix: string): ValidatorFn {
       const password = control.value as string;
 
       const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/; // regex pentru a verifica structura parolei
-      //Minimum five characters, at least one uppercase letter, one lowercase letter, one number and one special character
       const isValid = regex.test(password);
 
       return isValid ? null : { invalidPassword: { value: control.value } };

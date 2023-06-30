@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit{
   }
 
   register(){
-
     this.newUser = {
       name: this.registerForm.value.name,
       roleAs: this.roleAs,

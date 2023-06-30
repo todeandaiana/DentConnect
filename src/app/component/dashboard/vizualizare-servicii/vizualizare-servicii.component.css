@@ -12,11 +12,10 @@
   height: 80.4%;
 
 }
+
 ::ng-deep tr.mat-mdc-row:hover{
 background-color: rgb(138, 184, 253)!important;
 }
-
-
 
 .search{
   font-size: 14px;

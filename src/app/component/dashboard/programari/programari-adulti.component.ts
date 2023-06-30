@@ -2,7 +2,6 @@ import { DatePipe, Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { Route } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { IProgramare } from 'src/app/shared/interfaces/programare.interface';
 import { ProgramareAdultService } from 'src/app/shared/services/programare.service';
