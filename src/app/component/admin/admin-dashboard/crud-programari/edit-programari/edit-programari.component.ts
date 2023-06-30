@@ -24,11 +24,15 @@ export class EditProgramariComponent implements OnInit{
   specializationsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   servicesList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   doctorsList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]> ([]);
+  hoursList$: BehaviorSubject<any[]> = new BehaviorSubject<any[]> ([]);
+
   specialization_id: string;
   clinic_id: string;
   today: string;
   appointmentForm: FormGroup;
   appointmentId:string;
+
+  allHours: string[] =['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
 
   ngOnInit(): void {
     setTimeout( () =>
@@ -43,7 +47,7 @@ export class EditProgramariComponent implements OnInit{
     this.appointmentForm=new FormGroup({
       pacient_name: new FormControl('', [Validators.required, ValidateName()]),
       type: new FormControl('', Validators.required),
-      adult_name: new FormControl('', Validators.required),
+      adult_name: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required, ValidatePhone('07')]),
       date: new FormControl('', [Validators.required]),
@@ -103,6 +107,8 @@ export class EditProgramariComponent implements OnInit{
       const foundDoctor = this.doctorsList$.value.find( (doctor) => this.appointmentForm.value.doctor === doctor.nume);
       await this.changeDoctor(foundDoctor);
     }, 500)
+
+    this.changeDate();
   }
 
   getAppointment(){
@@ -183,6 +189,18 @@ export class EditProgramariComponent implements OnInit{
   changeDoctor(doctor:any){
   }
 
+  changeDate(){
+    console.log(this.appointmentForm);
+    if(this.appointmentForm.controls['date'].value){
+      this.programare.getBookedHours(this.appointmentForm.controls['date'].value, this.appointmentForm.controls['doctor'].value.nume).then( (res)=> {
+        console.log(res);
+        const availableHour:string[]= this.allHours.filter(value => !res.includes(value) || value === this.appointmentForm.controls['hour'].value);
+        this.hoursList$.next(availableHour);
+      })
+    }
+  }
+
+
   updateAppointment() {
     this.firestore
       .collection('programari_adulti')
@@ -190,7 +208,7 @@ export class EditProgramariComponent implements OnInit{
       .update({
         nume_pacient: this.appointmentForm.value.pacient_name,
         tip:this.appointmentForm.value.type,
-        nume_insotitor:this.appointmentForm.value.adult_name,
+        nume_insotitor:this.appointmentForm.value.adult_name? this.appointmentForm.value.adult_name : '',
         email: this.appointmentForm.value.email,
         telefon: this.appointmentForm.value.phone,
         data: this.appointmentForm.value.date,
