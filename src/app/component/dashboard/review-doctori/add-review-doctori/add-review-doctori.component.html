@@ -1,0 +1,86 @@
+<div class="add-review-doctori-container">
+    <h1>Spune-ți părerea!</h1>
+
+    <div class="form-container1">
+        <form [formGroup]="reviewForm" (submit)="onSendReview()" class="form-container" id="review-form">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nume pacient</mat-label>
+                <input matInput formControlName="pacient_name"  />
+                <mat-error *ngIf="reviewForm.get('pacient_name').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Tip pacient</mat-label>
+                <input matInput formControlName="type" [value]="onTypeChange()"/>
+                <mat-error *ngIf="reviewForm.get('type').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+          
+              <mat-form-field appearance="fill" *ngIf="showAdultName">
+                <mat-label>Nume însoțitor</mat-label>
+                <input matInput formControlName="adult_name">
+                <mat-error *ngIf="reviewForm.get('adult_name').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Data</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date" [value]="reviewForm.value.date"/>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="reviewForm.get('date').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Clinică</mat-label>
+                <input matInput formControlName="clinic" />
+                <mat-error *ngIf="reviewForm.get('clinic').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Doctor</mat-label>
+                <input matInput formControlName="doctor" />
+                <mat-error *ngIf="reviewForm.get('doctor').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Specializare</mat-label>
+                <input matInput formControlName="specialization" />
+                <mat-error *ngIf="reviewForm.get('service').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Serviciu</mat-label>
+                <input matInput formControlName="service" />
+                <mat-error *ngIf="reviewForm.get('service').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Notă</mat-label>
+                <mat-select formControlName="grade">
+                  <mat-option *ngFor="let num of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="num">
+                    {{num}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="reviewForm.get('grade').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Comentarii și feedback</mat-label>
+                <textarea matInput formControlName="feedback"></textarea>
+                <mat-error *ngIf="reviewForm.get('feedback').hasError('required')">Câmp obligatoriu!</mat-error>
+              </mat-form-field>
+
+              <mat-checkbox class="example-margin" formControlName="terms"> Am citit și sunt de acord cu <a href="https://drive.google.com/file/d/1PM3J80pSgcqfPzpGcPLNycTVFkR3P6lJ/view" target="_blank" >termenii și condițiile.</a>
+                <mat-error *ngIf="reviewForm.get('terms').hasError('requiredTrue')">Câmp obligatoriu!</mat-error>
+              </mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="GDPR"> Am citit și sunt de acord cu politica de prelucrare a datelor personale conform GDPR.
+                <mat-error *ngIf="reviewForm.get('GDPR').hasError('requiredTrue')">Câmp obligatoriu!</mat-error>
+              </mat-checkbox>
+
+              <div class="buttons-group">
+                <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire pe pagina principală</button>
+                <button type="submit" mat-flat-button color="primary" [disabled]="!reviewForm.valid">Trimite</button>
+              </div>
+        </form>
+        </div>
+</div>

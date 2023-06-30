@@ -1,19 +1,39 @@
-<div class="container-fluid">
-    <div class="row mt-5">
-        <div class="col"></div>
-        <div class="col-6">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <h4 class="text-danger text-muted">Welcome</h4>
-                        </div>
-                        <!-- <button type="button" class="btn btn-warning text-center" (click)="logout()">Logout</button> -->
-                      </form>
-                </div>
-            </div>
-        </div>
-        <div class="col"></div>
+
+<div class="dashboard-container">
+  <div id="name">
+    Bine ai venit, {{currentUserName}}!
+  </div>
+
+  <div class="buttons-container">
+    <button type="button" mat-raised-button color="primary" (click)="OnVizualizareServicii()" >Servicii</button>
+    <button type="button" mat-raised-button color="primary" (click)="OnVizualizareDoctori()" >Doctori stomatologi</button>
+    <button type="button" mat-raised-button color="primary" (click)="OnProgramari()" >Programează-te</button>
+    <button type="button" mat-raised-button color="primary" (click)="OnIstoricProgramari()">Istoric</button>
+  </div>
+
+
+  <div class="map">
+    <google-map height="280px"
+                width="700px"
+                [options]="mapOptions">
+      <map-marker *ngFor="let marker of markers"
+                  [position]="marker.position"
+                  [title]="marker.name"></map-marker>
+    </google-map>
+  </div>
+
+  <div class="clinics">
+    <div>
+      <mat-list class="list-container">
+        <mat-list-item *ngFor="let clinic of clinicsList" >
+          <h2 matListItemTitle>{{clinic.nume}}</h2>
+          <span class="list-element" matListItemLine>{{clinic.program}}</span>
+          <span class="list-element" matListItemLine>{{clinic.adresa}}</span>
+          <span class="list-element" matListItemLine>{{clinic.telefon}}</span>
+        </mat-list-item>
+      </mat-list>
     </div>
+  </div>
 </div>
+
 

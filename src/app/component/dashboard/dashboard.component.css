@@ -1,0 +1,60 @@
+
+div{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    font-size: 20px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+
+}
+
+#name{
+    font-size: 20px;
+    font-family: Roboto, sans-serif;
+    font-weight: 800;
+
+}
+
+.dashboard-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('../../../assets/photos/dashboard3.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 80.4%;
+
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    margin: 80px 0px;
+    font-weight: 400;
+}
+
+.list-element{
+    white-space: break-spaces;
+    width: 200px;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.list-container{
+    display: flex;
+    flex-direction: row;
+}
+
+h2{
+    font-size: 16px;
+}

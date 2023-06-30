@@ -1,0 +1,31 @@
+.servicii-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('../../../../../../assets/photos/background5.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 80.4%;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+::ng-deep div.mat-mdc-text-field-wrapper {
+    width: 280px;
+}
+
+.buttons-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 280px;  
+}

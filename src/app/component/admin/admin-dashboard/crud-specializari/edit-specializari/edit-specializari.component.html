@@ -1,0 +1,24 @@
+<div class="specializari-container">
+    <h1>Specializare</h1>
+    <form [formGroup]="specializationForm" (submit)="updateSpecialization()" class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Nume specializare</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="specializationForm.get('name').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Clinici</mat-label>
+        <mat-select [(value)]="selectedClinics" multiple formControlName="clinics"  (selectionChange)="updateClinicSelection($event.value)">
+          <mat-option  *ngFor="let clinic of clinicsList" [value]="clinic.nume">
+              {{clinic.nume}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="buttons-group">
+        <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la specializări</button>
+        <button type="submit" mat-flat-button color="primary" [disabled]="!specializationForm.valid">Salvează</button>
+      </div>
+    </form>
+  </div>

@@ -1,34 +1,35 @@
-<div class="container-fluid">
-    <div class="row mt-5">
-        <div class="col"></div>
-        <div class="col-6">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-4">
-                            <h4 class="fa-solid fa-tooth">Conecteaza-te!</h4>
-                        </div>
-                        <div class="mb-3">
-                          <label class="fa-solid fa-envelope">Email</label>
-                          <input type="email" class="form-control" name="email" [(ngModel)]="email">
-                        </div>
-                        <div class="mb-3">
-                          <label class="fa-solid fa-lock">Password</label>
-                          <input type="password" class="form-control" name="password" [(ngModel)]="password">
-                        </div>
-                        <button type="button" class="btn btn-success" (click)="login()">Login</button>
-                        <div class="row mt-3">
-                            <!-- <div class="col-md-6">
-                                <a href="/register" style="text-decoration: none;"><span class="fa-solid fa-registered"> Register</span></a>
-                            </div> -->
-                            <div class="col-md-6">
-                                <a href="/forgot-password" class="fa-solid fa-key" style="text-decoration: none;"> Forgot password? </a>
-                            </div>
-                        </div>
-                      </form>
-                </div>
-            </div>
-        </div>
-        <div class="col"></div>
-    </div>
+<div class="login-container">
+  <h1>Intră în contul tău</h1>
+  <div>
+    <form [formGroup]="loginForm" (submit)="login()" class="form-container" id="login-form">
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+          <mat-error *ngIf="loginForm.get('email').hasError('required')">Câmp obligatoriu!</mat-error>
+          <mat-error *ngIf="loginForm.get('email').hasError('email')">Introduceți un email valid!</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Parolă</mat-label>
+          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"/>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password').hasError('required')">Câmp obligatoriu!</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="submit-button">
+        <button type="submit" mat-flat-button color="primary" [disabled]="!loginForm.valid">Mă conectez</button>
+      </div>
+
+      <div>
+        <a href="/forgot-password" style="text-decoration: none; color: black;"> Ai uitat parola? </a>
+      </div>
+    </form>
+  </div>
 </div>

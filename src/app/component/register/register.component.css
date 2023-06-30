@@ -1,0 +1,11 @@
+.register-container{
+    display: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('../../../assets/photos/fata.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 80.4%;
+}

@@ -1,0 +1,44 @@
+.add-review-doctori-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('../../../../../assets/photos/doctor1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-bottom: 40px;
+    height: 80.4%;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+::ng-deep div.mat-mdc-text-field-wrapper {
+    width: 280px;
+}
+
+.buttons-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 350px;
+}
+
+.form-container1{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+h1{
+    font-weight: bold;
+    background-color: white;
+    color: rgb(23, 113, 192);
+}

@@ -1,0 +1,31 @@
+.doctori-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+    background-image: url('../../../../assets/photos/background5.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    justify-content: space-evenly;
+    padding: 20px;
+    height: 80.4%;
+  }
+  ::ng-deep tr.mat-mdc-row:hover{
+  background-color: rgb(138, 184, 253)!important;
+  }
+  
+  .search {
+    font-size: 14px;
+    width: 300px;
+  }
+  
+  div{
+    text-align: left;
+    justify-content: space-between;
+  }
+
+  button{
+    margin-bottom: 10px;
+  }
+  

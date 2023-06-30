@@ -1,0 +1,26 @@
+.sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    .sidenav-close-button {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .title {
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 10px;
+    }
+
+    .card {
+        margin: 10px;
+    }
+}
+
+::ng-deep .mat-drawer-inner-container {
+    width: 300px;
+}

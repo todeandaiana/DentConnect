@@ -1,11 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-body {
-  background-image: url('assets/photos/fata.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
+
 
 .header {
     display: flex;
@@ -35,15 +30,7 @@ body {
     position: relative;
 }
 
-.left-col {
-    float: left;
-    width: 50%;
-    background-color: transparent;
-    height: 100%;
-}
-
   footer {
-    position: absolute;
     bottom: 0;
     width: 100%;
     justify-content: space-between;
@@ -52,8 +39,27 @@ body {
     padding: 10px;
   }
 
+  .table-container{
+    height: 600px;
+    overflow: auto;
+    width: 1650px;
+  }
 
+  .button-container{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
 
+    .add-button{
+      display: flex;
+      text-align: right;
+      margin-left: 10px;
+    }
+  }
+  
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

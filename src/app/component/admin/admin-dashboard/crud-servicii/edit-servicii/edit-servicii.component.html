@@ -1,0 +1,40 @@
+<div class="servicii-container">
+    <h1>Serviciu</h1>
+    <form [formGroup]="serviceForm" (submit)="updateService()" class="form-container">
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Nume serviciu</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="serviceForm.get('name').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Descriere</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-error *ngIf="serviceForm.get('description').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Specializare</mat-label>
+        <mat-select [(value)]="selectedSpecialization" formControlName="specializations">
+          <mat-option *ngFor="let specialization of specializationsList" [value]="specialization.nume">{{specialization.nume}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <h2 class="example-margin">Se găsește la următoarele clinici:</h2>
+        <ng-container *ngFor="let price of selectedClinicsAndPrices">
+          <div>
+            <mat-form-field appearance="fill">
+           <mat-label>Pret {{getClinicName(price.id_clinica)}}</mat-label>
+             <input matInput value="{{price.pret}}" (mouseleave)="onPriceInput($event, price.id_clinica)" required/>        
+           <mat-error *ngIf="serviceForm.get('price').hasError('required')">Câmp obligatoriu!</mat-error>
+         </mat-form-field>
+         </div>
+        </ng-container>
+  
+        <div class="buttons-group">
+          <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la servicii</button>
+          <button type="submit" mat-flat-button color="primary" [disabled]="!serviceForm.valid">Salvează</button>
+        </div>
+    </form>
+  </div>

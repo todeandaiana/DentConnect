@@ -1,0 +1,34 @@
+<div class="doctori-container">
+    <h1>Doctor</h1>
+    <form [formGroup]="doctorForm" (submit)="updateDoctor()" class="form-container">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nume doctor</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="doctorForm.get('name').hasError('required')">Câmp obligatoriu!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Clinică</mat-label>
+        <mat-select [value]="selectedClinic" formControlName="clinic" (selectionChange)="updateClinicSelection($event)">
+          <mat-option *ngFor="let clinic of clinicsList" [value]="clinic.nume"
+          >{{clinic.nume}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Specializări</mat-label>
+        <mat-select [(value)]="selectedSpecializations" multiple formControlName="specializations"  (selectionChange)="updateSpecializationSelection($event.value)">
+          <mat-option  *ngFor="let specialization of specializationsList" [value]="specialization.nume">
+              {{specialization.nume}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="buttons-group">
+        <button type="button" mat-flat-button color="accent" (click)="Back()">Revenire la doctori</button>
+        <button type="submit" mat-flat-button color="primary" [disabled]="!doctorForm.valid">Salvează</button>
+      </div>
+    </form>
+  </div>
+

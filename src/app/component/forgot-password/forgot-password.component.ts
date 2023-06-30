@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -9,14 +11,20 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class ForgotPasswordComponent implements OnInit{
 
   email :string ='';
-  constructor(private auth: AuthService){}
+  constructor(private auth: AuthService, private router: Router){}
+
+  forgotpasswordForm: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email])
+  })
 
   ngOnInit(): void {
     
   }
   forgotPassword(){
-    this.auth.forgotPassword(this.email);
-    this.email='';
+    this.auth.forgotPassword(this.forgotpasswordForm.value.email);
+  }
 
+  back() {
+    this.router.navigate(['/login']);
   }
 }
