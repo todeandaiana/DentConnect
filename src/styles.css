@@ -42,10 +42,10 @@
   .table-container{
     height: 600px;
     overflow: auto;
-    width: 1650px;
+    width: 100%;
   }
 
-  .button-container{
+    .button-container{
     display: flex;
     flex-direction: row;
     margin: 10px;

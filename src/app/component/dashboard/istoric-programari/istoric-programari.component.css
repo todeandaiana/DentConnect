@@ -25,6 +25,7 @@ div{
   justify-content: space-between;
 }
 
-.table-container{
+.table-height{
   height: 400px;
+  width: 1650px;
 }
